@@ -8,9 +8,69 @@
 
 import SwiftUI
 
+extension Color {
+    static let offWhite = Color(red: 225 / 255, green: 225 / 255, blue: 235 / 255)
+    static let darkStart = Color(red: 50 / 255, green: 60 / 255, blue: 65 / 255)
+    static let darkEnd = Color(red: 25 / 255, green: 25 / 255, blue: 30 / 255)
+}
+
+extension LinearGradient {
+    init(_ colors : Color...) {
+        self.init(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+}
+
+struct DarkBackground<S: Shape>: View {
+    var isHighlighted: Bool
+    var shape: S
+
+    var body: some View {
+        ZStack {
+            if isHighlighted {
+                shape
+                    .fill(LinearGradient(Color.darkEnd, Color.darkStart))
+                    .overlay(shape.stroke(LinearGradient(Color.darkStart, Color.darkEnd), lineWidth: 3))
+                    .shadow(color: Color.darkStart, radius: 10, x: 5, y: 5)
+                    .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
+
+            } else {
+                shape
+                    .fill(LinearGradient(Color.darkStart, Color.darkEnd))
+                    .overlay(shape.stroke(Color.darkEnd, lineWidth: 3))
+                    .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
+                    .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
+            }
+        }
+    }
+}
+
+struct neumorphicButtonStyle : ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        .padding(30)
+        .contentShape(Circle())
+        .background(
+            DarkBackground(isHighlighted: configuration.isPressed, shape: Circle())
+        )
+        .animation(nil)
+    }
+}
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            LinearGradient(Color.darkStart, Color.darkEnd)
+            
+            Button(action: {
+              print("Button Pressed")
+            }) {
+                Image(systemName: "moon.fill")
+                    .foregroundColor(.white)
+            }
+            .buttonStyle(neumorphicButtonStyle())
+            .frame(width: 0, height: 500, alignment: .bottom)
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
