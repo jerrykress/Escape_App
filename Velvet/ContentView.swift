@@ -7,7 +7,12 @@
 //
 
 import SwiftUI
-import CoreHaptics
+import SwiftUIPager
+
+
+let urls: [String] = ["https://i.pinimg.com/564x/ed/eb/59/edeb59cd554c95645fbca777424e3c3c.jpg",
+                      "https://i.pinimg.com/564x/75/13/15/751315b619ee2f307cfba9b0dcbf7446.jpg",
+                      "https://i.pinimg.com/564x/50/e7/6e/50e76edb2155f5dec0a2485ad8c0a1e9.jpg"]
 
 
 extension Color {
@@ -63,33 +68,67 @@ struct neumorphicButtonStyle : ButtonStyle {
 
 
 struct ContentView: View {
+    @State var page1: Int = 0
+    @State var data1 = Array(0..<5)
+    @State var isPresented: Bool = false
+    
     var body: some View {
-        ZStack {
-//            Backgroud
-            LinearGradient(Color.darkStart, Color.darkEnd)
-            
-            
-//            Navigation Circle
-            Circle()
-                .fill(LinearGradient(Color.darkEnd, Color.darkStart))
-                .opacity(0.9)
-                .offset(x: 0, y: -450)
-                .frame(width: 1000, height: 1000, alignment: .center)
-                .shadow(radius: 8)
-            
-//            Sleep Button
-            Button(action: {
-                print("Sleep Button Pressed")
+        GeometryReader { proxy in
+            ZStack {
                 
-            }) {
-                Image(systemName: "moon.fill")
-                    .foregroundColor(.white)
+    //          Backgroud
+                LinearGradient(Color.darkStart, Color.darkEnd)
+                
+                Pager(page: self.$page1,
+                      data: self.data1,
+                      id: \.self) {
+                        self.pageView($0)
+                }
+                .loopPages()
+                .itemSpacing(10)
+                .itemAspectRatio(0, alignment: .start)
+                .offset(x: 0, y: 210 - proxy.size.height/2)
+                .frame(width: proxy.size.width, height: 550, alignment: .top)
+//                .mask(
+//                    Circle()
+//                        .fill(LinearGradient(Color.darkEnd, Color.darkStart))
+//                        .offset(x: 0, y: -250)
+//                        .frame(width: 1000, height: 1000, alignment: .center)
+//                )
+                
+                
+    //            Sleep Button
+                Button(action: {
+                    print("Sleep Button Pressed")
+                    
+                }) {
+                    Image(systemName: "moon.fill")
+                        .foregroundColor(.white)
+                }
+                .buttonStyle(neumorphicButtonStyle())
+                .frame(width: 0, height: 580, alignment: .bottom)
+                
             }
-            .buttonStyle(neumorphicButtonStyle())
-            .frame(width: 0, height: 560, alignment: .bottom)
+            .edgesIgnoringSafeArea(.all)
             
         }
-        .edgesIgnoringSafeArea(.all)
+//        End of Body
+    }
+    
+    func pageView(_ page: Int) -> some View {
+        GeometryReader { proxy in
+            ZStack {
+                Image("dunes")
+                .resizable()
+                .scaledToFill()
+                .frame(width: proxy.size.width, height: 550, alignment: .top)
+    //            Text("Page: \(page)")
+    //                .bold()
+            }
+            .cornerRadius(10)
+            .shadow(radius: 5)
+        
+        }
     }
 }
 
