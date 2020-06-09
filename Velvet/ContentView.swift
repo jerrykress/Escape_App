@@ -10,9 +10,16 @@ import SwiftUI
 import SwiftUIPager
 
 
-let urls: [String] = ["https://i.pinimg.com/564x/ed/eb/59/edeb59cd554c95645fbca777424e3c3c.jpg",
-                      "https://i.pinimg.com/564x/75/13/15/751315b619ee2f307cfba9b0dcbf7446.jpg",
-                      "https://i.pinimg.com/564x/50/e7/6e/50e76edb2155f5dec0a2485ad8c0a1e9.jpg"]
+//Custom Mask for Pager View
+let dome = Path { p in
+    p.move(to: CGPoint(x: 0, y: 0))
+    p.addLine(to: CGPoint(x: 0, y: 150))
+    p.addCurve(to: CGPoint(x: 100, y: 150),
+               control1: CGPoint(x: 25, y: 165),
+               control2: CGPoint(x: 75, y: 165))
+    p.addLine(to: CGPoint(x: 100, y: 0))
+    p.addLine(to: CGPoint(x: 0, y: 0))
+}
 
 
 extension Color {
@@ -54,7 +61,7 @@ struct DarkBackground<S: Shape>: View {
 }
 
 
-struct neumorphicButtonStyle : ButtonStyle {
+struct NeumorphicButtonStyle : ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
         .padding(30)
@@ -63,6 +70,17 @@ struct neumorphicButtonStyle : ButtonStyle {
             DarkBackground(isHighlighted: configuration.isPressed, shape: Circle())
         )
         .animation(nil)
+    }
+}
+
+struct PathToShape: Shape {
+    let path: Path
+    
+    func path(in rect: CGRect) -> Path {
+        let bounds = path.boundingRect
+        return path.applying(
+            CGAffineTransform(scaleX: rect.size.width/bounds.size.width, y: rect.size.height/bounds.size.height)
+        )
     }
 }
 
@@ -76,28 +94,33 @@ struct ContentView: View {
         GeometryReader { proxy in
             ZStack {
                 
-    //          Backgroud
+                //Backgroud
                 LinearGradient(Color.darkStart, Color.darkEnd)
                 
-                Pager(page: self.$page1,
-                      data: self.data1,
-                      id: \.self) {
-                        self.pageView($0)
+                Group {
+                    Pager(page: self.$page1,
+                          data: self.data1,
+                          id: \.self) {
+                            self.pageView($0)
+                    }
+                    .loopPages()
+                    .itemSpacing(10)
+                    .itemAspectRatio(0, alignment: .start)
+                    .offset(x: 0, y: 210 - proxy.size.height/2)
+                    .frame(width: proxy.size.width, height: 550, alignment: .top)
+                    .mask(
+                        PathToShape(path: dome)
+                            .fill(LinearGradient(Color.darkEnd, Color.darkStart))
+                            .offset(x: 0, y: -200)
+                            .frame(width: 1000, height: 1000, alignment: .center)
+                    )
                 }
-                .loopPages()
-                .itemSpacing(10)
-                .itemAspectRatio(0, alignment: .start)
-                .offset(x: 0, y: 210 - proxy.size.height/2)
-                .frame(width: proxy.size.width, height: 550, alignment: .top)
-//                .mask(
-//                    Circle()
-//                        .fill(LinearGradient(Color.darkEnd, Color.darkStart))
-//                        .offset(x: 0, y: -250)
-//                        .frame(width: 1000, height: 1000, alignment: .center)
-//                )
+                .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
                 
                 
-    //            Sleep Button
+                
+                
+                //Sleep Button
                 Button(action: {
                     print("Sleep Button Pressed")
                     
@@ -105,14 +128,14 @@ struct ContentView: View {
                     Image(systemName: "moon.fill")
                         .foregroundColor(.white)
                 }
-                .buttonStyle(neumorphicButtonStyle())
+                .buttonStyle(NeumorphicButtonStyle())
                 .frame(width: 0, height: 580, alignment: .bottom)
                 
             }
             .edgesIgnoringSafeArea(.all)
             
         }
-//        End of Body
+        //End of Body
     }
     
     func pageView(_ page: Int) -> some View {
@@ -122,8 +145,9 @@ struct ContentView: View {
                 .resizable()
                 .scaledToFill()
                 .frame(width: proxy.size.width, height: 550, alignment: .top)
-    //            Text("Page: \(page)")
-    //                .bold()
+                
+//                Text("Page: \(page)")
+//                    .bold()
             }
             .cornerRadius(10)
             .shadow(radius: 5)
@@ -135,8 +159,15 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
-            .previewDisplayName("iPhone XS Max")
+        Group {
+            //Larger Screen Preview
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
+                .previewDisplayName("iPhone XS Max")
+            //Standard Screen Preview
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: "iPhone X"))
+                .previewDisplayName("iPhone X")
+        }
     }
 }
