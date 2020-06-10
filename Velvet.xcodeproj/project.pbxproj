@@ -15,6 +15,7 @@
 		C42FD0B02486744E00959C9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42FD0AF2486744E00959C9C /* Preview Assets.xcassets */; };
 		C42FD0B32486744E00959C9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42FD0B12486744E00959C9C /* LaunchScreen.storyboard */; };
 		C4C64BD52488616F00F4DD53 /* PedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C64BD42488616F00F4DD53 /* PedalView.swift */; };
+		C4F866FF249030830068816E /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F866FE249030830068816E /* SessionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		C42FD0B22486744E00959C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C42FD0B42486744E00959C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4C64BD42488616F00F4DD53 /* PedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedalView.swift; sourceTree = "<group>"; };
+		C4F866FE249030830068816E /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +65,12 @@
 				C42FD0A62486744C00959C9C /* AppDelegate.swift */,
 				C42FD0A82486744C00959C9C /* SceneDelegate.swift */,
 				C42FD0AA2486744C00959C9C /* ContentView.swift */,
+				C4F866FE249030830068816E /* SessionView.swift */,
+				C4C64BD42488616F00F4DD53 /* PedalView.swift */,
 				C42FD0AC2486744E00959C9C /* Assets.xcassets */,
 				C42FD0B12486744E00959C9C /* LaunchScreen.storyboard */,
 				C42FD0B42486744E00959C9C /* Info.plist */,
 				C42FD0AE2486744E00959C9C /* Preview Content */,
-				C4C64BD42488616F00F4DD53 /* PedalView.swift */,
 			);
 			path = Velvet;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C42FD0A72486744C00959C9C /* AppDelegate.swift in Sources */,
+				C4F866FF249030830068816E /* SessionView.swift in Sources */,
 				C42FD0A92486744C00959C9C /* SceneDelegate.swift in Sources */,
 				C42FD0AB2486744C00959C9C /* ContentView.swift in Sources */,
 				C4C64BD52488616F00F4DD53 /* PedalView.swift in Sources */,

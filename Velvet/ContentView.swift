@@ -73,6 +73,7 @@ struct NeumorphicButtonStyle : ButtonStyle {
     }
 }
 
+
 struct PathToShape: Shape {
     let path: Path
     
@@ -88,53 +89,51 @@ struct PathToShape: Shape {
 struct ContentView: View {
     @State var page1: Int = 0
     @State var data1 = Array(0..<5)
-    @State var isPresented: Bool = false
     
     var body: some View {
-        GeometryReader { proxy in
-            ZStack {
-                
-                //Backgroud
-                LinearGradient(Color.darkStart, Color.darkEnd)
-                
-                Group {
-                    Pager(page: self.$page1,
-                          data: self.data1,
-                          id: \.self) {
-                            self.pageView($0)
-                    }
-                    .loopPages()
-                    .itemSpacing(10)
-                    .itemAspectRatio(0, alignment: .start)
-                    .offset(x: 0, y: 210 - proxy.size.height/2)
-                    .frame(width: proxy.size.width, height: 550, alignment: .top)
-                    .mask(
-                        PathToShape(path: dome)
-                            .fill(LinearGradient(Color.darkEnd, Color.darkStart))
-                            .offset(x: 0, y: -200)
-                            .frame(width: 1000, height: 1000, alignment: .center)
-                    )
-                }
-                .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
-                
-                
-                
-                
-                //Sleep Button
-                Button(action: {
-                    print("Sleep Button Pressed")
-                    
-                }) {
-                    Image(systemName: "moon.fill")
-                        .foregroundColor(.white)
-                }
-                .buttonStyle(NeumorphicButtonStyle())
-                .frame(width: 0, height: 580, alignment: .bottom)
-                
-            }
-            .edgesIgnoringSafeArea(.all)
             
+        NavigationView {
+                    
+            GeometryReader { proxy in
+                
+                ZStack {
+                    //Backgroud
+                    LinearGradient(Color.darkStart, Color.darkEnd)
+                    
+                    Group {
+                        Pager(page: self.$page1,
+                              data: self.data1,
+                              id: \.self) {
+                                self.pageView($0)
+                        }
+                        .itemSpacing(10)
+                        .itemAspectRatio(0, alignment: .start)
+                        .offset(x: 0, y: 210 - proxy.size.height/2)
+                        .frame(width: proxy.size.width, height: 650, alignment: .top)
+                        .mask(
+                            PathToShape(path: dome)
+                                .fill(LinearGradient(Color.darkEnd, Color.darkStart))
+                                .offset(x: 0, y: -240)
+                                .frame(width: 1000, height: 1000, alignment: .center)
+                        )
+                    }
+                    .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
+                    
+                    //Sleep Button
+                    Button(action: {
+                        print("Sleep Button Pressed")
+                    }) {
+                        Image(systemName: "moon.fill")
+                            .foregroundColor(.white)
+                    }
+                    .buttonStyle(NeumorphicButtonStyle())
+                    .frame(width: 0, height: 580, alignment: .bottom)
+                }
+                .edgesIgnoringSafeArea(.all)
+            }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .edgesIgnoringSafeArea(.all)
         //End of Body
     }
     

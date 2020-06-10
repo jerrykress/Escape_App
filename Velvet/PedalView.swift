@@ -119,9 +119,11 @@ struct FlowerContentView_Previews : PreviewProvider {
     static var previews: some View {
         Color.black.overlay(
             FlowerAnimatableView(sides: 7, size: 300, scale: 1.0)
-                    .frame(width: 250, height: 250).background(Color.black)
-            
-        ).edgesIgnoringSafeArea(.all)
+            .frame(width: 250, height: 250).background(Color.black)
+        )
+        .edgesIgnoringSafeArea(.all)
+        .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
+        .previewDisplayName("iPhone XS Max")
         
     }
 }
