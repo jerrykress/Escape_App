@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SessionView: View {
-    var action: (() -> Void)?
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         GeometryReader { proxy in
@@ -21,10 +21,11 @@ struct SessionView: View {
                 //Sleep Button
                 Button(action: {
                     print("Stop Button Pressed")
+                    self.presentationMode.wrappedValue.dismiss()
                     
                 }) {
                     Image(systemName: "stop.fill")
-                        .foregroundColor(.white)
+                    .foregroundColor(.white)
                 }
                 .buttonStyle(NeumorphicButtonStyle())
                 .frame(width: 0, height: 580, alignment: .bottom)
@@ -33,13 +34,7 @@ struct SessionView: View {
             .edgesIgnoringSafeArea(.all)
             
         }
-        //End of Body
-    }
-    
-    public func onAction(action: @escaping () -> Void) -> SessionView {
-        var view = self
-        view.action = action
-        return view
+        .navigationBarBackButtonHidden(true) //Disable Back Swipe Gesture
     }
 }
 

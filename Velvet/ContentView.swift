@@ -120,11 +120,9 @@ struct ContentView: View {
                     .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
                     
                     //Sleep Button
-                    Button(action: {
-                        print("Sleep Button Pressed")
-                    }) {
+                    NavigationLink(destination: SessionView()){
                         Image(systemName: "moon.fill")
-                            .foregroundColor(.white)
+                        .foregroundColor(.white)
                     }
                     .buttonStyle(NeumorphicButtonStyle())
                     .frame(width: 0, height: 580, alignment: .bottom)
