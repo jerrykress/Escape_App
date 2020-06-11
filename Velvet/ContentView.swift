@@ -10,55 +10,6 @@ import SwiftUI
 import SwiftUIPager
 
 
-//Custom Mask for Pager View
-let dome = Path { p in
-    p.move(to: CGPoint(x: 0, y: 0))
-    p.addLine(to: CGPoint(x: 0, y: 250))
-    p.addCurve(to: CGPoint(x: 100, y: 250),
-               control1: CGPoint(x: 25, y: 215),
-               control2: CGPoint(x: 75, y: 215))
-    p.addLine(to: CGPoint(x: 100, y: 0))
-    p.addLine(to: CGPoint(x: 0, y: 0))
-}
-
-
-extension Color {
-    static let offWhite = Color(red: 225 / 255, green: 225 / 255, blue: 235 / 255)
-    static let darkStart = Color(red: 50 / 255, green: 60 / 255, blue: 65 / 255)
-    static let darkEnd = Color(red: 25 / 255, green: 25 / 255, blue: 30 / 255)
-}
-
-
-extension LinearGradient {
-    init(_ colors : Color...) {
-        self.init(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
-    }
-}
-
-
-struct Blur: UIViewRepresentable {
-    var style: UIBlurEffect.Style = .systemMaterial
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        return UIVisualEffectView(effect: UIBlurEffect(style: style))
-    }
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = UIBlurEffect(style: style)
-    }
-}
-
-
-struct PathToShape: Shape {
-    let path: Path
-    
-    func path(in rect: CGRect) -> Path {
-        let bounds = path.boundingRect
-        return path.applying(
-            CGAffineTransform(scaleX: rect.size.width/bounds.size.width, y: rect.size.height/bounds.size.height)
-        )
-    }
-}
-
-
 struct ContentView: View {
     @State var page1: Int = 0
     @State var data1 = Array(0..<5)
