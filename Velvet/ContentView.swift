@@ -8,7 +8,10 @@
 
 import SwiftUI
 import SwiftUIPager
+import URLImage
 
+let img = "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg"
+let url = URL(string: img)
 
 struct ContentView: View {
     @State var page1: Int = 0
@@ -43,10 +46,10 @@ struct ContentView: View {
                     NavigationLink(destination: SessionView()){
                         Image(systemName: "moon.fill")
                         .foregroundColor(.white)
-                            .opacity(0.9)
+                            .opacity(0.8)
                     }
                     .buttonStyle(BlurryRoundButtonStyle())
-                    .frame(width: 0, height: 580, alignment: .bottom)
+                    .frame(width: 0, height: 500, alignment: .bottom)
                 }
                 .edgesIgnoringSafeArea(.all)
             }
@@ -59,10 +62,13 @@ struct ContentView: View {
     func pageView(_ page: Int) -> some View {
         GeometryReader { proxy in
             ZStack {
-                Image("forest")
-                .resizable()
-                .scaledToFill()
-                    .frame(width: proxy.size.width, height: proxy.size.height/1.1, alignment: .top)
+                 URLImage(url!,
+                          content: {
+                              $0.image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: proxy.size.width, height: proxy.size.height/1.1, alignment: .top)
+                          })
                 
 //                Text("Page: \(page)")
 //                    .bold()

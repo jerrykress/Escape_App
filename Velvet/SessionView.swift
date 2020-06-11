@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct SessionView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -16,7 +17,7 @@ struct SessionView: View {
             ZStack {
                 
                 //Backgroud
-                LinearGradient(Color.darkStart, Color.darkEnd)
+                Color.black
                 
                 //Sleep Button
                 Button(action: {

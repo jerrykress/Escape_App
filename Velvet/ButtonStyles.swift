@@ -72,7 +72,7 @@ struct DarkNeumorphicRoundButtonStyle : ButtonStyle {
 struct BlurryRoundButtonStyle : ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-        .padding(35)
+        .padding(30)
         .contentShape(Circle())
         .background(
             GlassBackground(isHighlighted: configuration.isPressed, shape: Circle())
