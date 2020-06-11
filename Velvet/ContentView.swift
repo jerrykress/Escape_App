@@ -13,10 +13,10 @@ import SwiftUIPager
 //Custom Mask for Pager View
 let dome = Path { p in
     p.move(to: CGPoint(x: 0, y: 0))
-    p.addLine(to: CGPoint(x: 0, y: 150))
-    p.addCurve(to: CGPoint(x: 100, y: 150),
-               control1: CGPoint(x: 25, y: 165),
-               control2: CGPoint(x: 75, y: 165))
+    p.addLine(to: CGPoint(x: 0, y: 250))
+    p.addCurve(to: CGPoint(x: 100, y: 250),
+               control1: CGPoint(x: 25, y: 215),
+               control2: CGPoint(x: 75, y: 215))
     p.addLine(to: CGPoint(x: 100, y: 0))
     p.addLine(to: CGPoint(x: 0, y: 0))
 }
@@ -36,40 +36,13 @@ extension LinearGradient {
 }
 
 
-struct DarkBackground<S: Shape>: View {
-    var isHighlighted: Bool
-    var shape: S
-
-    var body: some View {
-        ZStack {
-            if isHighlighted {
-                shape
-                    .fill(LinearGradient(Color.darkEnd, Color.darkStart))
-                    .overlay(shape.stroke(LinearGradient(Color.darkStart, Color.darkEnd), lineWidth: 3))
-                    .shadow(color: Color.darkStart, radius: 10, x: 5, y: 5)
-                    .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
-
-            } else {
-                shape
-                    .fill(LinearGradient(Color.darkStart, Color.darkEnd))
-                    .overlay(shape.stroke(Color.darkEnd, lineWidth: 3))
-                    .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
-                    .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
-            }
-        }
+struct Blur: UIViewRepresentable {
+    var style: UIBlurEffect.Style = .systemMaterial
+    func makeUIView(context: Context) -> UIVisualEffectView {
+        return UIVisualEffectView(effect: UIBlurEffect(style: style))
     }
-}
-
-
-struct NeumorphicButtonStyle : ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-        .padding(30)
-        .contentShape(Circle())
-        .background(
-            DarkBackground(isHighlighted: configuration.isPressed, shape: Circle())
-        )
-        .animation(nil)
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
+        uiView.effect = UIBlurEffect(style: style)
     }
 }
 
@@ -106,16 +79,12 @@ struct ContentView: View {
                               id: \.self) {
                                 self.pageView($0)
                         }
+                        .loopPages()
+                        .interactive(0.9)
                         .itemSpacing(10)
-                        .itemAspectRatio(0, alignment: .start)
-                        .offset(x: 0, y: 210 - proxy.size.height/2)
-                        .frame(width: proxy.size.width, height: 650, alignment: .top)
-                        .mask(
-                            PathToShape(path: dome)
-                                .fill(LinearGradient(Color.darkEnd, Color.darkStart))
-                                .offset(x: 0, y: -240)
-                                .frame(width: 1000, height: 1000, alignment: .center)
-                        )
+                        .itemAspectRatio(0, alignment: .center)
+                        .offset(x: 0, y: 0)
+                        .frame(width: proxy.size.width, height: proxy.size.height*1.2, alignment: .center)
                     }
                     .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
                     
@@ -123,8 +92,9 @@ struct ContentView: View {
                     NavigationLink(destination: SessionView()){
                         Image(systemName: "moon.fill")
                         .foregroundColor(.white)
+                            .opacity(0.9)
                     }
-                    .buttonStyle(NeumorphicButtonStyle())
+                    .buttonStyle(BlurryRoundButtonStyle())
                     .frame(width: 0, height: 580, alignment: .bottom)
                 }
                 .edgesIgnoringSafeArea(.all)
@@ -138,10 +108,10 @@ struct ContentView: View {
     func pageView(_ page: Int) -> some View {
         GeometryReader { proxy in
             ZStack {
-                Image("dunes")
+                Image("forest")
                 .resizable()
                 .scaledToFill()
-                .frame(width: proxy.size.width, height: 550, alignment: .top)
+                    .frame(width: proxy.size.width, height: proxy.size.height/1.1, alignment: .top)
                 
 //                Text("Page: \(page)")
 //                    .bold()

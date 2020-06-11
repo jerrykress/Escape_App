@@ -27,7 +27,7 @@ struct SessionView: View {
                     Image(systemName: "stop.fill")
                     .foregroundColor(.white)
                 }
-                .buttonStyle(NeumorphicButtonStyle())
+                .buttonStyle(BlurryRoundButtonStyle())
                 .frame(width: 0, height: 580, alignment: .bottom)
                 
             }
