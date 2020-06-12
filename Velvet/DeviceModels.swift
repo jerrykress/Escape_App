@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  DeviceModels.swift
 //  Velvet
 //
 //  Created by Jerry Kress on 10/06/2020.
@@ -94,7 +94,3 @@ public extension UIDevice {
 
 }
 
-
-let ScreenSizeType = ["iPhone 6s": 1,
-                      "iPhone 7" : 1,
-                      "iPhone 8" : 1]

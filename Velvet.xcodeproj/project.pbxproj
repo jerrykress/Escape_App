@@ -17,9 +17,10 @@
 		C4C4870B24929A9E0031993F /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4870A24929A9E0031993F /* ButtonStyles.swift */; };
 		C4C4870D24929C340031993F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4870C24929C340031993F /* Utilities.swift */; };
 		C4C4871024929FBC0031993F /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4C4870F24929FBC0031993F /* URLImage */; };
+		C4C487122492EC0B0031993F /* SceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C487112492EC0B0031993F /* SceneModel.swift */; };
 		C4C64BD52488616F00F4DD53 /* PedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C64BD42488616F00F4DD53 /* PedalView.swift */; };
 		C4F866FF249030830068816E /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F866FE249030830068816E /* SessionView.swift */; };
-		C4F867012490F9B90068816E /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F867002490F9B90068816E /* AppConstants.swift */; };
+		C4F867012490F9B90068816E /* DeviceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F867002490F9B90068816E /* DeviceModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +34,10 @@
 		C42FD0B42486744E00959C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4C4870A24929A9E0031993F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		C4C4870C24929C340031993F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C4C487112492EC0B0031993F /* SceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
 		C4C64BD42488616F00F4DD53 /* PedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedalView.swift; sourceTree = "<group>"; };
 		C4F866FE249030830068816E /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
-		C4F867002490F9B90068816E /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		C4F867002490F9B90068816E /* DeviceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,10 +74,11 @@
 			children = (
 				C42FD0A62486744C00959C9C /* AppDelegate.swift */,
 				C42FD0A82486744C00959C9C /* SceneDelegate.swift */,
-				C4F867002490F9B90068816E /* AppConstants.swift */,
+				C4F867002490F9B90068816E /* DeviceModels.swift */,
 				C42FD0AA2486744C00959C9C /* ContentView.swift */,
 				C4F866FE249030830068816E /* SessionView.swift */,
 				C4C4870A24929A9E0031993F /* ButtonStyles.swift */,
+				C4C487112492EC0B0031993F /* SceneModel.swift */,
 				C4C4870C24929C340031993F /* Utilities.swift */,
 				C4C64BD42488616F00F4DD53 /* PedalView.swift */,
 				C42FD0AC2486744E00959C9C /* Assets.xcassets */,
@@ -179,8 +182,9 @@
 				C42FD0AB2486744C00959C9C /* ContentView.swift in Sources */,
 				C4C4870B24929A9E0031993F /* ButtonStyles.swift in Sources */,
 				C4C64BD52488616F00F4DD53 /* PedalView.swift in Sources */,
+				C4C487122492EC0B0031993F /* SceneModel.swift in Sources */,
 				C4C4870D24929C340031993F /* Utilities.swift in Sources */,
-				C4F867012490F9B90068816E /* AppConstants.swift in Sources */,
+				C4F867012490F9B90068816E /* DeviceModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

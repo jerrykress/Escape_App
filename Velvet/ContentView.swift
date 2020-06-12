@@ -10,12 +10,11 @@ import SwiftUI
 import SwiftUIPager
 import URLImage
 
-let img = "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg"
-let url = URL(string: img)
+let scenes = SoundScene.allScenes
 
 struct ContentView: View {
     @State var page1: Int = 0
-    @State var data1 = Array(0..<5)
+    @State var data1 = Array(0..<scenes.count)
     
     var body: some View {
             
@@ -49,7 +48,7 @@ struct ContentView: View {
                             .opacity(0.8)
                     }
                     .buttonStyle(BlurryRoundButtonStyle())
-                    .frame(width: 0, height: 500, alignment: .bottom)
+                    .frame(width: 0, height: 600, alignment: .bottom)
                 }
                 .edgesIgnoringSafeArea(.all)
             }
@@ -62,7 +61,8 @@ struct ContentView: View {
     func pageView(_ page: Int) -> some View {
         GeometryReader { proxy in
             ZStack {
-                 URLImage(url!,
+                //Background
+                URLImage(URL(string: scenes[page].coverURL)!,
                           content: {
                               $0.image
                                 .resizable()
@@ -70,8 +70,22 @@ struct ContentView: View {
                                 .frame(width: proxy.size.width, height: proxy.size.height/1.1, alignment: .top)
                           })
                 
-//                Text("Page: \(page)")
-//                    .bold()
+                VStack {
+                    //Sound Title
+                    Text(scenes[page].title)
+                        .font(.largeTitle)
+                        .foregroundColor(Color.white)
+                        .opacity(0.9)
+                        .padding(10)
+                    
+                    //Sound Description
+                    Text(scenes[page].description)
+                        .font(.subheadline)
+                        .foregroundColor(Color.white)
+                        .opacity(0.9)
+                }
+                .frame(width: proxy.size.width, height: proxy.size.height/1.5, alignment: .top)
+                
             }
             .cornerRadius(10)
             .shadow(radius: 5)
