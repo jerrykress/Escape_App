@@ -10,11 +10,11 @@ import SwiftUI
 import SwiftUIPager
 import URLImage
 
-let scenes = SoundScene.allScenes
 
 struct ContentView: View {
+    @EnvironmentObject var userData: UserData
     @State var page1: Int = 0
-    @State var data1 = Array(0..<scenes.count)
+    @State var data1 = Array(0..<3)
     
     var body: some View {
             
@@ -62,24 +62,25 @@ struct ContentView: View {
         GeometryReader { proxy in
             ZStack {
                 //Background
-                URLImage(URL(string: scenes[page].coverURL)!,
-                          content: {
+                URLImage(URL(string: self.userData.allScenes[page].coverURL)!,
+                         expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
+                         content: {
                               $0.image
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: proxy.size.width, height: proxy.size.height/1.1, alignment: .top)
-                          })
+                         })
                 
                 VStack {
                     //Sound Title
-                    Text(scenes[page].title)
+                    Text(self.userData.allScenes[page].title)
                         .font(.largeTitle)
                         .foregroundColor(Color.white)
                         .opacity(0.9)
                         .padding(10)
                     
                     //Sound Description
-                    Text(scenes[page].description)
+                    Text(self.userData.allScenes[page].description)
                         .font(.subheadline)
                         .foregroundColor(Color.white)
                         .opacity(0.9)
@@ -95,17 +96,19 @@ struct ContentView: View {
 }
 
 
+#if DEBUG
+
+var mockData = UserData()
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            //Larger Screen Preview
-            ContentView()
-                .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
-                .previewDisplayName("iPhone XS Max")
             //Standard Screen Preview
-            ContentView()
+            ContentView().environmentObject(mockData)
                 .previewDevice(PreviewDevice(rawValue: "iPhone X"))
                 .previewDisplayName("iPhone X")
         }
     }
 }
+
+#endif
