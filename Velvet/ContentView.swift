@@ -25,7 +25,7 @@ struct ContentView: View {
                     LinearGradient(Color.darkStart, Color.darkEnd)
                     
                     Group {
-                        Pager(page: self.$userData.startingTrackIndex,
+                        Pager(page: self.$userData.currentTrackIndex,
                               data: self.userData.idx,
                               id: \.self) {
                                 self.pageView($0)

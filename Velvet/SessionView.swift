@@ -11,6 +11,7 @@ import URLImage
 
 struct SessionView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var userData: UserData
     @State var calendar = Calendar.current
     @State var date = Date()
     
@@ -32,7 +33,22 @@ struct SessionView: View {
             ZStack {
                 
                 //Backgroud
-                Color.black
+                Color.black.edgesIgnoringSafeArea(.all)
+                
+                //Now Playing Info
+                VStack {
+                    Text("Now playing")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 15, weight: .bold, design: .default))
+                        .opacity(0.7)
+                        .padding(.top, 20)
+                        .padding(.bottom, 10)
+                    Text("\(self.userData.allScenes[self.userData.currentTrackIndex].title)")
+                    .foregroundColor(Color.white)
+                    .font(.system(size: 16, weight: .light, design: .default))
+                    .opacity(0.7)
+                }
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
                 
                 VStack {
                     Text("\(self.calendar.component(.hour, from: self.date))")
@@ -59,7 +75,6 @@ struct SessionView: View {
                 .frame(width: 0, height: 580, alignment: .bottom)
                 
             }
-            .edgesIgnoringSafeArea(.all)
             
         }
         .navigationBarBackButtonHidden(true) //Disable Back Swipe Gesture
@@ -67,17 +82,21 @@ struct SessionView: View {
     
 }
 
+#if DEBUG
+
 struct SessionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             //Larger Screen Preview
-            SessionView()
+            SessionView().environmentObject(mockData)
                 .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
                 .previewDisplayName("iPhone XS Max")
             //Standard Screen Preview
-            SessionView()
+            SessionView().environmentObject(mockData)
                 .previewDevice(PreviewDevice(rawValue: "iPhone X"))
                 .previewDisplayName("iPhone X")
         }
     }
 }
+
+#endif
