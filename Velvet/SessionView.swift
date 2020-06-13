@@ -28,13 +28,19 @@ struct SessionView: View {
                                })
     }
     
+
+    
     var body: some View {
         GeometryReader { proxy in
             ZStack {
                 
                 //Backgroud
-                Color.black.edgesIgnoringSafeArea(.all)
+                Color.black
+                    .edgesIgnoringSafeArea(.all)
+                    .overlay(EmitterView()
+                                .opacity(0.5))
                 
+
                 //Now Playing Info
                 VStack {
                     Text("Now playing")
@@ -50,17 +56,20 @@ struct SessionView: View {
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
                 
+                //Time
                 VStack {
                     Text("\(self.calendar.component(.hour, from: self.date))")
                         .foregroundColor(Color.white)
                         .font(.system(size: 70, weight: .light, design: .default))
+                        .shadow(radius: 40)
                         .opacity(0.7)
                     Text("\(self.calendar.component(.minute, from: self.date))")
                         .foregroundColor(Color.white)
                         .font(.system(size: 70, weight: .light, design: .default))
+                        .shadow(radius: 40)
                         .opacity(0.5)
                 }
-                .onAppear(perform: {let _ = self.updateTimer})
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                 
                 //Sleep Button
                 Button(action: {
@@ -70,11 +79,14 @@ struct SessionView: View {
                 }) {
                     Image(systemName: "stop.fill")
                     .foregroundColor(.white)
+                    .opacity(0.6)
                 }
                 .buttonStyle(BlurryRoundButtonStyle())
                 .frame(width: 0, height: 580, alignment: .bottom)
+                .opacity(0.8)
                 
             }
+            .onAppear(perform: {let _ = self.updateTimer})
             
         }
         .navigationBarBackButtonHidden(true) //Disable Back Swipe Gesture
