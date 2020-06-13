@@ -13,8 +13,6 @@ import URLImage
 
 struct ContentView: View {
     @EnvironmentObject var userData: UserData
-    @State var page1: Int = 0
-    @State var data1 = Array(0..<3)
     
     var body: some View {
             
@@ -27,8 +25,8 @@ struct ContentView: View {
                     LinearGradient(Color.darkStart, Color.darkEnd)
                     
                     Group {
-                        Pager(page: self.$page1,
-                              data: self.data1,
+                        Pager(page: self.$userData.startingTrackIndex,
+                              data: self.userData.idx,
                               id: \.self) {
                                 self.pageView($0)
                         }
@@ -55,6 +53,7 @@ struct ContentView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .edgesIgnoringSafeArea(.all)
+        
         //End of Body
     }
     
@@ -98,7 +97,23 @@ struct ContentView: View {
 
 #if DEBUG
 
-var mockData = UserData()
+var mockData = UserData(allScenes: [
+    SoundScene(title: "Ocean",
+               description: "Sleep to the sound of ocean waves",
+               soundURL: "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg",
+               coverURL: "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg",
+               length: 100),
+    SoundScene(title: "Ecstacy",
+               description: "Sleep to the sound of mountain wind",
+               soundURL: "https://images.ctfassets.net/ooa29xqb8tix/6NCSjAxuA8EaEgkauQuKso/e3b1c4f38fa5e3899ca0f6d9c98370cd/iPhone_X_Wallpaper_9.png",
+               coverURL: "https://images.ctfassets.net/ooa29xqb8tix/6NCSjAxuA8EaEgkauQuKso/e3b1c4f38fa5e3899ca0f6d9c98370cd/iPhone_X_Wallpaper_9.png",
+               length: 100),
+    SoundScene(title: "Mountain",
+               description: "Sleep to the sound of mountain wind",
+               soundURL: "https://i.pinimg.com/564x/d2/14/be/d214bed6bb5066408070ad70925ab72b.jpg",
+               coverURL: "https://i.pinimg.com/564x/d2/14/be/d214bed6bb5066408070ad70925ab72b.jpg",
+               length: 100)
+])
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
