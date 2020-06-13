@@ -77,6 +77,6 @@ struct BlurryRoundButtonStyle : ButtonStyle {
         .background(
             GlassBackground(isHighlighted: configuration.isPressed, shape: Circle())
         )
-//        .animation(nil)
+        .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
     }
 }

@@ -73,7 +73,7 @@ struct ContentView: View {
                 VStack {
                     //Sound Title
                     Text(self.userData.allScenes[page].title)
-                        .font(.largeTitle)
+                        .font(.system(size: 40, weight: .bold, design: .default))
                         .foregroundColor(Color.white)
                         .opacity(0.9)
                         .padding(10)

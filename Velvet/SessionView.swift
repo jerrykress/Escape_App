@@ -11,6 +11,21 @@ import URLImage
 
 struct SessionView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var calendar = Calendar.current
+    @State var date = Date()
+    
+    var timeFormat: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm:ss a"
+        return formatter
+    }
+    
+    var updateTimer: Timer {
+         Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+                              block: {_ in
+                                 self.date = Date()
+                               })
+    }
     
     var body: some View {
         GeometryReader { proxy in
@@ -18,6 +33,18 @@ struct SessionView: View {
                 
                 //Backgroud
                 Color.black
+                
+                VStack {
+                    Text("\(self.calendar.component(.hour, from: self.date))")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 70, weight: .light, design: .default))
+                        .opacity(0.7)
+                    Text("\(self.calendar.component(.minute, from: self.date))")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 70, weight: .light, design: .default))
+                        .opacity(0.5)
+                }
+                .onAppear(perform: {let _ = self.updateTimer})
                 
                 //Sleep Button
                 Button(action: {
@@ -37,6 +64,7 @@ struct SessionView: View {
         }
         .navigationBarBackButtonHidden(true) //Disable Back Swipe Gesture
     }
+    
 }
 
 struct SessionView_Previews: PreviewProvider {
