@@ -55,6 +55,27 @@ struct GlassBackground<S: Shape>: View {
     }
 }
 
+struct NoFillBorderBackground<S: Shape>: View {
+    var isHighlighted: Bool
+    var shape: S
+
+    var body: some View {
+        ZStack {
+            if isHighlighted {
+                shape
+                    .fill(Color.black)
+                    .overlay(shape.stroke(Color.offWhite, lineWidth: 1))
+                    .opacity(0.5)
+            } else {
+                shape
+                    .fill(Color.black)
+                    .overlay(shape.stroke(Color.offWhite, lineWidth: 1))
+                    .opacity(0.5)
+            }
+        }
+    }
+}
+
 
 struct DarkNeumorphicRoundButtonStyle : ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
@@ -72,10 +93,22 @@ struct DarkNeumorphicRoundButtonStyle : ButtonStyle {
 struct BlurryRoundButtonStyle : ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-        .padding(30)
+        .padding(25)
         .contentShape(Circle())
         .background(
             GlassBackground(isHighlighted: configuration.isPressed, shape: Circle())
+        )
+        .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+    }
+}
+
+struct NoFillBorderButtonStyle : ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        .padding(20)
+        .contentShape(Circle())
+        .background(
+            NoFillBorderBackground(isHighlighted: configuration.isPressed, shape: Circle())
         )
         .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
     }

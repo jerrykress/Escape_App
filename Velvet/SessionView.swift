@@ -60,16 +60,20 @@ struct SessionView: View {
                 VStack {
                     Text("\(self.calendar.component(.hour, from: self.date))")
                         .foregroundColor(Color.white)
-                        .font(.system(size: 70, weight: .light, design: .default))
-                        .shadow(radius: 40)
+//                        .font(.system(size: 70, weight: .light, design: .default))
+                        .font(.custom("Satisfaction", size: 80))
                         .opacity(0.7)
                     Text("\(self.calendar.component(.minute, from: self.date))")
                         .foregroundColor(Color.white)
-                        .font(.system(size: 70, weight: .light, design: .default))
-                        .shadow(radius: 40)
+//                        .font(.system(size: 70, weight: .light, design: .default))
+                        .font(.custom("Satisfaction", size: 80))
                         .opacity(0.5)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+                .padding(.top, 50)
+                .edgesIgnoringSafeArea(.top)
+                .edgesIgnoringSafeArea(.bottom)
+                
                 
                 //Sleep Button
                 Button(action: {
@@ -77,13 +81,12 @@ struct SessionView: View {
                     self.presentationMode.wrappedValue.dismiss()
                     
                 }) {
-                    Image(systemName: "stop.fill")
+                    Image(systemName: "stop")
                     .foregroundColor(.white)
                     .opacity(0.6)
                 }
-                .buttonStyle(BlurryRoundButtonStyle())
+                .buttonStyle(NoFillBorderButtonStyle())
                 .frame(width: 0, height: 580, alignment: .bottom)
-                .opacity(0.8)
                 
             }
             .onAppear(perform: {let _ = self.updateTimer})
