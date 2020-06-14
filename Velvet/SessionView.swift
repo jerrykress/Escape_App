@@ -58,14 +58,12 @@ struct SessionView: View {
                 
                 //Time
                 VStack {
-                    Text("\(self.calendar.component(.hour, from: self.date))")
+                    Text("\(String(format: "%02d", self.calendar.component(.hour, from: self.date)))")
                         .foregroundColor(Color.white)
-//                        .font(.system(size: 70, weight: .light, design: .default))
                         .font(.custom("Satisfaction", size: 80))
                         .opacity(0.7)
-                    Text("\(self.calendar.component(.minute, from: self.date))")
+                    Text("\(String(format: "%02d", self.calendar.component(.minute, from: self.date)))")
                         .foregroundColor(Color.white)
-//                        .font(.system(size: 70, weight: .light, design: .default))
                         .font(.custom("Satisfaction", size: 80))
                         .opacity(0.5)
                 }
@@ -90,6 +88,7 @@ struct SessionView: View {
                 
             }
             .onAppear(perform: {let _ = self.updateTimer})
+            .onDisappear(perform: {let _ = self.updateTimer})
             
         }
         .navigationBarBackButtonHidden(true) //Disable Back Swipe Gesture
