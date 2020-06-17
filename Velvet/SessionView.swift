@@ -9,11 +9,18 @@
 import SwiftUI
 import URLImage
 
+
+
 struct SessionView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var userData: UserData
+    @State var isSessionCompleted = false
     @State var calendar = Calendar.current
     @State var date = Date()
+    
+    @State var sessionStartDate = Date()
+    @State var sessionEndDate = Date()
+    @State var sessionDuration: (Int, Int) = (0,0)
     
     var timeFormat: DateFormatter {
         let formatter = DateFormatter()
@@ -27,8 +34,6 @@ struct SessionView: View {
                                  self.date = Date()
                                })
     }
-    
-
     
     var body: some View {
         GeometryReader { proxy in
@@ -55,6 +60,7 @@ struct SessionView: View {
                     .opacity(0.7)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
+                .isHidden(self.isSessionCompleted)
                 
                 //Time
                 VStack {
@@ -71,30 +77,79 @@ struct SessionView: View {
                 .padding(.top, 50)
                 .edgesIgnoringSafeArea(.top)
                 .edgesIgnoringSafeArea(.bottom)
+                .isHidden(self.isSessionCompleted)
                 
                 
-                //Sleep Button
+                //Stop Button
                 Button(action: {
-                    print("Stop Button Pressed")
-                    self.presentationMode.wrappedValue.dismiss()
-                    
+                    print("Stop Session Button Pressed")
+                    self.sessionEndDate = Date()
+                    let tempDuration = self.sessionEndDate - self.sessionStartDate
+                    self.sessionDuration = (tempDuration.hour!, tempDuration.minute!)
+                    withAnimation {
+                        self.isSessionCompleted.toggle()
+                    }
                 }) {
                     Image(systemName: "stop")
                     .foregroundColor(.white)
                     .opacity(0.6)
                 }
                 .buttonStyle(NoFillBorderButtonStyle())
-                .frame(width: 0, height: 580, alignment: .bottom)
+                .frame(width: 0, height: self.isSessionCompleted ? 0 : 580, alignment: .bottom) //A conditional operator used to hide the button
+                
+                
+                //Session Complete View
+                if(self.isSessionCompleted) {
+                    
+                    //Session Information Card
+                    ZStack {
+                        VStack {
+                            Text("You have slept for \n \(self.sessionDuration.0) hours \(self.sessionDuration.1) minutes")
+                            .padding(20)
+                        }
+                        .frame(width: proxy.size.width/1.3, height: proxy.size.height/2, alignment: .center)
+                        .background(Color.offWhite)
+                        .cornerRadius(20)
+                        .shadow(radius: 5)
+                        
+                        //Back to Home Button
+                        Button(action: {
+                            print("Return Button Pressed")
+                            withAnimation {
+                                self.isSessionCompleted.toggle()
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }) {
+                            Image(systemName: "multiply")
+                            .foregroundColor(.white)
+                            .opacity(0.6)
+                        }
+                        .buttonStyle(NoFillBorderButtonStyle())
+                        .frame(width: 0, height: 580, alignment: .bottom)
+                        
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
+                    .offset(x: 0, y: proxy.size.height/10)
+                    .background(Image("sunrise"))
+                    
+                }
                 
             }
-            .onAppear(perform: {let _ = self.updateTimer})
-            .onDisappear(perform: {let _ = self.updateTimer})
+            .onAppear(perform: {
+                let _ = self.updateTimer
+                self.sessionStartDate = Date()
+            })
+            .onDisappear(perform: {
+                let _ = self.updateTimer
+            })
             
         }
         .navigationBarBackButtonHidden(true) //Disable Back Swipe Gesture
     }
     
 }
+
 
 #if DEBUG
 

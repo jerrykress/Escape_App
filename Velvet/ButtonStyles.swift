@@ -110,6 +110,6 @@ struct NoFillBorderButtonStyle : ButtonStyle {
         .background(
             NoFillBorderBackground(isHighlighted: configuration.isPressed, shape: Circle())
         )
-        .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+        .scaleEffect(configuration.isPressed ? 1.1 : 1.0)
     }
 }
