@@ -14,13 +14,13 @@ import URLImage
 struct SessionView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var userData: UserData
-    @State var isSessionCompleted = false
-    @State var calendar = Calendar.current
-    @State var date = Date()
+    @State private var isSessionCompleted = false
+    @State private var calendar = Calendar.current
+    @State private var date = Date()
     
-    @State var sessionStartDate = Date()
-    @State var sessionEndDate = Date()
-    @State var sessionDuration: (Int, Int) = (0,0)
+    @State private var sessionStartDate = Date()
+    @State private var sessionEndDate = Date()
+    @State private var sessionDuration: (Int, Int) = (0,0)
     
     var timeFormat: DateFormatter {
         let formatter = DateFormatter()
