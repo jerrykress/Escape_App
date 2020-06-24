@@ -115,11 +115,13 @@ struct PathToShape: Shape {
 
 class UserData: ObservableObject {
     @Published var allScenes: [SoundScene]
+    @Published var allEffects: [SoundEffect]
     @Published var currentTrackIndex: Int
     @Published var idx: Array<Int>
     
-    init(allScenes: [SoundScene]) {
+    init(allScenes: [SoundScene], allEffects: [SoundEffect]) {
         self.allScenes = allScenes
+        self.allEffects = allEffects
         self.currentTrackIndex = 0
         self.idx = Array(0..<allScenes.count)
     }

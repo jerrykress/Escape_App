@@ -14,13 +14,17 @@ import URLImage
 struct SessionView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var userData: UserData
+    
     @State private var isSessionCompleted = false
+    @State private var isFXPanePresented = false
+    
     @State private var calendar = Calendar.current
     @State private var date = Date()
     
     @State private var sessionStartDate = Date()
     @State private var sessionEndDate = Date()
     @State private var sessionDuration: (Int, Int) = (0,0)
+    
     
     var timeFormat: DateFormatter {
         let formatter = DateFormatter()
@@ -96,6 +100,25 @@ struct SessionView: View {
                 }
                 .buttonStyle(NoFillBorderButtonStyle())
                 .frame(width: 0, height: self.isSessionCompleted ? 0 : 580, alignment: .bottom) //A conditional operator used to hide the button
+                
+                
+                Button(action: {
+                    withAnimation {
+                        self.isFXPanePresented.toggle()
+                    }                    
+                }) {
+                   Image(systemName: "command")
+                   .foregroundColor(.white)
+                   .opacity(0.6)
+                }
+                .buttonStyle(NoFillBorderButtonStyle())
+                .frame(width: 0, height: self.isSessionCompleted ? 0 : 390, alignment: .bottom)
+                
+                
+                if(self.isFXPanePresented) {
+                    FXPane(isFXPanePresented: self.$isFXPanePresented)
+                        .background(Color.clear)
+                }
                 
                 
                 //Session Complete View

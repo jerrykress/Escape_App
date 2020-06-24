@@ -47,6 +47,7 @@ struct ContentView: View {
                     }
                     .buttonStyle(BlurryRoundButtonStyle())
                     .frame(width: 0, height: 600, alignment: .bottom)
+                    
                 }
                 .edgesIgnoringSafeArea(.all)
             }
@@ -113,7 +114,14 @@ var mockData = UserData(allScenes: [
                soundURL: "https://i.pinimg.com/564x/d2/14/be/d214bed6bb5066408070ad70925ab72b.jpg",
                coverURL: "https://i.pinimg.com/564x/d2/14/be/d214bed6bb5066408070ad70925ab72b.jpg",
                length: 100)
-])
+    ],
+    allEffects: [
+        SoundEffect(title: "Wind", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50),
+        SoundEffect(title: "River", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50),
+        SoundEffect(title: "Traffic", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50),
+        SoundEffect(title: "Storm", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50),
+        SoundEffect(title: "Train", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50)
+    ])
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
