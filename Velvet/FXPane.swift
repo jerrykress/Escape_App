@@ -18,42 +18,61 @@ struct FXRowView: View {
     var body: some View {
         ZStack {
             
-            Rectangle()
-                .fill(LinearGradient(Color.darkEnd, Color.darkStart))
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black)
+                .overlay(RoundedRectangle(cornerRadius: 20, style: .continuous).stroke(Color.offWhite, lineWidth: 2))
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 80)
-                .cornerRadius(15)
-                
+                .opacity(0.3)
+            
+
             VStack {
                 Text("\(effect.title)")
                     .foregroundColor(Color.white)
                     .opacity(0.6)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 10, alignment: .topLeading)
                     .padding(.top, 10)
-                    .padding(.leading, 10)
+                    .padding(.leading, 12)
+                    .opacity(0.5)
                 
-                CustomSlider(value: $effect.volume, range: (0, 100), knobWidth: 0) { modifiers in
+                CustomSlider(value: $value, range: (0, 100), knobWidth: 25) { modifiers in
                   ZStack {
-                    
-                    LinearGradient(gradient: .init(colors: [self.background, Color.black.opacity(0.6) ]), startPoint: .bottom, endPoint: .top)
-
+                    //Slider Body
                     Group {
+                      //Highlighted Section
                       LinearGradient(gradient: .init(colors: [Color.blue, Color.purple, Color.pink ]), startPoint: .leading, endPoint: .trailing)
-                        LinearGradient(gradient: .init(colors: [Color.clear, self.background]), startPoint: .top, endPoint: .bottom).opacity(0.15)
-                    }.modifier(modifiers.barLeft)
+                        .frame(height: 5)
+                        .cornerRadius(2)
+                        .modifier(modifiers.barLeft)
+                      //Dimmed Section
+                      Color.white
+                        .opacity(0.2)
+                        .frame(height: 5)
+                        .modifier(modifiers.barRight)
+                      
+                    }
+                    .cornerRadius(2.5)
                     
-                    //Text("Volume").foregroundColor(.white).opacity(0.3)
+                    //Slider Knob
+                    Group {
+                      Circle().fill(Color.gray)
+                      Image(systemName: "chevron.right.circle.fill").resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(Color.black)
+                    }
+                    .frame(width: 25, height: 25)
+                    .modifier(modifiers.knob)
                   }
-                  .cornerRadius(15)
+
                 }
                 .frame(height: 20)
-                .padding(.top, 5)
-                .padding(.leading, 10)
-                .padding(.trailing, 10)
+                .padding(.top, 4)
+                .padding(.leading, 15)
+                .padding(.trailing, 15)
                 .padding(.bottom, 10)
                
             }
         }
-        .padding(10)
+        .padding(5)
         .listRowBackground(Color.black)
         .edgesIgnoringSafeArea(.all)
         
