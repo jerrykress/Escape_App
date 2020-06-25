@@ -12,8 +12,6 @@ import SwiftUI
 struct FXRowView: View {
     
     @Binding var effect: SoundEffect
-    @State var value: Double = 30
-    let background = Color(red: 0.07, green: 0.07, blue: 0.12)
 
     var body: some View {
         ZStack {
@@ -34,12 +32,12 @@ struct FXRowView: View {
                     .padding(.leading, 12)
                     .opacity(0.5)
                 
-                CustomSlider(value: $value, range: (0, 100), knobWidth: 25) { modifiers in
+                CustomSlider(value: $effect.volume, range: (0, 100), knobWidth: 25) { modifiers in
                   ZStack {
                     //Slider Body
                     Group {
                       //Highlighted Section
-                      LinearGradient(gradient: .init(colors: [Color.blue, Color.purple, Color.pink ]), startPoint: .leading, endPoint: .trailing)
+                      LinearGradient(gradient: .init(colors: [Color.blue, Color.purple, Color.pink]), startPoint: .leading, endPoint: .trailing)
                         .frame(height: 5)
                         .cornerRadius(2)
                         .modifier(modifiers.barLeft)
@@ -54,10 +52,13 @@ struct FXRowView: View {
                     
                     //Slider Knob
                     Group {
-                      Circle().fill(Color.gray)
-                      Image(systemName: "chevron.right.circle.fill").resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(Color.black)
+                        Circle()
+                            .fill(Color.black)
+                            .overlay(Circle().stroke(Color.gray))
+                        
+                        Image(systemName: self.effect.iconURL).resizable()
+                            .frame(width: 14, height: 14)
+                            .foregroundColor(Color.gray)
                     }
                     .frame(width: 25, height: 25)
                     .modifier(modifiers.knob)

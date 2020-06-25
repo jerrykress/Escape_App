@@ -42,11 +42,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                            length: 100)
             ],
             allEffects: [
-                SoundEffect(title: "Wind", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "River", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Traffic", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Storm", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Train", iconURL: "https://example.aac", fileURL: "https://example.aac", volume: 50)
+                SoundEffect(title: "Fireplace", iconURL: "flame", fileURL: "https://example.aac", volume: 50),
+                SoundEffect(title: "Thunder Storm", iconURL: "bolt.fill", fileURL: "https://example.aac", volume: 50),
+                SoundEffect(title: "Wind", iconURL: "wind", fileURL: "https://example.aac", volume: 50),
+                SoundEffect(title: "Rain", iconURL: "cloud.drizzle", fileURL: "https://example.aac", volume: 50),
+                SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50)
             ]
         )
 
