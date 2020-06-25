@@ -25,7 +25,10 @@ class SoundEffect {
     @Published var fileURL: String
     @Published var volume: Double
     
+    var id: UUID
+    
     init(title: String, iconURL: String, fileURL: String, volume:Double) {
+        self.id = UUID()
         self.title = title
         self.iconURL = iconURL
         self.fileURL = fileURL

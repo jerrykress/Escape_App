@@ -54,6 +54,9 @@ struct FXRowView: View {
             }
         }
         .padding(10)
+        .listRowBackground(Color.black)
+        .edgesIgnoringSafeArea(.all)
+        
     }
 }
 
@@ -65,21 +68,25 @@ struct FXPane: View {
         
         ZStack {
             
-            List {
-                FXRowView(effect: self.$userData.allEffects[0])
-                FXRowView(effect: self.$userData.allEffects[1])
-                FXRowView(effect: self.$userData.allEffects[2])
+            List(self.userData.allEffects.indices) { idx in
+                FXRowView(effect: self.$userData.allEffects[idx])
+                
             }
             .onAppear(perform: {
-                UITableView.appearance().separatorColor = .clear
+                // Set List background to black
+                UITableView.appearance().separatorColor = .black
+                UITableView.appearance().backgroundColor = .black
+                UITableViewCell.appearance().backgroundColor = .black
             })
             
             // Close FX Pane
             Button(action: {
-                self.isFXPanePresented.toggle()
+                withAnimation {
+                    self.isFXPanePresented.toggle()
+                }
             }) {
                 Image(systemName: "multiply")
-                .foregroundColor(.black)
+                .foregroundColor(.offWhite)
                 .opacity(0.6)
             }
             .buttonStyle(NoFillBorderButtonStyle())
@@ -94,10 +101,10 @@ struct FXPane: View {
 
 
 
-//struct FXPane_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FXPane().environmentObject(mockData)
-//        .previewDevice(PreviewDevice(rawValue: "iPhone X"))
-//        .previewDisplayName("iPhone X")
-//    }
-//}
+struct FXPane_Previews: PreviewProvider {
+    static var previews: some View {
+        FXPane(isFXPanePresented: .constant(true)).environmentObject(mockData)
+        .previewDevice(PreviewDevice(rawValue: "iPhone X"))
+        .previewDisplayName("iPhone X")
+    }
+}
