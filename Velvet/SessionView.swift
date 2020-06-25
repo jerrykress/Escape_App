@@ -39,6 +39,7 @@ struct SessionView: View {
                                })
     }
     
+    // MARK: Session View
     var body: some View {
         GeometryReader { proxy in
             ZStack {
@@ -50,7 +51,7 @@ struct SessionView: View {
                                 .opacity(0.5))
                 
 
-                //Now Playing Info
+                // MARK: Now Playing
                 VStack {
                     Text("Now playing")
                         .foregroundColor(Color.white)
@@ -66,7 +67,7 @@ struct SessionView: View {
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
                 .isHidden(self.isSessionCompleted)
                 
-                //Time
+                // MARK: Clock
                 VStack {
                     Text("\(String(format: "%02d", self.calendar.component(.hour, from: self.date)))")
                         .foregroundColor(Color.white)
@@ -84,7 +85,7 @@ struct SessionView: View {
                 .isHidden(self.isSessionCompleted)
                 
                 
-                //Stop Button
+                // MARK: Stop Button
                 Button(action: {
                     print("Stop Session Button Pressed")
                     self.sessionEndDate = Date()
@@ -101,7 +102,7 @@ struct SessionView: View {
                 .buttonStyle(NoFillBorderButtonStyle())
                 .frame(width: 0, height: self.isSessionCompleted ? 0 : 580, alignment: .bottom) //A conditional operator used to hide the button
                 
-                
+                // MARK: FX Pane Button
                 Button(action: {
                     withAnimation {
                         self.isFXPanePresented.toggle()
@@ -121,7 +122,7 @@ struct SessionView: View {
                 }
                 
                 
-                //Session Complete View
+                //MARK: Session Complete View
                 if(self.isSessionCompleted) {
                     
                     //Session Information Card

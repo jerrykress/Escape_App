@@ -45,6 +45,7 @@ struct FXRowView: View {
                       Color.white
                         .opacity(0.2)
                         .frame(height: 5)
+                        .cornerRadius(2)
                         .modifier(modifiers.barRight)
                       
                     }
