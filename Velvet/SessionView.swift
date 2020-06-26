@@ -15,7 +15,7 @@ struct SessionView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var userData: UserData
     
-    @State private var isSessionCompleted = false
+    @State private var isSessionCompleted = true
     @State private var isFXPanePresented = false
     
     @State private var calendar = Calendar.current
@@ -148,13 +148,12 @@ struct SessionView: View {
                             .foregroundColor(.white)
                             .opacity(0.6)
                         }
-                        .buttonStyle(NoFillBorderButtonStyle())
-                        .frame(width: 0, height: 580, alignment: .bottom)
+                        .buttonStyle(BlurryRoundButtonStyle())
+                        .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
                         
                     }
                     .edgesIgnoringSafeArea(.all)
-                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
-                    .offset(x: 0, y: proxy.size.height/10)
+                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                     .background(Image("sunrise"))
                     
                 }
