@@ -13,49 +13,54 @@ import URLImage
 
 struct ContentView: View {
     @EnvironmentObject var userData: UserData
+    @State var isSessionViewPresented: Bool = false
     
     var body: some View {
             
-        NavigationView {
-                    
-            GeometryReader { proxy in
+        // MARK: Home View
+        GeometryReader { proxy in
+            
+            ZStack {
+                //Backgroud
+                LinearGradient(Color.darkStart, Color.darkEnd)
                 
-                ZStack {
-                    //Backgroud
-                    LinearGradient(Color.darkStart, Color.darkEnd)
-                    
-                    Group {
-                        Pager(page: self.$userData.currentTrackIndex,
-                              data: self.userData.idx,
-                              id: \.self) {
-                                self.pageView($0)
-                        }
-                        .loopPages()
-                        .interactive(0.9)
-                        .itemSpacing(10)
-                        .itemAspectRatio(0, alignment: .center)
-                        .offset(x: 0, y: 0)
-                        .frame(width: proxy.size.width, height: proxy.size.height*1.2, alignment: .center)
+                Group {
+                    Pager(page: self.$userData.currentTrackIndex,
+                          data: self.userData.idx,
+                          id: \.self) {
+                            self.pageView($0)
                     }
-                    .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
-                    
-                    //Sleep Button
-                    NavigationLink(destination: SessionView()){
-                        Image(systemName: "moon.fill")
-                        .foregroundColor(.white)
-                            .opacity(0.8)
-                    }
-                    .buttonStyle(BlurryRoundButtonStyle())
-                    .frame(width: 0, height: 600, alignment: .bottom)
-                    
+                    .loopPages()
+                    .interactive(0.9)
+                    .itemSpacing(10)
+                    .itemAspectRatio(0, alignment: .center)
+                    .offset(x: 0, y: 0)
+                    .frame(width: proxy.size.width, height: proxy.size.height * 1.2, alignment: .center)
                 }
-                .edgesIgnoringSafeArea(.all)
+                .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
+                
+                //Sleep Button
+                Button(action: {
+                    self.isSessionViewPresented.toggle()
+                }){
+                    Image(systemName: "moon.fill")
+                    .foregroundColor(.white)
+                        .opacity(0.8)
+                }
+                .buttonStyle(BlurryRoundButtonStyle())
+                .frame(width: 0, height: 600, alignment: .bottom)
+                
+            }
+            .frame(width: proxy.size.width, height: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom, alignment: .center)
+            .edgesIgnoringSafeArea(.all)
+            
+            // MARK: Session View
+            if(self.isSessionViewPresented) {
+                SessionView(isSessionViewPresented: self.$isSessionViewPresented)
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
         .edgesIgnoringSafeArea(.all)
         
-        //End of Body
     }
     
     func pageView(_ page: Int) -> some View {
@@ -132,6 +137,9 @@ struct ContentView_Previews: PreviewProvider {
             ContentView().environmentObject(mockData)
                 .previewDevice(PreviewDevice(rawValue: "iPhone X"))
                 .previewDisplayName("iPhone X")
+            ContentView().environmentObject(mockData)
+                .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
+                .previewDisplayName("iPhone XS Max")
         }
     }
 }

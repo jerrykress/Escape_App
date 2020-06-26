@@ -12,10 +12,11 @@ import URLImage
 
 
 struct SessionView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var userData: UserData
     
-    @State private var isSessionCompleted = true
+    @Binding var isSessionViewPresented: Bool
+    
+    @State private var isSessionCompleted = false
     @State private var isFXPanePresented = false
     
     @State private var calendar = Calendar.current
@@ -65,6 +66,7 @@ struct SessionView: View {
                     .opacity(0.7)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
+                .offset(x: 0, y: proxy.safeAreaInsets.top)
                 .isHidden(self.isSessionCompleted)
                 
                 // MARK: Clock
@@ -79,10 +81,25 @@ struct SessionView: View {
                         .opacity(0.5)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                .padding(.top, 50)
+                .padding(.top, 25)
                 .edgesIgnoringSafeArea(.top)
                 .edgesIgnoringSafeArea(.bottom)
                 .isHidden(self.isSessionCompleted)
+                
+                
+                // MARK: FX Pane Button
+                Button(action: {
+                    withAnimation {
+                        self.isFXPanePresented.toggle()
+                    }
+                }) {
+                   Image(systemName: "command")
+                   .foregroundColor(.white)
+                   .opacity(0.6)
+                }
+                .buttonStyle(NoFillBorderButtonStyle())
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
+                .offset(x: 0, y: -proxy.size.height/5)
                 
                 
                 // MARK: Stop Button
@@ -100,20 +117,8 @@ struct SessionView: View {
                     .opacity(0.6)
                 }
                 .buttonStyle(NoFillBorderButtonStyle())
-                .frame(width: 0, height: self.isSessionCompleted ? 0 : 580, alignment: .bottom) //A conditional operator used to hide the button
-                
-                // MARK: FX Pane Button
-                Button(action: {
-                    withAnimation {
-                        self.isFXPanePresented.toggle()
-                    }                    
-                }) {
-                   Image(systemName: "command")
-                   .foregroundColor(.white)
-                   .opacity(0.6)
-                }
-                .buttonStyle(NoFillBorderButtonStyle())
-                .frame(width: 0, height: self.isSessionCompleted ? 0 : 390, alignment: .bottom)
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
+                .offset(x: 0, y: -proxy.size.height/10)
                 
                 
                 if(self.isFXPanePresented) {
@@ -140,8 +145,8 @@ struct SessionView: View {
                         Button(action: {
                             print("Return Button Pressed")
                             withAnimation {
-                                self.isSessionCompleted.toggle()
-                                self.presentationMode.wrappedValue.dismiss()
+//                                self.isSessionCompleted.toggle()
+                                self.isSessionViewPresented.toggle()
                             }
                         }) {
                             Image(systemName: "multiply")
@@ -180,11 +185,11 @@ struct SessionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             //Larger Screen Preview
-            SessionView().environmentObject(mockData)
+            SessionView(isSessionViewPresented: .constant(true)).environmentObject(mockData)
                 .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
                 .previewDisplayName("iPhone XS Max")
             //Standard Screen Preview
-            SessionView().environmentObject(mockData)
+            SessionView(isSessionViewPresented: .constant(true)).environmentObject(mockData)
                 .previewDevice(PreviewDevice(rawValue: "iPhone X"))
                 .previewDisplayName("iPhone X")
         }

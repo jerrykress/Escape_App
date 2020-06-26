@@ -76,7 +76,6 @@ struct FXRowView: View {
         }
         .padding(5)
         .listRowBackground(Color.black)
-        .edgesIgnoringSafeArea(.all)
         
     }
 }
@@ -87,36 +86,39 @@ struct FXPane: View {
     
     var body: some View {
         
-        ZStack {
-            
-            List(self.userData.allEffects.indices) { idx in
-                FXRowView(effect: self.$userData.allEffects[idx])
+        GeometryReader { proxy in
+            ZStack {
                 
-            }
-            .onAppear(perform: {
-                // Set List background to black
-                UITableView.appearance().separatorColor = .black
-                UITableView.appearance().backgroundColor = .black
-                UITableViewCell.appearance().backgroundColor = .black
-            })
-            
-            // Close FX Pane
-            Button(action: {
-                withAnimation {
-                    self.isFXPanePresented.toggle()
+                // FX List
+                List(self.userData.allEffects.indices) { idx in
+                    FXRowView(effect: self.$userData.allEffects[idx])
+                    
                 }
-            }) {
-                Image(systemName: "multiply")
-                .foregroundColor(.offWhite)
-                .opacity(0.6)
+                .onAppear(perform: {
+                    // Set List background to black
+                    UITableView.appearance().separatorColor = .black
+                    UITableView.appearance().backgroundColor = .black
+                    UITableViewCell.appearance().backgroundColor = .black
+                })
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+                
+                // Close FX Pane Button
+                Button(action: {
+                    withAnimation {
+                        self.isFXPanePresented.toggle()
+                    }
+                }) {
+                    Image(systemName: "multiply")
+                    .foregroundColor(.offWhite)
+                    .opacity(0.6)
+                }
+                .buttonStyle(NoFillBorderButtonStyle())
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
+                .offset(x: 0, y: -proxy.size.height/10)
             }
-            .buttonStyle(NoFillBorderButtonStyle())
-            .frame(width: 0, height: 580, alignment: .bottom)
+            .padding(.top, 20)
         }
-        .padding(.top, 20)
-        .edgesIgnoringSafeArea(.all)
-        
-        
+
     }
 }
 
