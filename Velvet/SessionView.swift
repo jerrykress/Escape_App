@@ -73,12 +73,31 @@ struct SessionView: View {
                 VStack {
                     Text("\(String(format: "%02d", self.calendar.component(.hour, from: self.date)))")
                         .foregroundColor(Color.white)
-                        .font(.custom("Satisfaction", size: 80))
+                        .font(.custom("DIN Alternate", size: 80))
                         .opacity(0.7)
                     Text("\(String(format: "%02d", self.calendar.component(.minute, from: self.date)))")
                         .foregroundColor(Color.white)
-                        .font(.custom("Satisfaction", size: 80))
+                        .font(.custom("DIN Alternate", size: 80))
                         .opacity(0.5)
+                    
+                    // MARK: FX Pane Button
+                    Button(action: {
+                        withAnimation {
+                            self.isFXPanePresented.toggle()
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "command")
+                            .resizable()
+                            .foregroundColor(.white)
+                            .frame(width: 12, height: 12, alignment: .center)
+                            
+                            Text("Effects")
+                                .foregroundColor(Color.offWhite)
+                                .font(.system(size: 14, weight: .regular, design: .default))
+                        }
+                    }
+                    .opacity(0.6)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                 .padding(.top, 25)
@@ -86,39 +105,48 @@ struct SessionView: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .isHidden(self.isSessionCompleted)
                 
-                
-                // MARK: FX Pane Button
-                Button(action: {
-                    withAnimation {
-                        self.isFXPanePresented.toggle()
-                    }
-                }) {
-                   Image(systemName: "command")
-                   .foregroundColor(.white)
-                   .opacity(0.6)
-                }
-                .buttonStyle(NoFillBorderButtonStyle())
-                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
-                .offset(x: 0, y: -proxy.size.height/5)
-                
-                
+                  
                 // MARK: Stop Button
-                Button(action: {
-                    print("Stop Session Button Pressed")
-                    self.sessionEndDate = Date()
-                    let tempDuration = self.sessionEndDate - self.sessionStartDate
-                    self.sessionDuration = (tempDuration.hour!, tempDuration.minute!)
-                    withAnimation {
-                        self.isSessionCompleted.toggle()
-                    }
-                }) {
-                    Image(systemName: "stop")
-                    .foregroundColor(.white)
-                    .opacity(0.6)
+//                Button(action: {
+//                    print("Stop Session Button Pressed")
+//                    self.sessionEndDate = Date()
+//                    let tempDuration = self.sessionEndDate - self.sessionStartDate
+//                    self.sessionDuration = (tempDuration.hour!, tempDuration.minute!)
+//                    withAnimation {
+//                        self.isSessionCompleted.toggle()
+//                    }
+//                }) {
+//                    Image(systemName: "stop")
+//                    .foregroundColor(.white)
+//                    .opacity(0.6)
+//                }
+//                .buttonStyle(NoFillBorderButtonStyle())
+//                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
+//                .offset(x: 0, y: -proxy.size.height/10)
+                
+                Group {
+                    SlidetoUnlockView(thumbnailTopBottomPadding: 5,
+                                      thumbnailLeadingTrailingPadding: 5,
+                                      text: "Slide to End",
+                                      textColor: .offWhite,
+                                      thumbnailColor: Color.offWhite,
+                                      sliderBackgroundColor: Color.black,
+                                      didReachEndAction: { view in
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                            self.sessionEndDate = Date()
+                                            let tempDuration = self.sessionEndDate - self.sessionStartDate
+                                            self.sessionDuration = (tempDuration.hour!, tempDuration.minute!)
+                                            withAnimation {
+                                                self.isSessionCompleted.toggle()
+                                            }
+                                        }
+                                    })
+                                    .frame(width: proxy.size.width/1.2, height: 50)
+                                    .background(Color.white)
+                                    .cornerRadius(25)
                 }
-                .buttonStyle(NoFillBorderButtonStyle())
-                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
-                .offset(x: 0, y: -proxy.size.height/10)
+                .frame(width: proxy.size.width, height: proxy.size.height/1.2, alignment: .bottom)
+                .opacity(0.7)
                 
                 
                 if(self.isFXPanePresented) {
