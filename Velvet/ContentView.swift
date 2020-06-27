@@ -22,7 +22,7 @@ struct ContentView: View {
             
             ZStack {
                 //Backgroud
-                LinearGradient(Color.darkStart, Color.darkEnd)
+                Color.black
                 
                 Group {
                     Pager(page: self.$userData.currentTrackIndex,

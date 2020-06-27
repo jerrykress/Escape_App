@@ -30,29 +30,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                            soundURL: "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg",
                            coverURL: "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg",
                            length: 100),
-                SoundScene(title: "Ecstacy",
+                SoundScene(title: "Starry Night",
                            description: "Sleep to the sound of mountain wind",
-                           soundURL: "https://images.ctfassets.net/ooa29xqb8tix/6NCSjAxuA8EaEgkauQuKso/e3b1c4f38fa5e3899ca0f6d9c98370cd/iPhone_X_Wallpaper_9.png",
-                           coverURL: "https://images.ctfassets.net/ooa29xqb8tix/6NCSjAxuA8EaEgkauQuKso/e3b1c4f38fa5e3899ca0f6d9c98370cd/iPhone_X_Wallpaper_9.png",
+                           soundURL: "https://i.pinimg.com/736x/53/13/c0/5313c0dbd26595ef54a0d02f475b736b.jpg",
+                           coverURL: "https://i.pinimg.com/736x/53/13/c0/5313c0dbd26595ef54a0d02f475b736b.jpg",
                            length: 100),
                 SoundScene(title: "Mountain",
                            description: "Sleep to the sound of mountain wind",
-                           soundURL: "https://i.pinimg.com/564x/d2/14/be/d214bed6bb5066408070ad70925ab72b.jpg",
-                           coverURL: "https://i.pinimg.com/564x/d2/14/be/d214bed6bb5066408070ad70925ab72b.jpg",
+                           soundURL: "https://media.idownloadblog.com/wp-content/uploads/2019/06/V4ByArthur1992aS-iphone-mountain-wallpaper-sunset-orange.png",
+                           coverURL: "https://media.idownloadblog.com/wp-content/uploads/2019/06/V4ByArthur1992aS-iphone-mountain-wallpaper-sunset-orange.png",
                            length: 100)
             ],
             allEffects: [
                 SoundEffect(title: "Fireplace", iconURL: "flame", fileURL: "https://example.aac", volume: 50),
                 SoundEffect(title: "Thunder Storm", iconURL: "bolt.fill", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Wind", iconURL: "wind", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Rain", iconURL: "cloud.drizzle", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50),
-                SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50)
+                SoundEffect(title: "Mountain Wind", iconURL: "wind", fileURL: "https://example.aac", volume: 50),
+                SoundEffect(title: "Spring Rain", iconURL: "cloud.drizzle", fileURL: "https://example.aac", volume: 50),
+                SoundEffect(title: "Airplane Cabin", iconURL: "airplane", fileURL: "https://example.aac", volume: 50),
+                SoundEffect(title: "Winter Snow", iconURL: "snow", fileURL: "https://example.aac", volume: 50),
+                SoundEffect(title: "Rail Road", iconURL: "tram.fill", fileURL: "https://example.aac", volume: 50)
             ]
         )
 

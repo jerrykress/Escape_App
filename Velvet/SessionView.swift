@@ -16,7 +16,7 @@ struct SessionView: View {
     
     @Binding var isSessionViewPresented: Bool
     
-    @State private var isSessionCompleted = false
+    @State private var isSessionCompleted = true
     @State private var isFXPanePresented = false
     
     @State private var calendar = Calendar.current
@@ -169,7 +169,7 @@ struct SessionView: View {
                                 self.isSessionViewPresented.toggle()
                             }
                         }) {
-                            Image(systemName: "multiply.circle")
+                            Image(systemName: "checkmark.circle.fill")
                             .resizable()
                             .foregroundColor(.white)
                             .opacity(0.6)
