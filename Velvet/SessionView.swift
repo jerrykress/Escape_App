@@ -67,7 +67,6 @@ struct SessionView: View {
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
                 .offset(x: 0, y: proxy.safeAreaInsets.top)
-                .isHidden(self.isSessionCompleted)
                 
                 // MARK: Clock
                 VStack {
@@ -103,27 +102,9 @@ struct SessionView: View {
                 .padding(.top, 25)
                 .edgesIgnoringSafeArea(.top)
                 .edgesIgnoringSafeArea(.bottom)
-                .isHidden(self.isSessionCompleted)
                 
                   
-                // MARK: Stop Button
-//                Button(action: {
-//                    print("Stop Session Button Pressed")
-//                    self.sessionEndDate = Date()
-//                    let tempDuration = self.sessionEndDate - self.sessionStartDate
-//                    self.sessionDuration = (tempDuration.hour!, tempDuration.minute!)
-//                    withAnimation {
-//                        self.isSessionCompleted.toggle()
-//                    }
-//                }) {
-//                    Image(systemName: "stop")
-//                    .foregroundColor(.white)
-//                    .opacity(0.6)
-//                }
-//                .buttonStyle(NoFillBorderButtonStyle())
-//                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
-//                .offset(x: 0, y: -proxy.size.height/10)
-                
+                // MARK: Slide to End
                 Group {
                     SlidetoUnlockView(thumbnailTopBottomPadding: 5,
                                       thumbnailLeadingTrailingPadding: 5,
@@ -155,7 +136,7 @@ struct SessionView: View {
                 }
                 
                 
-                //MARK: Session Complete View
+                //MARK: Session Completed View
                 if(self.isSessionCompleted) {
                     
                     //Session Information Card
@@ -173,7 +154,6 @@ struct SessionView: View {
                         Button(action: {
                             print("Return Button Pressed")
                             withAnimation {
-//                                self.isSessionCompleted.toggle()
                                 self.isSessionViewPresented.toggle()
                             }
                         }) {
