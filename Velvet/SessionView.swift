@@ -138,9 +138,9 @@ struct SessionView: View {
                 
                 //MARK: Session Completed View
                 if(self.isSessionCompleted) {
-                    
-                    //Session Information Card
                     ZStack {
+                        SunriseEmitter()
+                        .opacity(0.5)
 //                        Text("Good Morning")
 //
                         
@@ -174,9 +174,8 @@ struct SessionView: View {
                             .foregroundColor(.white)
                             .opacity(0.6)
                         }
-//                        .buttonStyle(BlurryRoundButtonStyle())
-                        .frame(width: 55, height: 55, alignment: .center)
-                            .offset(x: 0, y: proxy.size.height/2 - 100)
+                        .frame(width: 50, height: 50, alignment: .center)
+                        .offset(x: 0, y: proxy.size.height/2 - 100)
                         
                     }
                     .edgesIgnoringSafeArea(.all)

@@ -88,8 +88,10 @@ struct FXPane: View {
         
         GeometryReader { proxy in
             ZStack {
+                Color.black
+                    .edgesIgnoringSafeArea(.all)
                 
-                // FX List
+                // MARK: Effect List
                 List(self.userData.allEffects.indices) { idx in
                     FXRowView(effect: self.$userData.allEffects[idx])
                     
@@ -100,9 +102,10 @@ struct FXPane: View {
                     UITableView.appearance().backgroundColor = .black
                     UITableViewCell.appearance().backgroundColor = .black
                 })
-                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+                    .frame(maxWidth: proxy.size.width, minHeight: proxy.size.height, maxHeight: .infinity, alignment: .center)
+
                 
-                // Close FX Pane Button
+                // MARK: Close Button
                 Button(action: {
                     withAnimation {
                         self.isFXPanePresented.toggle()
