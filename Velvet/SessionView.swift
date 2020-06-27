@@ -129,7 +129,7 @@ struct SessionView: View {
                                       thumbnailLeadingTrailingPadding: 5,
                                       text: "Slide to End",
                                       textColor: .offWhite,
-                                      thumbnailColor: Color.offWhite,
+                                      thumbnailColor: Color.gray,
                                       sliderBackgroundColor: Color.black,
                                       didReachEndAction: { view in
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -142,7 +142,7 @@ struct SessionView: View {
                                         }
                                     })
                                     .frame(width: proxy.size.width/1.2, height: 50)
-                                    .background(Color.white)
+                                    .background(Color.gray)
                                     .cornerRadius(25)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height/1.2, alignment: .bottom)

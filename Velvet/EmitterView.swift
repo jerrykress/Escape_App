@@ -1,5 +1,5 @@
 //
-//  UIAnimation.swift
+//  EmitterView.swift
 //  Velvet
 //
 //  Created by Jerry Kress on 13/06/2020.
@@ -58,7 +58,7 @@ struct EmitterView: UIViewRepresentable {
     typealias UIViewType = UIView
 }
 
-struct UIAnimation_Previews: PreviewProvider {
+struct EmitterView_Previews: PreviewProvider {
     static var previews: some View {
         EmitterView()
             .edgesIgnoringSafeArea(.all)

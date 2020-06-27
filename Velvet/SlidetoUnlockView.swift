@@ -21,7 +21,7 @@ struct SlidetoUnlockView: View {
     var thumbnailColor = Color(.sRGB, red: 25.0/255, green: 155.0/255, blue: 215.0/255, opacity: 1)
     var thumbnailBackgroundColor: Color = .clear
     var sliderBackgroundColor = Color.gray
-    var resetAnimation: Animation = .easeIn(duration: 0.3)
+    var resetAnimation: Animation = .easeIn(duration: 0.4)
     var iconName = "chevron.right"
     var didReachEndAction: ((SlidetoUnlockView) -> Void)?
     
@@ -35,7 +35,7 @@ struct SlidetoUnlockView: View {
         
         var reachEnd: Bool {
             switch self {
-            case .ready, .dragging(_):
+            case .ready, .dragging(_,_):
                 return false
             case .end(_):
                 return true
@@ -44,7 +44,7 @@ struct SlidetoUnlockView: View {
         
         var isReady: Bool {
             switch self {
-            case .dragging(_), .end(_):
+            case .dragging(_,_), .end(_):
                 return false
             case .ready:
                 return true
@@ -55,7 +55,7 @@ struct SlidetoUnlockView: View {
               switch self {
               case .ready:
                 return 0.0
-              case .dragging(let (offsetX,_)):
+              case let .dragging(offsetX,_):
                   return offsetX
               case .end(let offsetX):
                   return offsetX
@@ -65,9 +65,9 @@ struct SlidetoUnlockView: View {
         var textColorOpacity: Double {
             switch self {
             case .ready:
-                return 1.0
-            case.dragging(let (offsetX,maxX)):
-                return 1.0 - Double(offsetX / maxX)
+                return 0.7
+            case let .dragging(offsetX,maxX):
+                return 0.7 - Double(offsetX / maxX)
             case .end(_):
                 return 0.0
             }
@@ -119,7 +119,7 @@ struct SlidetoUnlockView: View {
                     Image(systemName: "\(self.iconName)")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .aspectRatio(1.0, contentMode: .fit)
-                    .background(self.thumbnailColor)
+                    .background(self.thumbnailColor.opacity(0.4))
                     .clipShape(Circle())
                     .padding([.top, .bottom], self.thumbnailTopBottomPadding)
                     .padding([.leading, .trailing], self.thumbnailLeadingTrailingPadding)
@@ -130,12 +130,13 @@ struct SlidetoUnlockView: View {
                     .gesture(self.draggableState.reachEnd ? nil : drag)
                   })
                 }
-                .background(Color.black)
+                .background(Color.clear)
+
     }
     
     private func onDragEnded(drag: DragGesture.Value) {
         switch draggableState {
-        case .end(_), .dragging(_):
+        case .end(_), .dragging(_,_):
             draggableState = .ready
             break
         case .ready:

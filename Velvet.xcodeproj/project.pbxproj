@@ -14,7 +14,7 @@
 		C42FD0AD2486744E00959C9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42FD0AC2486744E00959C9C /* Assets.xcassets */; };
 		C42FD0B02486744E00959C9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42FD0AF2486744E00959C9C /* Preview Assets.xcassets */; };
 		C42FD0B32486744E00959C9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42FD0B12486744E00959C9C /* LaunchScreen.storyboard */; };
-		C4BC713524957EFF0022E3C1 /* UIAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC713424957EFF0022E3C1 /* UIAnimation.swift */; };
+		C4BC713524957EFF0022E3C1 /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC713424957EFF0022E3C1 /* EmitterView.swift */; };
 		C4BC713824965B190022E3C1 /* Satisfaction.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4BC713724965B190022E3C1 /* Satisfaction.ttf */; };
 		C4BC713A2496BF7F0022E3C1 /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC71392496BF7F0022E3C1 /* Playground.swift */; };
 		C4C4870B24929A9E0031993F /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4870A24929A9E0031993F /* ButtonStyles.swift */; };
@@ -37,7 +37,7 @@
 		C42FD0AF2486744E00959C9C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C42FD0B22486744E00959C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C42FD0B42486744E00959C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4BC713424957EFF0022E3C1 /* UIAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnimation.swift; sourceTree = "<group>"; };
+		C4BC713424957EFF0022E3C1 /* EmitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterView.swift; sourceTree = "<group>"; };
 		C4BC713724965B190022E3C1 /* Satisfaction.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Satisfaction.ttf; sourceTree = "<group>"; };
 		C4BC71392496BF7F0022E3C1 /* Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		C4C4870A24929A9E0031993F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 				C4C4870A24929A9E0031993F /* ButtonStyles.swift */,
 				C4C487112492EC0B0031993F /* SceneModel.swift */,
 				C4C4870C24929C340031993F /* Utilities.swift */,
-				C4BC713424957EFF0022E3C1 /* UIAnimation.swift */,
+				C4BC713424957EFF0022E3C1 /* EmitterView.swift */,
 				C4DEAAAA24A648BC00815EB8 /* SlidetoUnlockView.swift */,
 				C4C64BD42488616F00F4DD53 /* PedalView.swift */,
 				C42FD0AC2486744E00959C9C /* Assets.xcassets */,
@@ -200,7 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4BC713524957EFF0022E3C1 /* UIAnimation.swift in Sources */,
+				C4BC713524957EFF0022E3C1 /* EmitterView.swift in Sources */,
 				C4E9647524A3921C00CCEFC3 /* FXPane.swift in Sources */,
 				C42FD0A72486744C00959C9C /* AppDelegate.swift in Sources */,
 				C4F866FF249030830068816E /* SessionView.swift in Sources */,
