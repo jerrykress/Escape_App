@@ -141,14 +141,26 @@ struct SessionView: View {
                     
                     //Session Information Card
                     ZStack {
+//                        Text("Good Morning")
+//
+                        
                         VStack {
-                            Text("You have slept for \n \(self.sessionDuration.0) hours \(self.sessionDuration.1) minutes")
-                            .padding(20)
+                            Text("You had a tight sleep for")
+                                .font(.custom("DIN Condensed", size: 20))
+                                .foregroundColor(Color.white)
+                                .padding()
+                                .opacity(0.5)
+                            
+                            HStack {
+                                Text("\(self.sessionDuration.0)")
+                                    .font(.custom("DIN Alternate", size: 80))
+                                Text("hr")
+                                Text("\(self.sessionDuration.1)")
+                                    .font(.custom("DIN Alternate", size: 80))
+                                Text("min")
+                            }
+                            .foregroundColor(Color.white)
                         }
-                        .frame(width: proxy.size.width/1.3, height: proxy.size.height/2, alignment: .center)
-                        .background(Color.offWhite)
-                        .cornerRadius(20)
-                        .shadow(radius: 5)
                         
                         //Back to Home Button
                         Button(action: {
@@ -157,17 +169,19 @@ struct SessionView: View {
                                 self.isSessionViewPresented.toggle()
                             }
                         }) {
-                            Image(systemName: "multiply")
+                            Image(systemName: "multiply.circle")
+                            .resizable()
                             .foregroundColor(.white)
                             .opacity(0.6)
                         }
-                        .buttonStyle(BlurryRoundButtonStyle())
-                        .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
+//                        .buttonStyle(BlurryRoundButtonStyle())
+                        .frame(width: 55, height: 55, alignment: .center)
+                            .offset(x: 0, y: proxy.size.height/2 - 100)
                         
                     }
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                    .background(Image("sunrise"))
+                    .background(LinearGradient(gradient: .init(colors: [Color(red: 255/255, green: 175/255, blue: 189/255), Color(red: 255/255, green: 195/255, blue: 160/255)]), startPoint: .top, endPoint: .bottom))
                     
                 }
                 

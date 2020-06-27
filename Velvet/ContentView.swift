@@ -41,7 +41,9 @@ struct ContentView: View {
                 
                 //Sleep Button
                 Button(action: {
-                    self.isSessionViewPresented.toggle()
+                    withAnimation {
+                        self.isSessionViewPresented.toggle()
+                    }
                 }){
                     Image(systemName: "moon.fill")
                     .foregroundColor(.white)
@@ -79,18 +81,19 @@ struct ContentView: View {
                 VStack {
                     //Sound Title
                     Text(self.userData.allScenes[page].title)
-                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .font(.custom("DIN Alternate", size: 50))
                         .foregroundColor(Color.white)
                         .opacity(0.9)
                         .padding(10)
                     
                     //Sound Description
                     Text(self.userData.allScenes[page].description)
-                        .font(.subheadline)
+                        .font(.custom("DIN Condensed", size: 14))
                         .foregroundColor(Color.white)
                         .opacity(0.9)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height/1.5, alignment: .top)
+                .offset(x: 0, y: 20)
                 
             }
             .cornerRadius(10)
