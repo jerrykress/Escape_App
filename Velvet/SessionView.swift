@@ -16,7 +16,7 @@ struct SessionView: View {
     
     @Binding var isSessionViewPresented: Bool
     
-    @State private var isSessionCompleted = true
+    @State private var isSessionCompleted = false
     @State private var isFXPanePresented = false
     
     @State private var calendar = Calendar.current
@@ -56,13 +56,13 @@ struct SessionView: View {
                 VStack {
                     Text("Now playing")
                         .foregroundColor(Color.white)
-                        .font(.system(size: 15, weight: .bold, design: .default))
+                        .font(.system(size: 18, weight: .bold, design: .default))
                         .opacity(0.7)
                         .padding(.top, 20)
                         .padding(.bottom, 10)
                     Text("\(self.userData.allScenes[self.userData.currentTrackIndex].title)")
                     .foregroundColor(Color.white)
-                    .font(.system(size: 16, weight: .light, design: .default))
+                    .font(.system(size: 17, weight: .light, design: .default))
                     .opacity(0.7)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
@@ -79,7 +79,7 @@ struct SessionView: View {
                         .font(.custom("DIN Alternate", size: 80))
                         .opacity(0.5)
                     
-                    // MARK: FX Pane Button
+                    // MARK: Effects Button
                     Button(action: {
                         withAnimation {
                             self.isFXPanePresented.toggle()
@@ -97,6 +97,26 @@ struct SessionView: View {
                         }
                     }
                     .opacity(0.6)
+                    
+                    // MARK: Alarm Button
+                    Button(action: {
+                        withAnimation {
+                            self.isFXPanePresented.toggle()
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "alarm")
+                            .resizable()
+                            .foregroundColor(.white)
+                            .frame(width: 12, height: 12, alignment: .center)
+                            
+                            Text("Alarms")
+                                .foregroundColor(Color.offWhite)
+                                .font(.system(size: 14, weight: .regular, design: .default))
+                        }
+                    }
+                    .opacity(0.6)
+                    .padding(.top, 5)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                 .padding(.top, 25)
@@ -109,6 +129,8 @@ struct SessionView: View {
                     SlidetoUnlockView(thumbnailTopBottomPadding: 5,
                                       thumbnailLeadingTrailingPadding: 5,
                                       text: "Slide to End",
+                                      textFont: .custom("DIN Alternate", size: 20),
+                                      textFontWeight: .regular,
                                       textColor: .offWhite,
                                       thumbnailColor: Color.gray,
                                       sliderBackgroundColor: Color.black,
@@ -141,8 +163,12 @@ struct SessionView: View {
                     ZStack {
                         SunriseEmitter()
                         .opacity(0.5)
+                        
 //                        Text("Good Morning")
-//
+//                            .font(.custom("DIN Condensed", size: 35))
+//                            .foregroundColor(Color.white)
+//                            .offset(x: 0, y: -90)
+//                            .opacity(0.5)
                         
                         VStack {
                             Text("You had a tight sleep for")

@@ -67,14 +67,14 @@ struct FXRowView: View {
 
                 }
                 .frame(height: 20)
-                .padding(.top, 4)
+                .padding(.top, 9)
                 .padding(.leading, 15)
                 .padding(.trailing, 15)
-                .padding(.bottom, 10)
+                .padding(.bottom, 12)
                
             }
         }
-        .padding(5)
+        .padding(6)
         .listRowBackground(Color.black)
         
     }

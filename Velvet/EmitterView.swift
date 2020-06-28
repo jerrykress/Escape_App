@@ -35,12 +35,12 @@ struct EmitterView: UIViewRepresentable {
         let cell1 = CAEmitterCell()
         cell1.contents = image1
         cell1.name = "snow-particle"
-        cell1.birthRate = 20.0
-        cell1.lifetime = 20.0
+        cell1.birthRate = 5.0
+        cell1.lifetime = 50.0
         cell1.velocity = 1.0
         cell1.velocityRange = -1.0
-        cell1.xAcceleration = 1.0
-        cell1.yAcceleration = 1.0
+        cell1.xAcceleration = 0
+        cell1.yAcceleration = 0.5
         cell1.emissionRange = 180.0 * (.pi / 180.0)
         cell1.spin = -28.6 * (.pi / 180.0)
         cell1.spinRange = 57.2 * (.pi / 180.0)

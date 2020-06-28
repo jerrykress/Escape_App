@@ -16,7 +16,8 @@ struct SlidetoUnlockView: View {
     var thumbnailLeadingTrailingPadding: CGFloat = 0
     var textLabelLeadingPadding: CGFloat = 0
     var text: String = "End Session"
-    var textFont: Font = .system(size: 15)
+    var textFont: Font = .system(size: 20)
+    var textFontWeight: Font.Weight = .regular
     var textColor = Color(.sRGB, red: 25.0/255, green: 155.0/255, blue: 215.0/255, opacity: 0.7)
     var thumbnailColor = Color(.sRGB, red: 25.0/255, green: 155.0/255, blue: 215.0/255, opacity: 1)
     var thumbnailBackgroundColor: Color = .clear
@@ -65,9 +66,9 @@ struct SlidetoUnlockView: View {
         var textColorOpacity: Double {
             switch self {
             case .ready:
-                return 0.7
+                return 0.4
             case let .dragging(offsetX,maxX):
-                return 0.7 - Double(offsetX / maxX)
+                return 0.4 - Double(offsetX / maxX)
             case .end(_):
                 return 0.0
             }
@@ -104,6 +105,8 @@ struct SlidetoUnlockView: View {
                 ZStack(alignment: .leading, content: {
                     HStack {
                         Text(self.text)
+                        .font(self.textFont)
+                        .fontWeight(self.textFontWeight)
                         .frame(maxWidth: .infinity)
                         .padding([.leading], textLabelLeadingPadding)
                         .foregroundColor(self.textColor)
