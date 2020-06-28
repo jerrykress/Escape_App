@@ -119,7 +119,7 @@ struct FXPane: View {
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
                 .offset(x: 0, y: -proxy.size.height/10)
             }
-            .padding(.top, 20)
+            .padding(.top, proxy.safeAreaInsets.top*2)
         }
 
     }

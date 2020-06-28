@@ -65,7 +65,6 @@ struct SessionView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .foregroundColor(Color.white)
-                                .padding(1) // ! Icon specific adjust !
                                 .frame(width: 20, height: 20, alignment: .center)
                             
 //                            Text("Timer")
@@ -108,7 +107,7 @@ struct SessionView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .foregroundColor(Color.white)
-                                .frame(width: 20, height: 20, alignment: .center)
+                                .frame(width: 22, height: 22, alignment: .center)
                             
 //                            Text("Effects")
 //                                .foregroundColor(Color.white)
