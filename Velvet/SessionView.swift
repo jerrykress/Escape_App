@@ -51,52 +51,93 @@ struct SessionView: View {
                     .overlay(EmitterView()
                                 .opacity(0.5))
                 
+                
+                HStack (alignment: .center) {
+                    
+                    // MARK: LHS Button
+                    Button(action: {
+                        withAnimation {
+                            self.isFXPanePresented.toggle()
+                        }
+                    }) {
+                        VStack {
+                            Image(systemName: "timer")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.white)
+                                .padding(1) // ! Icon specific adjust !
+                                .frame(width: 20, height: 20, alignment: .center)
+                            
+//                            Text("Timer")
+//                                .foregroundColor(Color.white)
+//                                .font(.custom("DIN Alternate", size: 13))
+//                                .opacity(0.5)
+                        }
+                    }
+                    .frame(width: 40, height: 40, alignment: .center)
+                    .padding(.top, 5)
+                    .opacity(0.6)
+                    
+                    Spacer()
+                    
+                    // MARK: Now Playing
+                    VStack {
+                        Text("Now playing")
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 16, weight: .bold, design: .default))
+                            .opacity(0.7)
+                            .padding(.bottom, 10)
+                        
+                        Text("\(self.userData.allScenes[self.userData.currentTrackIndex].title)")
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 15, weight: .light, design: .default))
+                            .opacity(0.7)
+                    }
 
-                // MARK: Now Playing
-                VStack {
-                    Text("Now playing")
-                        .foregroundColor(Color.white)
-                        .font(.system(size: 18, weight: .bold, design: .default))
-                        .opacity(0.7)
-                        .padding(.top, 20)
-                        .padding(.bottom, 10)
-                    Text("\(self.userData.allScenes[self.userData.currentTrackIndex].title)")
-                    .foregroundColor(Color.white)
-                    .font(.system(size: 17, weight: .light, design: .default))
-                    .opacity(0.7)
+                    
+                    Spacer()
+                    
+                    // MARK: RHS Button
+                    Button(action: {
+                        withAnimation {
+                            self.isFXPanePresented.toggle()
+                        }
+                    }) {
+                        VStack {
+                            Image(systemName: "dial.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.white)
+                                .frame(width: 20, height: 20, alignment: .center)
+                            
+//                            Text("Effects")
+//                                .foregroundColor(Color.white)
+//                                .font(.custom("DIN Alternate", size: 13))
+//                                .opacity(0.5)
+                        }
+                    }
+                    .frame(width: 40, height: 40, alignment: .center)
+                    .padding(.top, 5)
+                    .opacity(0.6)
+                    
                 }
-                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
+                .padding(.top, 10)
+                .frame(width: proxy.size.width/1.2, height: proxy.size.height, alignment: .top)
                 .offset(x: 0, y: proxy.safeAreaInsets.top)
                 
-                // MARK: Clock
+                
                 VStack {
+                    // MARK: Clock
                     Text("\(String(format: "%02d", self.calendar.component(.hour, from: self.date)))")
                         .foregroundColor(Color.white)
                         .font(.custom("DIN Alternate", size: 80))
+                        .padding(.top, 30)
                         .opacity(0.7)
                     Text("\(String(format: "%02d", self.calendar.component(.minute, from: self.date)))")
                         .foregroundColor(Color.white)
                         .font(.custom("DIN Alternate", size: 80))
                         .opacity(0.5)
                     
-                    // MARK: Effects Button
-                    Button(action: {
-                        withAnimation {
-                            self.isFXPanePresented.toggle()
-                        }
-                    }) {
-                        HStack {
-                            Image(systemName: "command")
-                            .resizable()
-                            .foregroundColor(.white)
-                            .frame(width: 12, height: 12, alignment: .center)
-                            
-                            Text("Effects")
-                                .foregroundColor(Color.offWhite)
-                                .font(.system(size: 14, weight: .regular, design: .default))
-                        }
-                    }
-                    .opacity(0.6)
                     
                     // MARK: Alarm Button
                     Button(action: {
@@ -110,16 +151,16 @@ struct SessionView: View {
                             .foregroundColor(.white)
                             .frame(width: 12, height: 12, alignment: .center)
                             
-                            Text("Alarms")
-                                .foregroundColor(Color.offWhite)
-                                .font(.system(size: 14, weight: .regular, design: .default))
+                            Text("Alarm")
+                            .foregroundColor(Color.offWhite)
+                            .font(.system(size: 15, weight: .regular, design: .default))
                         }
                     }
+                    .offset(x: 0, y: -20)
                     .opacity(0.6)
-                    .padding(.top, 5)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                .padding(.top, 25)
+                .padding(.top, 5)
                 .edgesIgnoringSafeArea(.top)
                 .edgesIgnoringSafeArea(.bottom)
                 
