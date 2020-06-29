@@ -19,6 +19,9 @@ struct SessionView: View {
     @State private var isSessionCompleted = false
     @State private var isFXPanePresented = false
     
+    @State var showBanner = false
+    @State var bannerContent: (String, String) = ("","")
+    
     @State private var calendar = Calendar.current
     @State private var date = Date()
     
@@ -51,13 +54,16 @@ struct SessionView: View {
                     .overlay(EmitterView()
                                 .opacity(0.5))
                 
+                NotificationBanner(showBanner: self.$showBanner, content: self.$bannerContent)
+                .offset(x: 0, y: proxy.safeAreaInsets.top-5)
                 
                 HStack (alignment: .center) {
                     
                     // MARK: LHS Button
                     Button(action: {
                         withAnimation {
-                            self.isFXPanePresented.toggle()
+                            self.bannerContent = ("Timer On","100 mins")
+                            self.showBanner.toggle()
                         }
                     }) {
                         VStack {
@@ -92,6 +98,7 @@ struct SessionView: View {
                             .font(.system(size: 15, weight: .light, design: .default))
                             .opacity(0.7)
                     }
+                    .isHidden(self.showBanner)
 
                     
                     Spacer()
