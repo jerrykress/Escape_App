@@ -78,8 +78,9 @@ struct SessionView: View {
 //                                .font(.custom("DIN Alternate", size: 13))
 //                                .opacity(0.5)
                         }
+                        .frame(width: 40, height: 40, alignment: .center)
+                        .contentShape(Rectangle())
                     }
-                    .frame(width: 40, height: 40, alignment: .center)
                     .padding(.top, 5)
                     .opacity(0.6)
                     
@@ -121,8 +122,9 @@ struct SessionView: View {
 //                                .font(.custom("DIN Alternate", size: 13))
 //                                .opacity(0.5)
                         }
+                        .frame(width: 40, height: 40, alignment: .center)
+                        .contentShape(Rectangle())
                     }
-                    .frame(width: 40, height: 40, alignment: .center)
                     .padding(.top, 5)
                     .opacity(0.6)
                     
