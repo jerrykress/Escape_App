@@ -63,7 +63,9 @@ struct SessionView: View {
                     Button(action: {
                         withAnimation {
                             self.bannerContent = ("Timer On","100 mins")
-                            self.showBanner.toggle()
+                            if(!self.showBanner){
+                                self.showBanner.toggle()
+                            }
                         }
                     }) {
                         VStack {
