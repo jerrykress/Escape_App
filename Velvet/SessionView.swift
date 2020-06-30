@@ -20,7 +20,7 @@ struct SessionView: View {
     @State private var isFXPanePresented = false
     
     @State var showBanner = false
-    @State var bannerContent: (String, String) = ("","")
+    @State var bannerContent: (String, String) = ("Timer","Off")
     
     @State private var calendar = Calendar.current
     @State private var date = Date()
@@ -62,31 +62,9 @@ struct SessionView: View {
                 HStack (alignment: .center) {
                     
                     // MARK: LHS Button
-                    Button(action: {
-                        withAnimation {
-                            self.bannerContent = ("Timer On","100 mins")
-                            if(!self.showBanner){
-                                self.showBanner.toggle()
-                            }
-                        }
-                    }) {
-                        VStack {
-                            Image(systemName: "timer")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.white)
-                                .frame(width: 20, height: 20, alignment: .center)
-                            
-//                            Text("Timer")
-//                                .foregroundColor(Color.white)
-//                                .font(.custom("DIN Alternate", size: 13))
-//                                .opacity(0.5)
-                        }
-                        .frame(width: 40, height: 40, alignment: .center)
-                        .contentShape(Rectangle())
-                    }
-                    .padding(.top, 5)
-                    .opacity(0.6)
+                    TimerHandler(showBanner: self.$showBanner, bannerContent: self.$bannerContent)
+                        .padding(.top, 5)
+                        .opacity(0.6)
                     
                     Spacer()
                     
