@@ -22,20 +22,41 @@ struct ContentView: View {
             
             ZStack {
                 
-                Group {
-                    Pager(page: self.$userData.currentTrackIndex,
-                          data: self.userData.idx,
-                          id: \.self) {
-                            self.pageView($0)
+                TabView(selection: self.$userData.currentTrackIndex) {
+                    ForEach(self.userData.idx, id: \.self) { idx in
+                        ZStack {
+                            //Background
+                            URLImage(URL(string: self.userData.allScenes[idx].coverURL)!,
+                                     expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
+                                     content: {
+                                          $0.image
+                                            .resizable()
+                                            .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+                                     })
+                            
+                            VStack {
+                                //Sound Title
+                                Text(self.userData.allScenes[idx].title)
+                                    .font(.custom("DIN Alternate", size: 50))
+                                    .foregroundColor(Color.white)
+                                    .opacity(0.9)
+                                    .padding(10)
+                                
+                                //Sound Description
+                                Text(self.userData.allScenes[idx].description)
+                                    .font(.custom("DIN Condensed", size: 14))
+                                    .foregroundColor(Color.white)
+                                    .opacity(0.9)
+                            }
+                            .frame(width: proxy.size.width, height: proxy.size.height/1.2, alignment: .top)
+                        }
+                        .cornerRadius(15)
                     }
-                    .loopPages()
-                    .interactive(0.9)
-                    .itemSpacing(10)
-                    .itemAspectRatio(0, alignment: .center)
-                    .offset(x: 0, y: 0)
                 }
-                .frame(width: proxy.size.width, height: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom, alignment: .center)
-                .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
+                .tabViewStyle(PageTabViewStyle())
+                .animation(.easeOut)
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+                
                 
                 //Sleep Button
                 Button(action: {
@@ -48,11 +69,11 @@ struct ContentView: View {
                         .opacity(0.8)
                 }
                 .buttonStyle(BlurryRoundButtonStyle())
-                .frame(width: 0, height: 600, alignment: .bottom)
+                .frame(width: 0, height: proxy.size.height/1.3, alignment: .bottom)
                 
             }
             .edgesIgnoringSafeArea(.all)
-            .frame(width: proxy.size.width, height: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom, alignment: .center)
+            .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
             .background(Color.black)
             
             // MARK: Session View
@@ -62,41 +83,6 @@ struct ContentView: View {
         }
         .edgesIgnoringSafeArea(.all)
         
-    }
-    
-    func pageView(_ page: Int) -> some View {
-        GeometryReader { proxy in
-            ZStack {
-                //Background
-                URLImage(URL(string: self.userData.allScenes[page].coverURL)!,
-                         expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
-                         content: {
-                              $0.image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                         })
-                
-                VStack {
-                    //Sound Title
-                    Text(self.userData.allScenes[page].title)
-                        .font(.custom("DIN Alternate", size: 50))
-                        .foregroundColor(Color.white)
-                        .opacity(0.9)
-                        .padding(10)
-                    
-                    //Sound Description
-                    Text(self.userData.allScenes[page].description)
-                        .font(.custom("DIN Condensed", size: 14))
-                        .foregroundColor(Color.white)
-                        .opacity(0.9)
-                }
-                .frame(width: proxy.size.width, height: proxy.size.height/1.5, alignment: .top)
-                .offset(x: 0, y: 20)
-                
-            }
-        
-        }
     }
 }
 

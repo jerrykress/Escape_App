@@ -167,7 +167,7 @@ struct SessionView: View {
                             .font(.system(size: 15, weight: .regular, design: .default))
                         }
                     }
-                    .offset(x: 0, y: -25)
+                    .offset(x: 0, y: -30)
                     .opacity(0.6)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
