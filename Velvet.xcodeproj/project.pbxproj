@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C41E01A5248D8F8D00F166E6 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = C41E01A4248D8F8D00F166E6 /* SwiftUIPager */; };
 		C42FD0A72486744C00959C9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FD0A62486744C00959C9C /* AppDelegate.swift */; };
 		C42FD0A92486744C00959C9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FD0A82486744C00959C9C /* SceneDelegate.swift */; };
 		C42FD0AB2486744C00959C9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FD0AA2486744C00959C9C /* ContentView.swift */; };
@@ -58,7 +57,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4C4871024929FBC0031993F /* URLImage in Frameworks */,
-				C41E01A5248D8F8D00F166E6 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +138,6 @@
 			);
 			name = Velvet;
 			packageProductDependencies = (
-				C41E01A4248D8F8D00F166E6 /* SwiftUIPager */,
 				C4C4870F24929FBC0031993F /* URLImage */,
 			);
 			productName = Velvet;
@@ -172,7 +169,6 @@
 			);
 			mainGroup = C42FD09A2486744C00959C9C;
 			packageReferences = (
-				C41E01A3248D8F8D00F166E6 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				C4C4870E24929FBC0031993F /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = C42FD0A42486744C00959C9C /* Products */;
@@ -414,14 +410,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C41E01A3248D8F8D00F166E6 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.1;
-			};
-		};
 		C4C4870E24929FBC0031993F /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
@@ -433,11 +421,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C41E01A4248D8F8D00F166E6 /* SwiftUIPager */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C41E01A3248D8F8D00F166E6 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
-			productName = SwiftUIPager;
-		};
 		C4C4870F24929FBC0031993F /* URLImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4C4870E24929FBC0031993F /* XCRemoteSwiftPackageReference "url-image" */;
