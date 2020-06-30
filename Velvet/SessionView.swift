@@ -51,11 +51,12 @@ struct SessionView: View {
                 //Backgroud
                 Color.black
                     .edgesIgnoringSafeArea(.all)
-                    .overlay(EmitterView()
-                                .opacity(0.5))
+                    .overlay(EmitterView().opacity(0.5))
                 
                 NotificationBanner(showBanner: self.$showBanner, content: self.$bannerContent)
-                .offset(x: 0, y: 30) // TODO: Find universial number
+                    .padding(.top, 20)
+                    .frame(width: proxy.size.width/1.2, height: proxy.size.height, alignment: .top)
+                
                 
                 
                 // MARK: Navigation Bar
@@ -87,28 +88,9 @@ struct SessionView: View {
                     Spacer()
                     
                     // MARK: RHS Button
-                    Button(action: {
-                        withAnimation {
-                            self.isFXPanePresented.toggle()
-                        }
-                    }) {
-                        VStack {
-                            Image(systemName: "dial.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.white)
-                                .frame(width: 22, height: 22, alignment: .center)
-                            
-//                            Text("Effects")
-//                                .foregroundColor(Color.white)
-//                                .font(.custom("DIN Alternate", size: 13))
-//                                .opacity(0.5)
-                        }
-                        .frame(width: 40, height: 40, alignment: .center)
-                        .contentShape(Rectangle())
-                    }
-                    .padding(.top, 5)
-                    .opacity(0.6)
+                    FXButtonHandler(isFXPanePresented: self.$isFXPanePresented)
+                        .padding(.top, 5)
+                        .opacity(0.6)
                     
                 }
                 .padding(.top, 40) // TODO: Find universial number

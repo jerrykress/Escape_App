@@ -100,7 +100,8 @@ struct FXPane: View {
                         }
                     }
                 }
-                .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height, alignment: .top)
+                .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height, alignment: .center)
+                .offset(x: 0, y: 30)
                 .background(Color.black)
 
                 
@@ -116,7 +117,7 @@ struct FXPane: View {
                 }
                 .buttonStyle(NoFillBorderButtonStyle())
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
-                .offset(x: 0, y: -proxy.size.height/10)
+                .offset(x: 0, y: -proxy.size.height/14)
             }
         }
 
