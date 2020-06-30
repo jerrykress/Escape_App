@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SwiftUIPager
 import URLImage
 
 
@@ -26,13 +25,17 @@ struct ContentView: View {
                     ForEach(self.userData.idx, id: \.self) { idx in
                         ZStack {
                             //Background
-                            URLImage(URL(string: self.userData.allScenes[idx].coverURL)!,
-                                     expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
-                                     content: {
-                                          $0.image
-                                            .resizable()
-                                            .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                                     })
+                            
+                            Group{
+                                URLImage(URL(string: self.userData.allScenes[idx].coverURL)!,
+                                         expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
+                                         content: {
+                                              $0.image
+                                                .resizable()
+                                                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+                                         })
+                            }
+                            .frame(height: (self.userData.currentTrackIndex == idx) ? proxy.size.height : proxy.size.height/1.1)
                             
                             VStack {
                                 //Sound Title
