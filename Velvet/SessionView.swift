@@ -55,8 +55,10 @@ struct SessionView: View {
                                 .opacity(0.5))
                 
                 NotificationBanner(showBanner: self.$showBanner, content: self.$bannerContent)
-                .offset(x: 0, y: proxy.safeAreaInsets.top-5)
+                .offset(x: 0, y: 30) // TODO: Find universial number
                 
+                
+                // MARK: Navigation Bar
                 HStack (alignment: .center) {
                     
                     // MARK: LHS Button
@@ -131,9 +133,8 @@ struct SessionView: View {
                     .opacity(0.6)
                     
                 }
-                .padding(.top, 10)
+                .padding(.top, 40) // TODO: Find universial number
                 .frame(width: proxy.size.width/1.2, height: proxy.size.height, alignment: .top)
-                .offset(x: 0, y: proxy.safeAreaInsets.top)
                 
                 
                 VStack {
@@ -166,7 +167,7 @@ struct SessionView: View {
                             .font(.system(size: 15, weight: .regular, design: .default))
                         }
                     }
-                    .offset(x: 0, y: -20)
+                    .offset(x: 0, y: -25)
                     .opacity(0.6)
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
@@ -271,7 +272,6 @@ struct SessionView: View {
             })
             
         }
-        .navigationBarBackButtonHidden(true) //Disable Back Swipe Gesture
     }
     
 }
@@ -284,12 +284,8 @@ struct SessionView_Previews: PreviewProvider {
         Group {
             //Larger Screen Preview
             SessionView(isSessionViewPresented: .constant(true)).environmentObject(mockData)
-                .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
-                .previewDisplayName("iPhone XS Max")
-            //Standard Screen Preview
-            SessionView(isSessionViewPresented: .constant(true)).environmentObject(mockData)
-                .previewDevice(PreviewDevice(rawValue: "iPhone X"))
-                .previewDisplayName("iPhone X")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
+                .previewDisplayName("iPhone 11 Pro Max")
         }
     }
 }

@@ -21,8 +21,6 @@ struct ContentView: View {
         GeometryReader { proxy in
             
             ZStack {
-                //Backgroud
-                Color.black
                 
                 Group {
                     Pager(page: self.$userData.currentTrackIndex,
@@ -35,8 +33,8 @@ struct ContentView: View {
                     .itemSpacing(10)
                     .itemAspectRatio(0, alignment: .center)
                     .offset(x: 0, y: 0)
-                    .frame(width: proxy.size.width, height: proxy.size.height * 1.2, alignment: .center)
                 }
+                .frame(width: proxy.size.width, height: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom, alignment: .center)
                 .shadow(color: Color.darkEnd, radius: 10, x: 15, y: 12)
                 
                 //Sleep Button
@@ -53,8 +51,9 @@ struct ContentView: View {
                 .frame(width: 0, height: 600, alignment: .bottom)
                 
             }
-            .frame(width: proxy.size.width, height: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom, alignment: .center)
             .edgesIgnoringSafeArea(.all)
+            .frame(width: proxy.size.width, height: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom, alignment: .center)
+            .background(Color.black)
             
             // MARK: Session View
             if(self.isSessionViewPresented) {
@@ -75,7 +74,7 @@ struct ContentView: View {
                               $0.image
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: proxy.size.width, height: proxy.size.height/1.1, alignment: .top)
+                                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                          })
                 
                 VStack {
@@ -96,8 +95,6 @@ struct ContentView: View {
                 .offset(x: 0, y: 20)
                 
             }
-            .cornerRadius(10)
-            .shadow(radius: 5)
         
         }
     }
@@ -138,11 +135,8 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             //Standard Screen Preview
             ContentView().environmentObject(mockData)
-                .previewDevice(PreviewDevice(rawValue: "iPhone X"))
-                .previewDisplayName("iPhone X")
-            ContentView().environmentObject(mockData)
-                .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
-                .previewDisplayName("iPhone XS Max")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
+                .previewDisplayName("iPhone 11 Pro Max")
         }
     }
 }

@@ -15,6 +15,7 @@ struct FXRowView: View {
 
     var body: some View {
         ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
             
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.black)
@@ -92,17 +93,15 @@ struct FXPane: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 // MARK: Effect List
-                List(self.userData.allEffects.indices) { idx in
-                    FXRowView(effect: self.$userData.allEffects[idx])
-                    
+                ScrollView {
+                    LazyVStack(alignment: .leading) {
+                        ForEach(self.userData.allEffects.indices) { idx in
+                            FXRowView(effect: self.$userData.allEffects[idx])
+                        }
+                    }
                 }
-                .onAppear(perform: {
-                    // Set List background to black
-                    UITableView.appearance().separatorColor = .black
-                    UITableView.appearance().backgroundColor = .black
-                    UITableViewCell.appearance().backgroundColor = .black
-                })
-                    .frame(maxWidth: proxy.size.width, minHeight: proxy.size.height, maxHeight: .infinity, alignment: .center)
+                .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height, alignment: .top)
+                .background(Color.black)
 
                 
                 // MARK: Close Button
@@ -119,7 +118,6 @@ struct FXPane: View {
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
                 .offset(x: 0, y: -proxy.size.height/10)
             }
-            .padding(.top, proxy.safeAreaInsets.top*2)
         }
 
     }
