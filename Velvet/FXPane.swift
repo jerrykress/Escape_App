@@ -117,7 +117,7 @@ struct FXPane: View {
                 }
                 .buttonStyle(NoFillBorderButtonStyle())
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottom)
-                .offset(x: 0, y: -proxy.size.height/14)
+                .offset(x: 0, y: -proxy.size.height/16)
             }
         }
 

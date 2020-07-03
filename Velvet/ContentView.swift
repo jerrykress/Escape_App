@@ -16,7 +16,7 @@ struct ContentView: View {
     
     var body: some View {
             
-        // MARK: Home View
+        // MARK: - Home View
         GeometryReader { proxy in
             
             ZStack {
@@ -69,7 +69,7 @@ struct ContentView: View {
                 }){
                     Image(systemName: "moon.fill")
                     .foregroundColor(.white)
-                        .opacity(0.8)
+                    .opacity(0.8)
                 }
                 .buttonStyle(BlurryRoundButtonStyle())
                 .frame(width: 0, height: proxy.size.height/1.3, alignment: .bottom)

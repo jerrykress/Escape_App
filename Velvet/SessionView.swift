@@ -19,8 +19,11 @@ struct SessionView: View {
     @State private var isSessionCompleted = false
     @State private var isFXPanePresented = false
     
-    @State var showBanner = false
-    @State var bannerContent: (String, String) = ("Timer","Off")
+    @State private var showBanner = false
+    @State private var bannerContent: (String, String) = ("Timer","Off")
+    
+    @State private var showAlarmSheet: Bool = false
+    @State private var alarmTime: Date = Date()
     
     @State private var calendar = Calendar.current
     @State private var date = Date()
@@ -113,7 +116,7 @@ struct SessionView: View {
                     // MARK: Alarm Button
                     Button(action: {
                         withAnimation {
-                            self.isFXPanePresented.toggle()
+                            self.showAlarmSheet = true
                         }
                     }) {
                         HStack {
@@ -129,6 +132,10 @@ struct SessionView: View {
                     }
                     .offset(x: 0, y: -30)
                     .opacity(0.6)
+                    .popover(isPresented: self.$showAlarmSheet, arrowEdge: .bottom) {
+                        Text("Popover")
+                    }
+
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                 .padding(.top, 5)
