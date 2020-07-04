@@ -23,7 +23,7 @@
 		C4C4870D24929C340031993F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4870C24929C340031993F /* Utilities.swift */; };
 		C4C4871024929FBC0031993F /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4C4870F24929FBC0031993F /* URLImage */; };
 		C4C487122492EC0B0031993F /* SceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C487112492EC0B0031993F /* SceneModel.swift */; };
-		C4C64BD52488616F00F4DD53 /* PedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C64BD42488616F00F4DD53 /* PedalView.swift */; };
+		C4C4922724B0D8FF00EFD3A3 /* SceneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4922624B0D8FF00EFD3A3 /* SceneCardView.swift */; };
 		C4DEAAAB24A648BC00815EB8 /* SlidetoUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEAAAA24A648BC00815EB8 /* SlidetoUnlockView.swift */; };
 		C4DEAAAD24A9F19800815EB8 /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEAAAC24A9F19700815EB8 /* NotificationBanner.swift */; };
 		C4E9647524A3921C00CCEFC3 /* FXPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9647424A3921C00CCEFC3 /* FXPane.swift */; };
@@ -49,7 +49,7 @@
 		C4C4870A24929A9E0031993F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		C4C4870C24929C340031993F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C4C487112492EC0B0031993F /* SceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
-		C4C64BD42488616F00F4DD53 /* PedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedalView.swift; sourceTree = "<group>"; };
+		C4C4922624B0D8FF00EFD3A3 /* SceneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCardView.swift; sourceTree = "<group>"; };
 		C4DEAAAA24A648BC00815EB8 /* SlidetoUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidetoUnlockView.swift; sourceTree = "<group>"; };
 		C4DEAAAC24A9F19700815EB8 /* NotificationBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBanner.swift; sourceTree = "<group>"; };
 		C4E9647424A3921C00CCEFC3 /* FXPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXPane.swift; sourceTree = "<group>"; };
@@ -103,13 +103,13 @@
 				C4BC713424957EFF0022E3C1 /* EmitterView.swift */,
 				C4DEAAAC24A9F19700815EB8 /* NotificationBanner.swift */,
 				C4DEAAAA24A648BC00815EB8 /* SlidetoUnlockView.swift */,
-				C4C64BD42488616F00F4DD53 /* PedalView.swift */,
 				C42FD0AC2486744E00959C9C /* Assets.xcassets */,
 				C42FD0B12486744E00959C9C /* LaunchScreen.storyboard */,
 				C42FD0B42486744E00959C9C /* Info.plist */,
 				C4BC713624965AA90022E3C1 /* Fonts */,
 				C42FD0AE2486744E00959C9C /* Preview Content */,
 				C45546A824AE53180053FC63 /* PreSessionView.swift */,
+				C4C4922624B0D8FF00EFD3A3 /* SceneCardView.swift */,
 			);
 			path = Velvet;
 			sourceTree = "<group>";
@@ -209,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4BC713524957EFF0022E3C1 /* EmitterView.swift in Sources */,
+				C4C4922724B0D8FF00EFD3A3 /* SceneCardView.swift in Sources */,
 				C4E9647524A3921C00CCEFC3 /* FXPane.swift in Sources */,
 				C42FD0A72486744C00959C9C /* AppDelegate.swift in Sources */,
 				C4F866FF249030830068816E /* SessionView.swift in Sources */,
@@ -220,7 +221,6 @@
 				C4DEAAAD24A9F19800815EB8 /* NotificationBanner.swift in Sources */,
 				C4C4870B24929A9E0031993F /* ButtonStyles.swift in Sources */,
 				C404A38524ABAC1800375E93 /* TimerHandler.swift in Sources */,
-				C4C64BD52488616F00F4DD53 /* PedalView.swift in Sources */,
 				C4C487122492EC0B0031993F /* SceneModel.swift in Sources */,
 				C45546A924AE53180053FC63 /* PreSessionView.swift in Sources */,
 				C4C4870D24929C340031993F /* Utilities.swift in Sources */,
