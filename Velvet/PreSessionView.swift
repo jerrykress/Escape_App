@@ -1,5 +1,5 @@
 //
-//  PreSessionView.swift
+//  AlarmSettingsView.swift
 //  Velvet
 //
 //  Created by Jerry Kress on 02/07/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct PreSessionView: View {
+struct AlarmSettingsView: View {
     @State private var selectedHour = 8
     @State private var selectedMinute = 30
     
@@ -72,7 +72,7 @@ struct TestPreSessionView: View {
                         .padding(.bottom, 20)
                         .opacity(0.7)
                     
-                    PreSessionView()
+                    AlarmSettingsView()
                         .frame(width: 200, height: 200, alignment: .center)
                         .compositingGroup() // ! Fixes Picker Touch Area Bug
                         .clipped()

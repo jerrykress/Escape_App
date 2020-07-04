@@ -12,7 +12,9 @@ import URLImage
 
 struct ContentView: View {
     @EnvironmentObject var userData: UserData
+    
     @State var isSessionViewPresented: Bool = false
+    @State var isAlarmSettingsPresented: Bool = false
     
     var body: some View {
             
@@ -33,7 +35,7 @@ struct ContentView: View {
                                             .resizable()
                                      }
                             )
-                            .frame(height: (self.userData.currentTrackIndex == idx) ? proxy.size.height*1.2 : proxy.size.height)
+                            .frame(height: (self.userData.currentTrackIndex == idx) ? proxy.size.height*1.15 : proxy.size.height)
                             .opacity((self.userData.currentTrackIndex == idx) ? 1 : 0)
                             
                             VStack {
@@ -50,6 +52,12 @@ struct ContentView: View {
                                     .foregroundColor(Color.white)
                                     .opacity(0.9)
                             }
+                            .isHidden(self.isAlarmSettingsPresented)
+                            
+                            AlarmSettingsView()
+                                .frame(width: proxy.size.width/2, height: 200, alignment: .bottom)
+                                .colorMultiply(Color.white)
+                                .isHidden(!self.isAlarmSettingsPresented)
                         }
                         .cornerRadius(15)
                     }
@@ -59,18 +67,58 @@ struct ContentView: View {
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                 
                 
-                //Sleep Button
-                Button(action: {
-                    withAnimation {
-                        self.isSessionViewPresented.toggle()
+                VStack {
+                    Spacer()
+                    
+                    HStack (alignment: .center) {
+                        //Timer Button
+                        Button(action: {
+                            withAnimation {
+                                self.isSessionViewPresented.toggle()
+                            }
+                        }){
+                            Image(systemName: "timer")
+                            .resizable()
+                                .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.white)
+                            .opacity(0.8)
+                        }
+                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 30)
+                        
+                        //Sleep Button
+                        Button(action: {
+                            withAnimation {
+                                self.isSessionViewPresented.toggle()
+                            }
+                        }){
+                            Image(systemName: "moon.fill")
+                            .resizable()
+                                .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.white)
+                            .opacity(0.8)
+                        }
+                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 30)
+                        
+                        // Alarm Button
+                        Button(action: {
+                            withAnimation {
+                                self.isAlarmSettingsPresented.toggle()
+                            }
+                        }){
+                            Image(systemName: "alarm")
+                            .resizable()
+                            .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.white)
+                            .opacity(0.8)
+                        }
+                        .padding(.all, 30)
+                        
                     }
-                }){
-                    Image(systemName: "moon.fill")
-                    .foregroundColor(.white)
-                    .opacity(0.8)
+                    .frame(width: 300, alignment: .bottom)
+                    .background(Color.black.opacity(0.4))
+                    .cornerRadius(25)
+                    .padding(.bottom, 70)
                 }
-                .buttonStyle(BlurryRoundButtonStyle())
-                .frame(width: 0, height: proxy.size.height/1.3, alignment: .bottom)
                 
             }
             .edgesIgnoringSafeArea(.all)
@@ -104,8 +152,8 @@ var mockData = UserData(
                    length: 100),
         SoundScene(title: "Mountain",
                    description: "Sleep to the sound of mountain wind",
-                   soundURL: "https://i.pinimg.com/564x/d2/14/be/d214bed6bb5066408070ad70925ab72b.jpg",
-                   coverURL: "https://i.pinimg.com/564x/d2/14/be/d214bed6bb5066408070ad70925ab72b.jpg",
+                   soundURL: "https://media.idownloadblog.com/wp-content/uploads/2019/06/V4ByArthur1992aS-iphone-mountain-wallpaper-sunset-orange.png",
+                   coverURL: "https://media.idownloadblog.com/wp-content/uploads/2019/06/V4ByArthur1992aS-iphone-mountain-wallpaper-sunset-orange.png",
                    length: 100)
     ],
     allEffects: [
