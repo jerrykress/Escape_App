@@ -24,18 +24,17 @@ struct ContentView: View {
                 TabView(selection: self.$userData.currentTrackIndex) {
                     ForEach(self.userData.idx, id: \.self) { idx in
                         ZStack {
-                            //Background
                             
-                            Group{
-                                URLImage(URL(string: self.userData.allScenes[idx].coverURL)!,
-                                         expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
-                                         content: {
-                                              $0.image
-                                                .resizable()
-                                                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                                         })
-                            }
-                            .frame(height: (self.userData.currentTrackIndex == idx) ? proxy.size.height : proxy.size.height/1.1)
+                            //Background
+                            URLImage(URL(string: self.userData.allScenes[idx].coverURL)!,
+                                     expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
+                                     content: {
+                                          $0.image
+                                            .resizable()
+                                     }
+                            )
+                            .frame(height: (self.userData.currentTrackIndex == idx) ? proxy.size.height*1.2 : proxy.size.height)
+                            .opacity((self.userData.currentTrackIndex == idx) ? 1 : 0)
                             
                             VStack {
                                 //Sound Title
@@ -51,13 +50,12 @@ struct ContentView: View {
                                     .foregroundColor(Color.white)
                                     .opacity(0.9)
                             }
-                            .frame(width: proxy.size.width, height: proxy.size.height/1.2, alignment: .top)
                         }
                         .cornerRadius(15)
                     }
                 }
                 .tabViewStyle(PageTabViewStyle())
-                .animation(.easeOut)
+                .animation(.easeOut(duration: 0.5))
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                 
                 
@@ -124,8 +122,8 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             //Standard Screen Preview
             ContentView().environmentObject(mockData)
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-                .previewDisplayName("iPhone 11 Pro Max")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+                .previewDisplayName("iPhone 11")
         }
     }
 }
