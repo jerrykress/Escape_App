@@ -14,7 +14,10 @@ struct ContentView: View {
     @EnvironmentObject var userData: UserData
     
     @State var isSessionViewPresented: Bool = false
+    @State var isTimerSettingsPresented: Bool = false
     @State var isAlarmSettingsPresented: Bool = false
+    
+    @State var isSessionReady: Bool = false
     
     var body: some View {
             
@@ -37,7 +40,8 @@ struct ContentView: View {
                                             .resizable()
                                      }
                             )
-                            .frame(height: (self.userData.currentTrackIndex == idx) ? proxy.size.height*1.15 : proxy.size.height)
+                            .frame(width: (self.isSessionReady) ? proxy.size.width/1.6 : proxy.size.width,
+                                   height: (self.isSessionReady) ? proxy.size.height/2 : proxy.size.height*1.2)
                             .opacity((self.userData.currentTrackIndex == idx) ? 1 : 0)
                             
                             VStack {
@@ -53,6 +57,22 @@ struct ContentView: View {
                                     .font(.custom("DIN Condensed", size: 14))
                                     .foregroundColor(Color.white)
                                     .opacity(0.9)
+                                
+                                Image(systemName: "play.fill")
+                                    .resizable()
+                                    .foregroundColor(.white)
+                                    .frame(width: self.isSessionReady ? 20 : 0,
+                                           height: self.isSessionReady ? 20 : 0, alignment: .center)
+                                    .opacity(0.7)
+                                    .padding(.top, 40)
+                                    .onTapGesture {
+                                        withAnimation(.easeIn(duration: 0.5)) {
+                                            self.isSessionViewPresented.toggle() // Start Session
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // Delay
+                                                self.isSessionReady = false // Restore Image to Full Size
+                                            }
+                                        }
+                                    }
                             }
                             .isHidden(self.isAlarmSettingsPresented)
                             
@@ -72,38 +92,42 @@ struct ContentView: View {
                     .isHidden(!self.isAlarmSettingsPresented)
                 
                 
+                // Function Bar Bottom
                 VStack {
                     Spacer()
                     
                     // MARK: Buttons
                     HStack (alignment: .center) {
+                        
                         //Timer Button
                         Button(action: {
                             withAnimation {
-                                self.isSessionViewPresented.toggle()
+//                                self.isSessionReady.toggle()
                             }
                         }){
                             Image(systemName: "timer")
                             .resizable()
-                                .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 20, height: 20, alignment: .center)
                             .foregroundColor(.white)
                             .opacity(0.8)
                         }
-                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 30)
+                        .padding(.all, 30)
+                        .isHidden(self.isSessionReady)
                         
                         //Sleep Button
                         Button(action: {
                             withAnimation {
-                                self.isSessionViewPresented.toggle()
+                                self.isSessionReady.toggle()
                             }
                         }){
-                            Image(systemName: "moon.fill")
+                            Image(systemName: self.isSessionReady ? "multiply" : "moon.fill")
                             .resizable()
-                                .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 20, height: 20, alignment: .center)
                             .foregroundColor(.white)
-                            .opacity(0.8)
+                            .opacity(self.isSessionReady ? 0.5 : 0.8)
                         }
-                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 30)
+                        .padding(.all, 30)
+
                         
                         // Alarm Button
                         Button(action: {
@@ -118,18 +142,20 @@ struct ContentView: View {
                             .opacity(0.8)
                         }
                         .padding(.all, 30)
+                        .isHidden(self.isSessionReady)
                         
                     }
-                    .frame(width: 300, alignment: .bottom)
+                    .frame(width: self.isSessionReady ? 60 : 300,
+                           height: self.isSessionReady ? 60 : 80, alignment: .center)
                     .background(Color.black.opacity(0.4))
-                    .cornerRadius(25)
+                    .cornerRadius(self.isSessionReady ? 40 : 25)
                     .padding(.bottom, 70)
                 }
                 
             }
             .edgesIgnoringSafeArea(.all)
             .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-            .background(Color.black)
+            .background(Color.darkEnd)
             
             // MARK: Session View
             if(self.isSessionViewPresented) {

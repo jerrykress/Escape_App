@@ -26,11 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let userData = UserData(
             allScenes: [
                 SoundScene(title: "Ocean",
-                           description: "Sleep to the sound of ocean waves",
+                           description: "The sound of ocean waves",
                            soundURL: "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg",
                            coverURL: "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg",
                            length: 100),
-                SoundScene(title: "Starry Night",
+                SoundScene(title: "Forest",
                            description: "Sleep to the sound of mountain wind",
                            soundURL: "https://i.pinimg.com/736x/53/13/c0/5313c0dbd26595ef54a0d02f475b736b.jpg",
                            coverURL: "https://i.pinimg.com/736x/53/13/c0/5313c0dbd26595ef54a0d02f475b736b.jpg",
