@@ -25,6 +25,8 @@ struct ContentView: View {
                 
                 TabView(selection: self.$userData.currentTrackIndex) {
                     ForEach(self.userData.idx, id: \.self) { idx in
+                        
+                        // MARK: Main View
                         ZStack {
                             
                             //Background
@@ -54,10 +56,6 @@ struct ContentView: View {
                             }
                             .isHidden(self.isAlarmSettingsPresented)
                             
-                            AlarmSettingsView()
-                                .frame(width: proxy.size.width/2, height: 200, alignment: .bottom)
-                                .colorMultiply(Color.white)
-                                .isHidden(!self.isAlarmSettingsPresented)
                         }
                         .cornerRadius(15)
                     }
@@ -67,9 +65,17 @@ struct ContentView: View {
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                 
                 
+                // MARK: Alarm Settings
+                AlarmSettingsView(presented: self.$isAlarmSettingsPresented)
+                    .frame(width: proxy.size.width/2, height: 200, alignment: .bottom)
+                    .colorMultiply(Color.white)
+                    .isHidden(!self.isAlarmSettingsPresented)
+                
+                
                 VStack {
                     Spacer()
                     
+                    // MARK: Buttons
                     HStack (alignment: .center) {
                         //Timer Button
                         Button(action: {
@@ -102,7 +108,7 @@ struct ContentView: View {
                         // Alarm Button
                         Button(action: {
                             withAnimation {
-                                self.isAlarmSettingsPresented.toggle()
+                                self.isAlarmSettingsPresented = true
                             }
                         }){
                             Image(systemName: "alarm")
@@ -135,6 +141,8 @@ struct ContentView: View {
     }
 }
 
+
+// MARK: - MOCK DATA
 
 #if DEBUG
 

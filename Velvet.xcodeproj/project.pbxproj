@@ -18,7 +18,6 @@
 		C45546A924AE53180053FC63 /* PreSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45546A824AE53180053FC63 /* PreSessionView.swift */; };
 		C4BC713524957EFF0022E3C1 /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC713424957EFF0022E3C1 /* EmitterView.swift */; };
 		C4BC713824965B190022E3C1 /* Satisfaction.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4BC713724965B190022E3C1 /* Satisfaction.ttf */; };
-		C4BC713A2496BF7F0022E3C1 /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC71392496BF7F0022E3C1 /* Playground.swift */; };
 		C4C4870B24929A9E0031993F /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4870A24929A9E0031993F /* ButtonStyles.swift */; };
 		C4C4870D24929C340031993F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4870C24929C340031993F /* Utilities.swift */; };
 		C4C4871024929FBC0031993F /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4C4870F24929FBC0031993F /* URLImage */; };
@@ -45,7 +44,6 @@
 		C45546A824AE53180053FC63 /* PreSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSessionView.swift; sourceTree = "<group>"; };
 		C4BC713424957EFF0022E3C1 /* EmitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterView.swift; sourceTree = "<group>"; };
 		C4BC713724965B190022E3C1 /* Satisfaction.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Satisfaction.ttf; sourceTree = "<group>"; };
-		C4BC71392496BF7F0022E3C1 /* Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		C4C4870A24929A9E0031993F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		C4C4870C24929C340031993F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C4C487112492EC0B0031993F /* SceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
@@ -69,6 +67,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C41FD60224B2424C00E88E45 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C42FD0AA2486744C00959C9C /* ContentView.swift */,
+				C4F866FE249030830068816E /* SessionView.swift */,
+				C4E9647424A3921C00CCEFC3 /* FXPane.swift */,
+				C45546A824AE53180053FC63 /* PreSessionView.swift */,
+				C4C4922624B0D8FF00EFD3A3 /* SceneCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C42FD09A2486744C00959C9C = {
 			isa = PBXGroup;
 			children = (
@@ -88,13 +98,10 @@
 		C42FD0A52486744C00959C9C /* Velvet */ = {
 			isa = PBXGroup;
 			children = (
+				C41FD60224B2424C00E88E45 /* Views */,
 				C42FD0A62486744C00959C9C /* AppDelegate.swift */,
 				C42FD0A82486744C00959C9C /* SceneDelegate.swift */,
 				C4F867002490F9B90068816E /* DeviceModels.swift */,
-				C42FD0AA2486744C00959C9C /* ContentView.swift */,
-				C4F866FE249030830068816E /* SessionView.swift */,
-				C4E9647424A3921C00CCEFC3 /* FXPane.swift */,
-				C4BC71392496BF7F0022E3C1 /* Playground.swift */,
 				C4C4870A24929A9E0031993F /* ButtonStyles.swift */,
 				C4C487112492EC0B0031993F /* SceneModel.swift */,
 				C404A38424ABAC1800375E93 /* TimerHandler.swift */,
@@ -108,8 +115,6 @@
 				C42FD0B42486744E00959C9C /* Info.plist */,
 				C4BC713624965AA90022E3C1 /* Fonts */,
 				C42FD0AE2486744E00959C9C /* Preview Content */,
-				C45546A824AE53180053FC63 /* PreSessionView.swift */,
-				C4C4922624B0D8FF00EFD3A3 /* SceneCardView.swift */,
 			);
 			path = Velvet;
 			sourceTree = "<group>";
@@ -213,7 +218,6 @@
 				C4E9647524A3921C00CCEFC3 /* FXPane.swift in Sources */,
 				C42FD0A72486744C00959C9C /* AppDelegate.swift in Sources */,
 				C4F866FF249030830068816E /* SessionView.swift in Sources */,
-				C4BC713A2496BF7F0022E3C1 /* Playground.swift in Sources */,
 				C4DEAAAB24A648BC00815EB8 /* SlidetoUnlockView.swift in Sources */,
 				C42FD0A92486744C00959C9C /* SceneDelegate.swift in Sources */,
 				C42FD0AB2486744C00959C9C /* ContentView.swift in Sources */,
