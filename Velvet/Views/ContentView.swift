@@ -26,6 +26,9 @@ struct ContentView: View {
             
             ZStack {
                 
+//                LinearGradient(Color.green, Color.blue)
+//                Color.white.opacity(0.5)
+                
                 TabView(selection: self.$userData.currentTrackIndex) {
                     ForEach(self.userData.idx, id: \.self) { idx in
                         
@@ -148,7 +151,7 @@ struct ContentView: View {
                     .frame(width: self.isSessionReady ? 60 : 300,
                            height: self.isSessionReady ? 60 : 80, alignment: .center)
                     .background(Color.black.opacity(0.4))
-                    .cornerRadius(self.isSessionReady ? 40 : 25)
+                    .cornerRadius(40)
                     .padding(.bottom, 70)
                 }
                 

@@ -16,7 +16,6 @@ struct AlarmSettingsView: View {
     
     var body: some View {
             GeometryReader { geometry in
-//                ZStack {
                     
                 VStack {
                     HStack(spacing: 0) {
@@ -52,7 +51,7 @@ struct AlarmSettingsView: View {
                             .clipped()
                             
                     }
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 5)
                     
                     Button(action: {
                         self.presented = false
@@ -60,15 +59,13 @@ struct AlarmSettingsView: View {
                         Text("Done")
                             .foregroundColor(Color.white)
                             .opacity(0.7)
-                            .font(.title2)
-                            .frame(width: 100, height: 46, alignment: .center)
+                            .font(.title3)
+                            .frame(width: 90, height: 40, alignment: .center)
                             .background(Color.black.opacity(0.3))
-                            .cornerRadius(23)
+                            .cornerRadius(20)
                     }
                     
                 }
-                    
-//                }
                 
             }
     }
