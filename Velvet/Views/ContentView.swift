@@ -25,9 +25,9 @@ struct ContentView: View {
         GeometryReader { proxy in
             
             ZStack {
-                
-//                LinearGradient(Color.green, Color.blue)
-//                Color.white.opacity(0.5)
+                // Blurred Background View
+                DissolveGradient()
+                    .opacity(self.isSessionReady ? 1 : 0)
                 
                 TabView(selection: self.$userData.currentTrackIndex) {
                     ForEach(self.userData.idx, id: \.self) { idx in
@@ -46,6 +46,8 @@ struct ContentView: View {
                             .frame(width: (self.isSessionReady) ? proxy.size.width/1.6 : proxy.size.width,
                                    height: (self.isSessionReady) ? proxy.size.height/2 : proxy.size.height*1.2)
                             .opacity((self.userData.currentTrackIndex == idx) ? 1 : 0)
+                            
+                            
                             
                             VStack {
                                 //Sound Title
@@ -80,7 +82,7 @@ struct ContentView: View {
                             .isHidden(self.isAlarmSettingsPresented)
                             
                         }
-                        .cornerRadius(15)
+                        .cornerRadius(25)
                     }
                 }
                 .tabViewStyle(PageTabViewStyle())
@@ -148,9 +150,9 @@ struct ContentView: View {
                         .isHidden(self.isSessionReady)
                         
                     }
-                    .frame(width: self.isSessionReady ? 60 : 300,
-                           height: self.isSessionReady ? 60 : 80, alignment: .center)
-                    .background(Color.black.opacity(0.4))
+                    .frame(width: self.isSessionReady ? 55 : 300,
+                           height: self.isSessionReady ? 55 : 80, alignment: .center)
+                    .background(Color.black.opacity(self.isSessionReady ? 0.2 : 0.4))
                     .cornerRadius(40)
                     .padding(.bottom, 70)
                 }
