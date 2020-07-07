@@ -26,7 +26,6 @@
 		C4DEAAAB24A648BC00815EB8 /* SlidetoUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEAAAA24A648BC00815EB8 /* SlidetoUnlockView.swift */; };
 		C4DEAAAD24A9F19800815EB8 /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEAAAC24A9F19700815EB8 /* NotificationBanner.swift */; };
 		C4E9647524A3921C00CCEFC3 /* FXPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9647424A3921C00CCEFC3 /* FXPane.swift */; };
-		C4F369B824B3DA3B00742D8C /* AnimatableGradients in Frameworks */ = {isa = PBXBuildFile; productRef = C4F369B724B3DA3B00742D8C /* AnimatableGradients */; };
 		C4F369BC24B3E29400742D8C /* DissolveGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F369BB24B3E29400742D8C /* DissolveGradient.swift */; };
 		C4F866FF249030830068816E /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F866FE249030830068816E /* SessionView.swift */; };
 		C4F867012490F9B90068816E /* DeviceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F867002490F9B90068816E /* DeviceModels.swift */; };
@@ -63,7 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4F369B824B3DA3B00742D8C /* AnimatableGradients in Frameworks */,
 				C4C4871024929FBC0031993F /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,7 +156,6 @@
 			name = Velvet;
 			packageProductDependencies = (
 				C4C4870F24929FBC0031993F /* URLImage */,
-				C4F369B724B3DA3B00742D8C /* AnimatableGradients */,
 			);
 			productName = Velvet;
 			productReference = C42FD0A32486744C00959C9C /* Velvet.app */;
@@ -190,7 +187,6 @@
 			mainGroup = C42FD09A2486744C00959C9C;
 			packageReferences = (
 				C4C4870E24929FBC0031993F /* XCRemoteSwiftPackageReference "url-image" */,
-				C4F369B624B3DA3B00742D8C /* XCRemoteSwiftPackageReference "AnimatableGradients" */,
 			);
 			productRefGroup = C42FD0A42486744C00959C9C /* Products */;
 			projectDirPath = "";
@@ -442,14 +438,6 @@
 				minimumVersion = 0.9.15;
 			};
 		};
-		C4F369B624B3DA3B00742D8C /* XCRemoteSwiftPackageReference "AnimatableGradients" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CypherPoet/AnimatableGradients";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -457,11 +445,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C4C4870E24929FBC0031993F /* XCRemoteSwiftPackageReference "url-image" */;
 			productName = URLImage;
-		};
-		C4F369B724B3DA3B00742D8C /* AnimatableGradients */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4F369B624B3DA3B00742D8C /* XCRemoteSwiftPackageReference "AnimatableGradients" */;
-			productName = AnimatableGradients;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
