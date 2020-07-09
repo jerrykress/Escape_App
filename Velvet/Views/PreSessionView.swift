@@ -54,7 +54,9 @@ struct AlarmSettingsView: View {
                     .padding(.bottom, 5)
                     
                     Button(action: {
-                        self.presented = false
+                        withAnimation {
+                            self.presented = false
+                        }
                     }) {
                         Text("Done")
                             .foregroundColor(Color.white)

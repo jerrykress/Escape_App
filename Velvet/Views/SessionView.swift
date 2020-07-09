@@ -57,7 +57,7 @@ struct SessionView: View {
                     .overlay(EmitterView().opacity(0.5))
                 
                 NotificationBanner(showBanner: self.$showBanner, content: self.$bannerContent)
-                    .padding(.top, 20)
+                    .padding(.top, 40)
                     .frame(width: proxy.size.width/1.2, height: proxy.size.height, alignment: .top)
                 
                 
@@ -96,7 +96,7 @@ struct SessionView: View {
                         .opacity(0.6)
                     
                 }
-                .padding(.top, 40) // TODO: Find universial number
+                .padding(.top, 60) // TODO: Find universial number
                 .frame(width: proxy.size.width/1.2, height: proxy.size.height, alignment: .top)
                 
                 

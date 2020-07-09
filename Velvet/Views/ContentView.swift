@@ -52,24 +52,24 @@ struct ContentView: View {
                             VStack {
                                 //Sound Title
                                 Text(self.userData.allScenes[idx].title)
-                                    .font(.custom("DIN Alternate", size: 50))
+                                    .font(.custom("Avenir Book", size: 45))
                                     .foregroundColor(Color.white)
                                     .opacity(0.9)
                                     .padding(10)
                                 
                                 //Sound Description
-                                Text(self.userData.allScenes[idx].description)
-                                    .font(.custom("DIN Condensed", size: 14))
-                                    .foregroundColor(Color.white)
-                                    .opacity(0.9)
+//                                Text(self.userData.allScenes[idx].description)
+//                                    .font(.system(size: 15, weight: .regular, design: .default))
+//                                    .foregroundColor(Color.white)
+//                                    .opacity(0.6)
                                 
-                                Image(systemName: "play.fill")
+                                Image(systemName: "livephoto.play")
                                     .resizable()
                                     .foregroundColor(.white)
-                                    .frame(width: self.isSessionReady ? 20 : 0,
-                                           height: self.isSessionReady ? 20 : 0, alignment: .center)
+                                    .frame(width: self.isSessionReady ? 36 : 0,
+                                           height: self.isSessionReady ? 36 : 0, alignment: .center)
                                     .opacity(0.7)
-                                    .padding(.top, 40)
+                                    .padding(.top, 30)
                                     .onTapGesture {
                                         withAnimation(.easeIn(duration: 0.5)) {
                                             self.isSessionViewPresented.toggle() // Start Session
@@ -82,13 +82,12 @@ struct ContentView: View {
                             .isHidden(self.isAlarmSettingsPresented)
                             
                         }
-                        .cornerRadius(25)
+                        .cornerRadius(20)
                     }
                 }
                 .tabViewStyle(PageTabViewStyle())
                 .animation(.easeOut(duration: 0.5))
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                
                 
                 // MARK: Alarm Settings
                 AlarmSettingsView(presented: self.$isAlarmSettingsPresented)
@@ -180,27 +179,28 @@ struct ContentView: View {
 var mockData = UserData(
     allScenes: [
         SoundScene(title: "Ocean",
-                   description: "Sleep to the sound of ocean waves",
+                   description: "The sound of ocean waves",
                    soundURL: "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg",
                    coverURL: "https://iphone-wallpaper.pics/wallpaper/1/6/163847_71bd70b6506e4845849a3a5d2b7a7413_raw.jpg",
                    length: 100),
-        SoundScene(title: "Ecstacy",
-                   description: "Sleep to the sound of mountain wind",
-                   soundURL: "https://images.ctfassets.net/ooa29xqb8tix/6NCSjAxuA8EaEgkauQuKso/e3b1c4f38fa5e3899ca0f6d9c98370cd/iPhone_X_Wallpaper_9.png",
-                   coverURL: "https://images.ctfassets.net/ooa29xqb8tix/6NCSjAxuA8EaEgkauQuKso/e3b1c4f38fa5e3899ca0f6d9c98370cd/iPhone_X_Wallpaper_9.png",
+        SoundScene(title: "Dunes",
+                   description: "The sound of ocean waves",
+                   soundURL: "https://wallpaperplay.com/walls/full/8/0/6/114384.jpg",
+                   coverURL: "https://wallpaperplay.com/walls/full/8/0/6/114384.jpg",
                    length: 100),
-        SoundScene(title: "Mountain",
-                   description: "Sleep to the sound of mountain wind",
-                   soundURL: "https://media.idownloadblog.com/wp-content/uploads/2019/06/V4ByArthur1992aS-iphone-mountain-wallpaper-sunset-orange.png",
-                   coverURL: "https://media.idownloadblog.com/wp-content/uploads/2019/06/V4ByArthur1992aS-iphone-mountain-wallpaper-sunset-orange.png",
+        SoundScene(title: "Cosmos",
+                   description: "The sound of ocean waves",
+                   soundURL: "https://wallpapercave.com/wp/wp4570367.jpg",
+                   coverURL: "https://wallpapercave.com/wp/wp4570367.jpg",
                    length: 100)
     ],
     allEffects: [
-        SoundEffect(title: "Fireplace", iconURL: "flame", fileURL: "https://example.aac", volume: 50),
-        SoundEffect(title: "Thunder Storm", iconURL: "bolt.fill", fileURL: "https://example.aac", volume: 50),
-        SoundEffect(title: "Wind", iconURL: "wind", fileURL: "https://example.aac", volume: 50),
-        SoundEffect(title: "Rain", iconURL: "cloud.drizzle", fileURL: "https://example.aac", volume: 50),
-        SoundEffect(title: "Plane", iconURL: "airplane", fileURL: "https://example.aac", volume: 50)
+        SoundEffect(title: "Fireplace", iconURL: "flame", fileURL: "https://example.aac", volume: 0),
+        SoundEffect(title: "Thunder Storm", iconURL: "bolt.fill", fileURL: "https://example.aac", volume: 0),
+        SoundEffect(title: "Mountain Wind", iconURL: "wind", fileURL: "https://example.aac", volume: 0),
+        SoundEffect(title: "Spring Rain", iconURL: "cloud.drizzle", fileURL: "https://example.aac", volume: 0),
+        SoundEffect(title: "Winter Snow", iconURL: "snow", fileURL: "https://example.aac", volume: 0),
+        SoundEffect(title: "Rail Road", iconURL: "tram.fill", fileURL: "https://example.aac", volume: 0)
     ]
 )
 
@@ -209,8 +209,6 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             //Standard Screen Preview
             ContentView().environmentObject(mockData)
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-                .previewDisplayName("iPhone 11")
         }
     }
 }
