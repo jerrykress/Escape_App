@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		C404A38524ABAC1800375E93 /* TimerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404A38424ABAC1800375E93 /* TimerHandler.swift */; };
 		C404A38724ABE71600375E93 /* FXButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404A38624ABE71600375E93 /* FXButtonHandler.swift */; };
-		C42FD0A72486744C00959C9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FD0A62486744C00959C9C /* AppDelegate.swift */; };
-		C42FD0A92486744C00959C9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FD0A82486744C00959C9C /* SceneDelegate.swift */; };
+		C42FD0A72486744C00959C9C /* VelvetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FD0A62486744C00959C9C /* VelvetApp.swift */; };
 		C42FD0AB2486744C00959C9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FD0AA2486744C00959C9C /* ContentView.swift */; };
 		C42FD0AD2486744E00959C9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42FD0AC2486744E00959C9C /* Assets.xcassets */; };
 		C42FD0B02486744E00959C9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42FD0AF2486744E00959C9C /* Preview Assets.xcassets */; };
@@ -35,8 +34,7 @@
 		C404A38424ABAC1800375E93 /* TimerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerHandler.swift; sourceTree = "<group>"; };
 		C404A38624ABE71600375E93 /* FXButtonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXButtonHandler.swift; sourceTree = "<group>"; };
 		C42FD0A32486744C00959C9C /* Velvet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velvet.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C42FD0A62486744C00959C9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C42FD0A82486744C00959C9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C42FD0A62486744C00959C9C /* VelvetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelvetApp.swift; sourceTree = "<group>"; };
 		C42FD0AA2486744C00959C9C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C42FD0AC2486744E00959C9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C42FD0AF2486744E00959C9C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -101,9 +99,8 @@
 		C42FD0A52486744C00959C9C /* Velvet */ = {
 			isa = PBXGroup;
 			children = (
+				C42FD0A62486744C00959C9C /* VelvetApp.swift */,
 				C41FD60224B2424C00E88E45 /* Views */,
-				C42FD0A62486744C00959C9C /* AppDelegate.swift */,
-				C42FD0A82486744C00959C9C /* SceneDelegate.swift */,
 				C4F867002490F9B90068816E /* DeviceModels.swift */,
 				C4C4870A24929A9E0031993F /* ButtonStyles.swift */,
 				C4C487112492EC0B0031993F /* SceneModel.swift */,
@@ -219,11 +216,10 @@
 				C4BC713524957EFF0022E3C1 /* EmitterView.swift in Sources */,
 				C4C4922724B0D8FF00EFD3A3 /* SceneCardView.swift in Sources */,
 				C4E9647524A3921C00CCEFC3 /* FXPane.swift in Sources */,
-				C42FD0A72486744C00959C9C /* AppDelegate.swift in Sources */,
+				C42FD0A72486744C00959C9C /* VelvetApp.swift in Sources */,
 				C4F866FF249030830068816E /* SessionView.swift in Sources */,
 				C4DEAAAB24A648BC00815EB8 /* SlidetoUnlockView.swift in Sources */,
 				C4F369BC24B3E29400742D8C /* DissolveGradient.swift in Sources */,
-				C42FD0A92486744C00959C9C /* SceneDelegate.swift in Sources */,
 				C42FD0AB2486744C00959C9C /* ContentView.swift in Sources */,
 				C404A38724ABE71600375E93 /* FXButtonHandler.swift in Sources */,
 				C4DEAAAD24A9F19800815EB8 /* NotificationBanner.swift in Sources */,
