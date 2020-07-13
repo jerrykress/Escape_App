@@ -149,23 +149,6 @@ struct PathToShape: Shape {
 }
 
 
-class UserData: ObservableObject {
-    @Published var allScenes: [SoundScene]
-    @Published var allEffects: [SoundEffect]
-    @Published var currentTrackIndex: Int
-    @Published var idx: Array<Int>
-    @Published var timer: Int
-    
-    init(allScenes: [SoundScene], allEffects: [SoundEffect]) {
-        self.allScenes = allScenes
-        self.allEffects = allEffects
-        self.currentTrackIndex = 0
-        self.idx = Array(0..<allScenes.count)
-        self.timer = 0
-    }
-}
-
-
 struct CustomSliderComponents {
     let barLeft: CustomSliderModifier
     let barRight: CustomSliderModifier

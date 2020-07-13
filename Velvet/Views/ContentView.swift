@@ -30,13 +30,13 @@ struct ContentView: View {
                     .opacity(self.isSessionReady ? 1 : 0)
                 
                 TabView(selection: self.$userData.currentTrackIndex) {
-                    ForEach(self.userData.idx, id: \.self) { idx in
+                    ForEach(Array(0..<self.userData.getAllScene().count), id: \.self) { idx in
                         
                         // MARK: Main View
                         ZStack {
                             
                             //Background
-                            URLImage(URL(string: self.userData.allScenes[idx].coverURL)!,
+                            URLImage(URL(string: self.userData.getSceneByIndex(index: idx).coverURL)!,
                                      expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
                                      content: {
                                           $0.image
@@ -51,7 +51,7 @@ struct ContentView: View {
                             
                             VStack {
                                 //Sound Title
-                                Text(self.userData.allScenes[idx].title)
+                                Text(self.userData.getSceneByIndex(index: idx).title)
                                     .font(.custom("Avenir Book", size: 45))
                                     .foregroundColor(Color.white)
                                     .opacity(0.9)
@@ -206,10 +206,7 @@ var mockData = UserData(
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            //Standard Screen Preview
-            ContentView().environmentObject(mockData)
-        }
+        ContentView().environmentObject(mockData)
     }
 }
 

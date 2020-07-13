@@ -80,7 +80,7 @@ struct SessionView: View {
                             .opacity(0.7)
                             .padding(.bottom, 10)
                         
-                        Text("\(self.userData.allScenes[self.userData.currentTrackIndex].title)")
+                        Text("\(self.userData.getCurrentScene().title)")
                             .foregroundColor(Color.white)
                             .font(.system(size: 15, weight: .light, design: .default))
                             .opacity(0.7)

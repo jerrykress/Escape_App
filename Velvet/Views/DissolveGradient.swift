@@ -15,8 +15,8 @@ struct DissolveGradient: View {
     
     var body: some View {
         ZStack {
-            ForEach(self.userData.idx, id: \.self) { imgIndex in
-                URLImage(URL(string: self.userData.allScenes[imgIndex].coverURL)!,
+            ForEach(Array(0..<self.userData.getAllScene().count), id: \.self) { imgIndex in
+                URLImage(URL(string: self.userData.getSceneByIndex(index: imgIndex).coverURL)!,
                          expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
                          content: {
                               $0.image

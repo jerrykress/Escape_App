@@ -102,6 +102,7 @@ struct FXPane: View {
                 }
                 .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height, alignment: .center)
                 .offset(x: 0, y: 30)
+                .padding()
                 .background(Color.black)
 
                 
