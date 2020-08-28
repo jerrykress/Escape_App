@@ -233,6 +233,7 @@ struct SessionView: View {
             .onAppear(perform: {
                 let _ = self.updateTimer
                 self.sessionStartDate = Date()
+                print("STATUS: SessionView Appeared")
             })
             .onDisappear(perform: {
                 let _ = self.updateTimer

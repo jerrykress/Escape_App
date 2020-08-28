@@ -8,9 +8,11 @@
 
 import SwiftUI
 import URLImage
-
+import CoreData
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var context
+    
     @EnvironmentObject var userData: UserData
     
     @State var isSessionViewPresented: Bool = false
@@ -54,7 +56,7 @@ struct ContentView: View {
                                 Text(self.userData.getSceneByIndex(index: idx).title)
                                     .font(.custom("Avenir Book", size: 45))
                                     .foregroundColor(Color.white)
-                                    .opacity(0.9)
+                                    .opacity(0.8)
                                     .padding(10)
                                 
                                 //Sound Description
@@ -167,6 +169,33 @@ struct ContentView: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
+        .onAppear(perform: {
+            print("HomeView Appeared")
+            
+            for scene in self.userData.getAllScene() {
+                print("Init scene: \(scene.title)")
+                
+                // Create data in context
+                guard let sceneData = NSEntityDescription.insertNewObject(forEntityName: "SoundSceneData", into: context) as? SoundSceneData else {
+                  return
+                }
+                
+                // Copy Attributes
+                sceneData.title = scene.title
+                sceneData.subtitle = scene.description
+                sceneData.coverURL = scene.coverURL
+                sceneData.soundURL = scene.soundURL
+                sceneData.length = Int16(scene.length)
+                
+                // Attempt Saving to Core Data
+                do {
+                    try context.save()
+                } catch {
+                    print("Could not save. \(error), \(error.localizedDescription)")
+                }
+                // Exit Core Data
+            }
+        })
         
     }
 }

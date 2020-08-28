@@ -12,16 +12,24 @@ import CoreData
 @main
 struct Velvet: App {
     
+    // Define NSManagedObjectContext
+    public var context: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
+    // Inject NSManagedObjectContext into SwiftUI Env
+    // Inject User Data
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(userData)
+                .environment(\.managedObjectContext, context)
         }
     }
     
     // Create Persistant Data Model
     var persistentContainer: NSPersistentContainer = {
-            let container = NSPersistentContainer(name: "VelvetApp")
+            let container = NSPersistentContainer(name: "SoundDataModel")
         
             container.loadPersistentStores(completionHandler: { (storeDescription, error) in
                 if let error = error as NSError? {
@@ -30,6 +38,7 @@ struct Velvet: App {
             })
             return container
         }()
+
     
     // Save Data Change
     func saveContext() {
