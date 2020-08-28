@@ -11,6 +11,7 @@ import CoreData
 
 @main
 struct Velvet: App {
+    @Environment(\.scenePhase) private var scenePhase
     
     // Define NSManagedObjectContext
     public var context: NSManagedObjectContext {
@@ -24,6 +25,13 @@ struct Velvet: App {
             ContentView()
                 .environmentObject(userData)
                 .environment(\.managedObjectContext, context)
+        }
+        .onChange(of: scenePhase) { phase in
+            if (phase == .background) {
+                // When App Enters Background
+                saveContext()
+            }
+            
         }
     }
     

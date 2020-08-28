@@ -21,6 +21,11 @@ struct ContentView: View {
     
     @State var isSessionReady: Bool = false
     
+    @FetchRequest(
+        entity: SoundSceneData.entity(),
+        sortDescriptors: []
+    ) var soundSceneData: FetchedResults<SoundSceneData>
+    
     var body: some View {
             
         // MARK: - Home View
@@ -34,11 +39,12 @@ struct ContentView: View {
                 TabView(selection: self.$userData.currentTrackIndex) {
                     ForEach(Array(0..<self.userData.getAllScene().count), id: \.self) { idx in
                         
+                        
                         // MARK: Main View
                         ZStack {
                             
                             //Background
-                            URLImage(URL(string: self.userData.getSceneByIndex(index: idx).coverURL)!,
+                            URLImage(URL(string: self.soundSceneData[idx].coverURL ?? "undefined")!,
                                      expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
                                      content: {
                                           $0.image
@@ -53,7 +59,7 @@ struct ContentView: View {
                             
                             VStack {
                                 //Sound Title
-                                Text(self.userData.getSceneByIndex(index: idx).title)
+                                Text(self.soundSceneData[idx].title ?? "err")
                                     .font(.custom("Avenir Book", size: 45))
                                     .foregroundColor(Color.white)
                                     .opacity(0.8)
