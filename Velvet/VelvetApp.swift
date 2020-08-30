@@ -13,11 +13,24 @@ import CoreData
 struct Velvet: App {
     @Environment(\.scenePhase) private var scenePhase
     
-    // Define NSManagedObjectContext
+    // Create Data Management Context
     public var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     
+    // Create Persistant Data Stack
+    private var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "SoundSceneData")
+    
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo) ")
+            }
+        })
+        return container
+    }()
+    
+    // When App First Launch
     init() {
         for scene in userData.getAllScene() {
             print("Init scene: \(scene.title)")
@@ -32,19 +45,61 @@ struct Velvet: App {
             sceneData.coverURL = scene.coverURL
             sceneData.soundURL = scene.soundURL
             
+            // Cover Download
+            let coverURL = URL(string: scene.coverURL)!
             
-            // Attempt Saving to Core Data
-            do {
-                try context.save()
-            } catch {
-                print("Could not save. \(error), \(error.localizedDescription)")
+            let coverDownload = URLSession.shared.downloadTask(with: coverURL) { localURL, urlResponse, error in
+                print("Scene \(scene.title): Cover tmp path -> \(localURL!)")
+                guard let fileURL = localURL else { return }
+                    do {
+                        let documentsURL = try
+                            FileManager.default.url(for: .documentDirectory,
+                                                    in: .userDomainMask,
+                                                    appropriateFor: nil,
+                                                    create: false)
+                        let savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)
+                        print("Scene \(scene.title): Cover saved path -> \(savedURL)")
+                        sceneData.coverLocalURL = savedURL
+                        try FileManager.default.moveItem(at: fileURL, to: savedURL)
+                    } catch {
+                        print ("file error: \(error)")
+                    }
+                
             }
-            // Exit Core Data
+            
+            coverDownload.resume()
+            
+            // Sound Download
+            let soundURL = URL(string: scene.soundURL)!
+            
+            let soundDownload = URLSession.shared.downloadTask(with: soundURL) { localURL, urlResponse, error in
+                print("Scene \(scene.title): Sound tmp path -> \(localURL!)")
+                guard let fileURL = localURL else { return }
+                    do {
+                        let documentsURL = try
+                            FileManager.default.url(for: .documentDirectory,
+                                                    in: .userDomainMask,
+                                                    appropriateFor: nil,
+                                                    create: false)
+                        let savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)
+                        print("Scene \(scene.title): Sound saved path -> \(savedURL)")
+                        sceneData.soundLocalURL = savedURL
+                        try FileManager.default.moveItem(at: fileURL, to: savedURL)
+                    } catch {
+                        print ("file error: \(error)")
+                    }
+                
+            }
+            
+            soundDownload.resume()
+            
+            
+            // Saving to Core Data
+            saveContext()
+            
         }
     }
     
-    // Inject NSManagedObjectContext into SwiftUI Env
-    // Inject User Data
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -53,24 +108,12 @@ struct Velvet: App {
         }
         .onChange(of: scenePhase) { phase in
             if (phase == .background) {
-                // When App Enters Background
+                // Save When App Enters Background
                 saveContext()
             }
             
         }
     }
-    
-    // Create Persistant Data Model
-    var persistentContainer: NSPersistentContainer = {
-            let container = NSPersistentContainer(name: "SoundSceneData")
-        
-            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-                if let error = error as NSError? {
-                    fatalError("Unresolved error \(error), \(error.userInfo) ")
-                }
-            })
-            return container
-        }()
 
     
     // Save Data Change

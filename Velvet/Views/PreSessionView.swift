@@ -29,7 +29,7 @@ struct AlarmSettingsView: View {
                             .colorInvert()
                             .pickerStyle(WheelPickerStyle())
                             .onReceive([self.selectedHour].publisher.first()) { (value) in
-                                print("hour: \(value)")
+                                print("Alarm hour: \(value)")
                             }
                             .labelsHidden()
                             .frame(width: geometry.size.width/2)
@@ -44,7 +44,7 @@ struct AlarmSettingsView: View {
                             .colorInvert()
                             .pickerStyle(WheelPickerStyle())
                             .onReceive([self.selectedMinute].publisher.first()) { (value) in
-                                print("minute: \(value)")
+                                print("Alarm minute: \(value)")
                             }
                             .labelsHidden()
                             .frame(width: geometry.size.width/2)
