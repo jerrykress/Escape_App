@@ -18,6 +18,31 @@ struct Velvet: App {
         return persistentContainer.viewContext
     }
     
+    init() {
+        for scene in userData.getAllScene() {
+            print("Init scene: \(scene.title)")
+            
+            // Create data in context
+            guard let sceneData = NSEntityDescription.insertNewObject(forEntityName: "SoundSceneData", into: context) as? SoundSceneData else {
+              return
+            }
+            
+            // Copy Attributes
+            sceneData.title = scene.title
+            sceneData.coverURL = scene.coverURL
+            sceneData.soundURL = scene.soundURL
+            
+            
+            // Attempt Saving to Core Data
+            do {
+                try context.save()
+            } catch {
+                print("Could not save. \(error), \(error.localizedDescription)")
+            }
+            // Exit Core Data
+        }
+    }
+    
     // Inject NSManagedObjectContext into SwiftUI Env
     // Inject User Data
     var body: some Scene {
