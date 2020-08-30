@@ -24,7 +24,7 @@
 		C4DEAAAB24A648BC00815EB8 /* SlidetoUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEAAAA24A648BC00815EB8 /* SlidetoUnlockView.swift */; };
 		C4DEAAAD24A9F19800815EB8 /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEAAAC24A9F19700815EB8 /* NotificationBanner.swift */; };
 		C4E9647524A3921C00CCEFC3 /* FXPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9647424A3921C00CCEFC3 /* FXPane.swift */; };
-		C4F2F02324F7F3CC0078C944 /* SoundDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4F2F02124F7F3CC0078C944 /* SoundDataModel.xcdatamodeld */; };
+		C4F2F02324F7F3CC0078C944 /* SoundSceneData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4F2F02124F7F3CC0078C944 /* SoundSceneData.xcdatamodeld */; };
 		C4F369BC24B3E29400742D8C /* DissolveGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F369BB24B3E29400742D8C /* DissolveGradient.swift */; };
 		C4F866FF249030830068816E /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F866FE249030830068816E /* SessionView.swift */; };
 		C4F867012490F9B90068816E /* DeviceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F867002490F9B90068816E /* DeviceModels.swift */; };
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				C42FD0A62486744C00959C9C /* VelvetApp.swift */,
-				C4F2F02124F7F3CC0078C944 /* SoundDataModel.xcdatamodeld */,
+				C4F2F02124F7F3CC0078C944 /* SoundSceneData.xcdatamodeld */,
 				C41FD60224B2424C00E88E45 /* Views */,
 				C4F867002490F9B90068816E /* DeviceModels.swift */,
 				C4C4870A24929A9E0031993F /* ButtonStyles.swift */,
@@ -225,7 +225,7 @@
 				C4C4870B24929A9E0031993F /* ButtonStyles.swift in Sources */,
 				C404A38524ABAC1800375E93 /* TimerHandler.swift in Sources */,
 				C4C487122492EC0B0031993F /* UserDataModel.swift in Sources */,
-				C4F2F02324F7F3CC0078C944 /* SoundDataModel.xcdatamodeld in Sources */,
+				C4F2F02324F7F3CC0078C944 /* SoundSceneData.xcdatamodeld in Sources */,
 				C45546A924AE53180053FC63 /* PreSessionView.swift in Sources */,
 				C4C4870D24929C340031993F /* Utilities.swift in Sources */,
 				C4F867012490F9B90068816E /* DeviceModels.swift in Sources */,
@@ -445,13 +445,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		C4F2F02124F7F3CC0078C944 /* SoundDataModel.xcdatamodeld */ = {
+		C4F2F02124F7F3CC0078C944 /* SoundSceneData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				C4F2F02224F7F3CC0078C944 /* SoundSceneModel.xcdatamodel */,
 			);
 			currentVersion = C4F2F02224F7F3CC0078C944 /* SoundSceneModel.xcdatamodel */;
-			path = SoundDataModel.xcdatamodeld;
+			path = SoundSceneData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

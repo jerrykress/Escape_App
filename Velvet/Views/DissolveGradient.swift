@@ -13,10 +13,15 @@ import URLImage
 struct DissolveGradient: View {
     @EnvironmentObject var userData: UserData
     
+    @FetchRequest(
+        entity: SoundSceneData.entity(),
+        sortDescriptors: []
+    ) var soundSceneData: FetchedResults<SoundSceneData>
+    
     var body: some View {
         ZStack {
             ForEach(Array(0..<self.userData.getAllScene().count), id: \.self) { imgIndex in
-                URLImage(URL(string: self.userData.getSceneByIndex(index: imgIndex).coverURL)!,
+                URLImage(URL(string: self.soundSceneData[imgIndex].coverURL ?? "undefined")!,
                          expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
                          content: {
                               $0.image

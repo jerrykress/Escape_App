@@ -37,7 +37,7 @@ struct Velvet: App {
     
     // Create Persistant Data Model
     var persistentContainer: NSPersistentContainer = {
-            let container = NSPersistentContainer(name: "SoundDataModel")
+            let container = NSPersistentContainer(name: "SoundSceneData")
         
             container.loadPersistentStores(completionHandler: { (storeDescription, error) in
                 if let error = error as NSError? {
