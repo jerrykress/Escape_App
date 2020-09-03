@@ -35,7 +35,7 @@ class UserData: ObservableObject {
     ///   - title: The title of the scene
     ///   - description: A short description of the scene
     ///   - soundURL: URL of the sound file
-    ///   - coverURL: URL of scene image file
+    ///   - coverURL: Name of scene image file
     ///   - length: Total length of the sound file in seconds
     public func addScene(title: String, description: String, soundURL: String, coverURL: String, length: Int) {
         let newScene: SoundScene = SoundScene(title: title, description: description, soundURL: soundURL, coverURL: coverURL, length: length)

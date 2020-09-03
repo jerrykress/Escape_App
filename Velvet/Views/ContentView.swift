@@ -9,6 +9,7 @@
 import SwiftUI
 import URLImage
 import CoreData
+import UIKit
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var context
@@ -42,18 +43,15 @@ struct ContentView: View {
                         
                         // MARK: Main View
                         ZStack {
+//                            let image = UIImage(contentsOfFile: self.soundSceneData[idx].coverLocalURL?.absoluteString ?? "err")
+//                            Image(uiImage: image!)
                             
                             //Background
-                            URLImage(URL(string: self.soundSceneData[idx].coverURL ?? "undefined")!,
-                                     expireAfter: Date(timeIntervalSinceNow: 31_556_926.0),
-                                     content: {
-                                          $0.image
-                                            .resizable()
-                                     }
-                            )
-                            .frame(width: (self.isSessionReady) ? proxy.size.width/1.6 : proxy.size.width,
-                                   height: (self.isSessionReady) ? proxy.size.height/2 : proxy.size.height*1.2)
-                            .opacity((self.userData.currentTrackIndex == idx) ? 1 : 0)
+                            Image(self.userData.getSceneByIndex(index: idx).coverURL)
+                                .resizable()
+                                .frame(width: (self.isSessionReady) ? proxy.size.width/1.6 : proxy.size.width,
+                                       height: (self.isSessionReady) ? proxy.size.height/2 : proxy.size.height*1.2)
+                                .opacity((self.userData.currentTrackIndex == idx) ? 1 : 0)
                             
                             
                             
@@ -177,29 +175,8 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
             print("HomeView Appeared")
+
             
-//            for scene in self.userData.getAllScene() {
-//                print("Init scene: \(scene.title)")
-//                
-//                // Create data in context
-//                guard let sceneData = NSEntityDescription.insertNewObject(forEntityName: "SoundSceneData", into: context) as? SoundSceneData else {
-//                  return
-//                }
-//                
-//                // Copy Attributes
-//                sceneData.title = scene.title
-//                sceneData.coverURL = scene.coverURL
-//                sceneData.soundURL = scene.soundURL
-//                
-//                
-//                // Attempt Saving to Core Data
-//                do {
-//                    try context.save()
-//                } catch {
-//                    print("Could not save. \(error), \(error.localizedDescription)")
-//                }
-//                // Exit Core Data
-//            }
         })
         
     }
