@@ -26,7 +26,7 @@ struct DissolveGradient: View {
                     .opacity(self.userData.currentTrackIndex == imgIndex ? 1 : 0)
             }
             
-            VisualEffectView(effect: UIBlurEffect(style: .light))
+            VisualEffectView(effect: UIBlurEffect(style: .dark))
             
         }
         .animation(Animation.easeInOut.speed(0.25))

@@ -12,7 +12,7 @@ import SwiftUI
 
 /// A structure for user data. It contains all scenes and effects available to the user
 class UserData: ObservableObject {
-    @Published private var allScenes: [SoundScene]
+    @Published public var allScenes: [SoundScene]
     @Published public var allEffects: [SoundEffect]
     @Published public var currentTrackIndex: Int
     @Published public var timer: Int
@@ -75,6 +75,10 @@ class UserData: ObservableObject {
     public func getCurrentScene() -> SoundScene {
         return self.allScenes[self.currentTrackIndex]
     }
+    
+    public func toggleDownloadStatus(index: Int) {
+        self.allScenes[index].downloaded.toggle()
+    }
 }
 
 
@@ -85,6 +89,7 @@ class SoundScene {
     @Published var soundURL: String
     @Published var coverURL: String
     @Published var length: Int
+    @Published var downloaded: Bool
     
     var id: UUID
     
@@ -95,6 +100,7 @@ class SoundScene {
         self.soundURL = soundURL
         self.coverURL = coverURL
         self.length = length
+        self.downloaded = false
     }
 }
 

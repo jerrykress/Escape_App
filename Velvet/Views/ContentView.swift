@@ -49,9 +49,8 @@ struct ContentView: View {
                             //Background
                             Image(self.userData.getSceneByIndex(index: idx).coverURL)
                                 .resizable()
-                                .frame(width: (self.isSessionReady) ? proxy.size.width/1.6 : proxy.size.width,
-                                       height: (self.isSessionReady) ? proxy.size.height/2 : proxy.size.height*1.2)
-                                .opacity((self.userData.currentTrackIndex == idx) ? 1 : 0)
+                                .frame(width: proxy.size.width, height: proxy.size.height*1.2)
+                                .opacity((self.userData.currentTrackIndex == idx && !self.isSessionReady) ? 1 : 0)
                             
                             
                             
@@ -60,7 +59,7 @@ struct ContentView: View {
                                 Text(self.soundSceneData[idx].title ?? "err")
                                     .font(.custom("Avenir Book", size: 45))
                                     .foregroundColor(Color.white)
-                                    .opacity(0.8)
+                                    .opacity(self.isSessionReady ? 0 : 0.8)
                                     .padding(10)
                                 
                                 //Sound Description
@@ -69,21 +68,13 @@ struct ContentView: View {
 //                                    .foregroundColor(Color.white)
 //                                    .opacity(0.6)
                                 
-                                Image(systemName: "livephoto.play")
-                                    .resizable()
-                                    .foregroundColor(.white)
-                                    .frame(width: self.isSessionReady ? 36 : 0,
-                                           height: self.isSessionReady ? 36 : 0, alignment: .center)
+                                ScenePlayButtonHandler(isSessionViewPresented: self.$isSessionViewPresented, isSessionReady: self.$isSessionReady)
+                                    .foregroundColor(Color.white)
+                                    .frame(width: self.isSessionReady ? 100 : 0,
+                                           height: self.isSessionReady ? 100 : 0, alignment: .center)
                                     .opacity(0.7)
                                     .padding(.top, 30)
-                                    .onTapGesture {
-                                        withAnimation(.easeIn(duration: 0.5)) {
-                                            self.isSessionViewPresented.toggle() // Start Session
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // Delay
-                                                self.isSessionReady = false // Restore Image to Full Size
-                                            }
-                                        }
-                                    }
+                                
                             }
                             .isHidden(self.isAlarmSettingsPresented)
                             

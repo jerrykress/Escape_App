@@ -24,6 +24,7 @@
 		C4DEAAAB24A648BC00815EB8 /* SlidetoUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEAAAA24A648BC00815EB8 /* SlidetoUnlockView.swift */; };
 		C4DEAAAD24A9F19800815EB8 /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEAAAC24A9F19700815EB8 /* NotificationBanner.swift */; };
 		C4E9647524A3921C00CCEFC3 /* FXPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9647424A3921C00CCEFC3 /* FXPane.swift */; };
+		C4EA48C925013959000469C2 /* ScenePlayButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA48C825013959000469C2 /* ScenePlayButtonHandler.swift */; };
 		C4F2F02324F7F3CC0078C944 /* SoundSceneData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4F2F02124F7F3CC0078C944 /* SoundSceneData.xcdatamodeld */; };
 		C4F369BC24B3E29400742D8C /* DissolveGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F369BB24B3E29400742D8C /* DissolveGradient.swift */; };
 		C4F866FF249030830068816E /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F866FE249030830068816E /* SessionView.swift */; };
@@ -49,6 +50,7 @@
 		C4DEAAAA24A648BC00815EB8 /* SlidetoUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidetoUnlockView.swift; sourceTree = "<group>"; };
 		C4DEAAAC24A9F19700815EB8 /* NotificationBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBanner.swift; sourceTree = "<group>"; };
 		C4E9647424A3921C00CCEFC3 /* FXPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXPane.swift; sourceTree = "<group>"; };
+		C4EA48C825013959000469C2 /* ScenePlayButtonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePlayButtonHandler.swift; sourceTree = "<group>"; };
 		C4F2F02224F7F3CC0078C944 /* SoundSceneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SoundSceneModel.xcdatamodel; sourceTree = "<group>"; };
 		C4F369BB24B3E29400742D8C /* DissolveGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DissolveGradient.swift; sourceTree = "<group>"; };
 		C4F866FE249030830068816E /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				C4C487112492EC0B0031993F /* UserDataModel.swift */,
 				C404A38424ABAC1800375E93 /* TimerHandler.swift */,
 				C404A38624ABE71600375E93 /* FXButtonHandler.swift */,
+				C4EA48C825013959000469C2 /* ScenePlayButtonHandler.swift */,
 				C4C4870C24929C340031993F /* Utilities.swift */,
 				C4BC713424957EFF0022E3C1 /* EmitterView.swift */,
 				C4DEAAAC24A9F19700815EB8 /* NotificationBanner.swift */,
@@ -223,6 +226,7 @@
 				C404A38724ABE71600375E93 /* FXButtonHandler.swift in Sources */,
 				C4DEAAAD24A9F19800815EB8 /* NotificationBanner.swift in Sources */,
 				C4C4870B24929A9E0031993F /* ButtonStyles.swift in Sources */,
+				C4EA48C925013959000469C2 /* ScenePlayButtonHandler.swift in Sources */,
 				C404A38524ABAC1800375E93 /* TimerHandler.swift in Sources */,
 				C4C487122492EC0B0031993F /* UserDataModel.swift in Sources */,
 				C4F2F02324F7F3CC0078C944 /* SoundSceneData.xcdatamodeld in Sources */,
