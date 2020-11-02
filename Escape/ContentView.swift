@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import AVKit
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -18,6 +19,9 @@ struct ContentView: View {
     @State var isAlarmSettingsPresented: Bool = false
     
     @State var isSessionReady: Bool = false
+    
+    @State var player : AVAudioPlayer!
+    @State var del = AVdelegate()
 
 //    @FetchRequest(
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
@@ -61,6 +65,7 @@ struct ContentView: View {
                             self.isSessionViewPresented.toggle() // Start Session
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // Delay
                                 self.isSessionReady = false // Restore Image to Full Size
+                                self.player.play()
                             }
                         }
                     }){
@@ -176,7 +181,7 @@ struct ContentView: View {
             
             // MARK: Session View
             if(self.isSessionViewPresented) {
-                SessionView(isSessionViewPresented: self.$isSessionViewPresented)
+                SessionView(isSessionViewPresented: self.$isSessionViewPresented, player: self.$player)
             }
         }
         .background(
@@ -189,10 +194,17 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
             print("HomeView Appeared")
-            UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.clear
+            
             for scene in self.userData.getAllScene() {
                 print("Init scene: \(scene.title)")
             }
+            
+            // play main audio track
+            let playerUrl = Bundle.main.path(forResource: "Inspiration", ofType:"mp3")
+            self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: playerUrl!))
+            self.player.delegate = self.del
+            self.player.prepareToPlay()
+            self.player.numberOfLoops = 100
             
         })
         

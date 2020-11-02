@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct EscapeApp: App {
     let persistenceController = PersistenceController.shared
+    let defaults = UserDefaults.standard
 
     var body: some Scene {
         WindowGroup {

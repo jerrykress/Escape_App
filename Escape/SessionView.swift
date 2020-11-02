@@ -7,11 +7,13 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct SessionView: View {
     @EnvironmentObject var userData: UserData
     
     @Binding var isSessionViewPresented: Bool
+    @Binding var player: AVAudioPlayer!
     
     @State private var isSessionCompleted = false
     @State private var isFXPanePresented = false
@@ -157,6 +159,7 @@ struct SessionView: View {
                                             self.sessionDuration = (tempDuration.hour!, tempDuration.minute!)
                                             withAnimation {
                                                 self.isSessionCompleted.toggle()
+                                                self.player.stop()
                                             }
                                         }
                                     })
@@ -228,9 +231,11 @@ struct SessionView: View {
                 
             }
             .onAppear(perform: {
+                // keep timer ticking so that clock is correct
                 let _ = self.updateTimer
                 self.sessionStartDate = Date()
                 print("STATUS: SessionView Appeared")
+                
             })
             .onDisappear(perform: {
                 let _ = self.updateTimer
@@ -242,17 +247,31 @@ struct SessionView: View {
 }
 
 
-#if DEBUG
 
-struct SessionView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            //Larger Screen Preview
-            SessionView(isSessionViewPresented: .constant(true)).environmentObject(mockData)
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-                .previewDisplayName("iPhone 11 Pro Max")
-        }
+
+class AVdelegate : NSObject,AVAudioPlayerDelegate{
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        
+        NotificationCenter.default.post(name: NSNotification.Name("Finish"), object: nil)
     }
 }
+
+
+
+
+
+#if DEBUG
+
+//struct SessionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            //Larger Screen Preview
+//            SessionView(isSessionViewPresented: .constant(true)).environmentObject(mockData)
+//                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
+//                .previewDisplayName("iPhone 11 Pro Max")
+//        }
+//    }
+//}
 
 #endif

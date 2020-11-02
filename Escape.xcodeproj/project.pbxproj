@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C44BE9B42550BF9900C692CD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE9B32550BF9900C692CD /* AVFoundation.framework */; };
+		C44BE9B62550BFEA00C692CD /* Inspiration.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C44BE9B52550BFEA00C692CD /* Inspiration.mp3 */; };
 		C48B4A1D255035F300F83C29 /* PreSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A19255035F300F83C29 /* PreSessionView.swift */; };
 		C48B4A1E255035F300F83C29 /* DissolveGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A1A255035F300F83C29 /* DissolveGradient.swift */; };
 		C48B4A1F255035F300F83C29 /* FXPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A1B255035F300F83C29 /* FXPane.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C44BE9B32550BF9900C692CD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C44BE9B52550BFEA00C692CD /* Inspiration.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Inspiration.mp3; sourceTree = "<group>"; };
 		C48B4A19255035F300F83C29 /* PreSessionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreSessionView.swift; sourceTree = "<group>"; };
 		C48B4A1A255035F300F83C29 /* DissolveGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DissolveGradient.swift; sourceTree = "<group>"; };
 		C48B4A1B255035F300F83C29 /* FXPane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FXPane.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C44BE9B42550BF9900C692CD /* AVFoundation.framework in Frameworks */,
 				C48B4A3B2550388F00F83C29 /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C44BE9B22550BF9900C692CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C44BE9B32550BF9900C692CD /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C4BAA20525503133001C0085 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +124,7 @@
 				C4BAA22725503136001C0085 /* EscapeTests */,
 				C4BAA23225503136001C0085 /* EscapeUITests */,
 				C4BAA20F25503133001C0085 /* Products */,
+				C44BE9B22550BF9900C692CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +157,7 @@
 				C4BAA21125503133001C0085 /* EscapeApp.swift */,
 				C4BAA21325503133001C0085 /* ContentView.swift */,
 				C4BAA21525503135001C0085 /* Assets.xcassets */,
+				C44BE9B52550BFEA00C692CD /* Inspiration.mp3 */,
 				C4BAA21A25503135001C0085 /* Persistence.swift */,
 				C4BAA21F25503135001C0085 /* Info.plist */,
 				C4BAA21C25503135001C0085 /* Escape.xcdatamodeld */,
@@ -286,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C44BE9B62550BFEA00C692CD /* Inspiration.mp3 in Resources */,
 				C4BAA21925503135001C0085 /* Preview Assets.xcassets in Resources */,
 				C4BAA21625503135001C0085 /* Assets.xcassets in Resources */,
 			);
