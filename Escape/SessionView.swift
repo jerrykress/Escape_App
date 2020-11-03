@@ -68,6 +68,7 @@ struct SessionView: View {
                     TimerHandler(showBanner: self.$showBanner, bannerContent: self.$bannerContent)
                         .padding(.top, 5)
                         .opacity(0.6)
+                        .disabled(self.showBanner)
                     
                     Spacer()
                     

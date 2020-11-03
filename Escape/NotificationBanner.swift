@@ -48,8 +48,9 @@ struct NotificationBanner: View {
                     withAnimation {
                         self.showBanner = false
                     }
-                }.onAppear(perform: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                }
+                .onAppear(perform: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         withAnimation {
                             self.showBanner = false
                         }
