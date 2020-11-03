@@ -91,7 +91,7 @@ struct ContentView: View {
                             ZStack {
                                 
                                 //Sound Title before session is ready
-                                Text(self.userData.getCurrentScene().title)
+                                Text(self.userData.getSceneByIndex(index: idx).title)
                                     .font(.custom("Avenir Book", size: 55))
                                     .fontWeight(.heavy)
                                     .foregroundColor(Color.white.opacity(0.8))

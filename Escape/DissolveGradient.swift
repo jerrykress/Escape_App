@@ -16,13 +16,10 @@ struct DissolveGradient: View {
     var body: some View {
         ZStack {
             ForEach(Array(0..<self.userData.getAllScene().count), id: \.self) { imgIndex in
-                URLImage(url: URL(string: self.userData.getSceneByIndex(index: imgIndex).coverURL)!,
-                         content: { image in
-                              image
-                                .resizable()
-                         }
-                )
-                .opacity(self.userData.currentTrackIndex == imgIndex ? 1 : 0)
+
+                Image(self.userData.getSceneByIndex(index: imgIndex).coverURL)
+                    .resizable()
+                    .opacity(self.userData.currentTrackIndex == imgIndex ? 1 : 0)
             }
             
 //            VisualEffectView(effect: UIBlurEffect(style: .dark))
