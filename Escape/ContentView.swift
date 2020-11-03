@@ -112,12 +112,6 @@ struct ContentView: View {
                 .frame(width: proxy.size.width, height: proxy.size.height/1.8, alignment: .center)
                 .opacity(isSessionReady ? 0 : 1)
                 
-                // MARK: Alarm Settings
-                AlarmSettingsView(presented: self.$isAlarmSettingsPresented)
-                    .frame(width: proxy.size.width/2, height: 200, alignment: .bottom)
-                    .colorMultiply(Color.white)
-                    .isHidden(!self.isAlarmSettingsPresented)
-                
                 
                 // Function Bar Bottom
                 VStack {
@@ -168,6 +162,9 @@ struct ContentView: View {
                             .opacity(0.8)
                         }
                         .padding(.all, 30)
+                        .sheet(isPresented: self.$isAlarmSettingsPresented) {
+                            AlarmSheet()
+                        }
                         .isHidden(self.isSessionReady)
                         
                     }
