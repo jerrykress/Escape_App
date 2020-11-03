@@ -9,11 +9,16 @@ import SwiftUI
 
 struct AlarmSheet: View {
     @State private var alarm = Date()
+    @State private var status = false
+    
     @Environment (\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
             Form {
+                Toggle(isOn: self.$status) {
+                                Text("Turn on alarm")
+                            }.padding()
                 DatePicker(selection: self.$alarm, displayedComponents: .hourAndMinute) {
                                 Text("Select a date")
                             }

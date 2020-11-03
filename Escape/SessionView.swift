@@ -201,7 +201,7 @@ struct SessionView: View {
                                 Text("\(self.sessionDuration.0)")
                                     .font(.custom("DIN Alternate", size: 80))
                                 Text("hr")
-                                Text("\(self.sessionDuration.1)")
+                                Text("\(self.sessionDuration.1 - self.sessionDuration.0 * 60)")
                                     .font(.custom("DIN Alternate", size: 80))
                                 Text("min")
                             }
