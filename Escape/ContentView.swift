@@ -200,7 +200,7 @@ struct ContentView: View {
             }
             
             // play main audio track
-            let playerUrl = Bundle.main.path(forResource: "Inspiration", ofType:"mp3")
+            let playerUrl = Bundle.main.path(forResource: self.userData.getCurrentScene().soundURL, ofType:"mp3")
             self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: playerUrl!))
             self.player.delegate = self.del
             self.player.prepareToPlay()
