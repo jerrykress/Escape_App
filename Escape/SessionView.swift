@@ -31,6 +31,7 @@ struct SessionView: View {
     @State private var sessionEndDate = Date()
     @State private var sessionDuration: (Int, Int) = (0,0)
     
+    @State private var timerUpdateInterval: Int = 0
     
     var timeFormat: DateFormatter {
         let formatter = DateFormatter()
@@ -38,11 +39,24 @@ struct SessionView: View {
         return formatter
     }
     
+    // MARK: Scheduled Timer
     var updateTimer: Timer {
          Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
                               block: {_ in
-                                 self.date = Date()
-                               })
+                                // update clock
+                                self.date = Date()
+                                // update countdown timer
+                                self.timerUpdateInterval = (self.timerUpdateInterval + 1) % 60
+                                if(timerUpdateInterval == 0){
+                                    if(self.userData.timer > 0){
+                                        self.userData.timer -= 1
+                                    }
+                                }
+                                // stop audio when timer reaches 0
+                                if(self.userData.timer == 0){
+                                    self.player.stop()
+                                }
+                              })
     }
     
     // MARK: Session View

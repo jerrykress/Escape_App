@@ -38,7 +38,7 @@ struct TimerHandler: View {
                     .foregroundColor(Color.white)
                     .frame(width: 20, height: 20, alignment: .center)
                 
-                Text(self.timerSetting == 0 ? "Off" : "\(self.timerSetting)")
+                Text(self.userData.timer == 0 ? "Off" : "\(self.userData.timer)")
                                 .foregroundColor(Color.white)
                                 .font(.custom("DIN Alternate", size: 13))
                                 .opacity(0.5)
