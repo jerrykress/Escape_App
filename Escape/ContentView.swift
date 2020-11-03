@@ -204,7 +204,7 @@ struct ContentView: View {
             self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: playerUrl!))
             self.player.delegate = self.del
             self.player.prepareToPlay()
-            self.player.numberOfLoops = 100
+            self.player.numberOfLoops = Int.max
             
         })
         
