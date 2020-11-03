@@ -132,7 +132,7 @@ struct SessionView: View {
                     .offset(x: 0, y: -30)
                     .opacity(0.6)
                     .sheet(isPresented: self.$showAlarmSheet) {
-                                        AlarmSheet()
+                        AlarmSheet()
                     }
                     
 
