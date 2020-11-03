@@ -131,9 +131,10 @@ struct SessionView: View {
                     }
                     .offset(x: 0, y: -30)
                     .opacity(0.6)
-                    .popover(isPresented: self.$showAlarmSheet, arrowEdge: .bottom) {
-                        Text("Popover")
+                    .sheet(isPresented: self.$showAlarmSheet) {
+                                        AlarmSheet()
                     }
+                    
 
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)

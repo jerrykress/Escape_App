@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4113DA325519D1700F22A7B /* AlarmSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4113DA225519D1700F22A7B /* AlarmSheet.swift */; };
 		C44BE9B42550BF9900C692CD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE9B32550BF9900C692CD /* AVFoundation.framework */; };
 		C44BE9B62550BFEA00C692CD /* Inspiration.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C44BE9B52550BFEA00C692CD /* Inspiration.mp3 */; };
 		C48B4A1D255035F300F83C29 /* PreSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A19255035F300F83C29 /* PreSessionView.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4113DA225519D1700F22A7B /* AlarmSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSheet.swift; sourceTree = "<group>"; };
 		C44BE9B32550BF9900C692CD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C44BE9B52550BFEA00C692CD /* Inspiration.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Inspiration.mp3; sourceTree = "<group>"; };
 		C48B4A19255035F300F83C29 /* PreSessionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreSessionView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				C48B4A1B255035F300F83C29 /* FXPane.swift */,
 				C48B4A19255035F300F83C29 /* PreSessionView.swift */,
 				C48B4A1C255035F300F83C29 /* SessionView.swift */,
+				C4113DA225519D1700F22A7B /* AlarmSheet.swift */,
 				C4BAA21125503133001C0085 /* EscapeApp.swift */,
 				C4BAA21325503133001C0085 /* ContentView.swift */,
 				C4BAA21525503135001C0085 /* Assets.xcassets */,
@@ -339,6 +342,7 @@
 				C48B4A342550378300F83C29 /* FXButtonHandler.swift in Sources */,
 				C48B4A322550378300F83C29 /* NotificationBanner.swift in Sources */,
 				C48B4A1D255035F300F83C29 /* PreSessionView.swift in Sources */,
+				C4113DA325519D1700F22A7B /* AlarmSheet.swift in Sources */,
 				C48B4A2D2550378300F83C29 /* Utilities.swift in Sources */,
 				C48B4A1E255035F300F83C29 /* DissolveGradient.swift in Sources */,
 				C4BAA21225503133001C0085 /* EscapeApp.swift in Sources */,
