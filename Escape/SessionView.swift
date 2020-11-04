@@ -45,17 +45,28 @@ struct SessionView: View {
                               block: {_ in
                                 // update clock
                                 self.date = Date()
-                                // update countdown timer
-                                self.timerUpdateInterval = (self.timerUpdateInterval + 1) % 60
-                                if(timerUpdateInterval == 0){
-                                    if(self.userData.timer > 0){
-                                        self.userData.timer -= 1
+                                // update countdown timer if timer is enabled
+                                if(self.userData.timerEnabled){
+                                    // resume playing when timer is re-enabled
+                                    if(!self.player.isPlaying){
+                                        self.player.play()
                                     }
+                                    // tic toc
+                                    self.timerUpdateInterval = (self.timerUpdateInterval + 1) % 60
+                                    // decrement timer once every minute
+                                    if(timerUpdateInterval == 0){
+                                        if(self.userData.timer > 0){
+                                            self.userData.timer = self.userData.timer - 1
+                                        }
+                                        // disable timer when it counts down to 0 and stop music
+                                        if(self.userData.timer == 0){
+                                            self.userData.timerEnabled = false
+                                            self.player.stop()
+                                        }
+                                    }
+                                    
                                 }
-//                                // stop audio when timer reaches 0
-//                                if(self.userData.timer == 0){
-//                                    self.player.setVolume(0, fadeDuration: 10)
-//                                }
+
                               })
     }
     

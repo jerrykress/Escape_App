@@ -16,6 +16,7 @@ class UserData: ObservableObject {
     @Published public var allEffects: [SoundEffect]
     @Published public var currentTrackIndex: Int
     @Published public var timer: Int
+    @Published public var timerEnabled: Bool
     
     
     /// Create a new user data object
@@ -27,6 +28,7 @@ class UserData: ObservableObject {
         self.allEffects = allEffects
         self.currentTrackIndex = 0
         self.timer = 0
+        self.timerEnabled = false
     }
     
     
