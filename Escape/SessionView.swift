@@ -52,10 +52,10 @@ struct SessionView: View {
                                         self.userData.timer -= 1
                                     }
                                 }
-                                // stop audio when timer reaches 0
-                                if(self.userData.timer == 0){
-                                    self.player.stop()
-                                }
+//                                // stop audio when timer reaches 0
+//                                if(self.userData.timer == 0){
+//                                    self.player.setVolume(0, fadeDuration: 10)
+//                                }
                               })
     }
     
@@ -174,8 +174,12 @@ struct SessionView: View {
                                             let tempDuration = self.sessionEndDate - self.sessionStartDate
                                             self.sessionDuration = (tempDuration.hour!, tempDuration.minute!)
                                             withAnimation {
+                                                // When session ends
                                                 self.isSessionCompleted.toggle()
+                                                // Stop music playing
                                                 self.player.stop()
+                                                // Deactivate audio session
+                                                try! AVAudioSession.sharedInstance().setActive(false)
                                             }
                                         }
                                     })
@@ -247,6 +251,20 @@ struct SessionView: View {
                 
             }
             .onAppear(perform: {
+                do {
+                    // Enable background audio
+                    try AVAudioSession.sharedInstance().setCategory(
+                        AVAudioSession.Category.playback,
+                            mode: AVAudioSession.Mode.default,
+                            options: [
+                                AVAudioSession.CategoryOptions.duckOthers
+                            ]
+                    )
+                    // Active audio session
+                    try! AVAudioSession.sharedInstance().setActive(true)
+                } catch {
+                    print("Could not active background audio session")
+                }
                 // keep timer ticking so that clock is correct
                 let _ = self.updateTimer
                 self.sessionStartDate = Date()

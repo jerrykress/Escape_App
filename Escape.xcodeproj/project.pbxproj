@@ -27,7 +27,6 @@
 		C4BAA21225503133001C0085 /* EscapeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAA21125503133001C0085 /* EscapeApp.swift */; };
 		C4BAA21425503134001C0085 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAA21325503133001C0085 /* ContentView.swift */; };
 		C4BAA21625503135001C0085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4BAA21525503135001C0085 /* Assets.xcassets */; };
-		C4BAA21925503135001C0085 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4BAA21825503135001C0085 /* Preview Assets.xcassets */; };
 		C4BAA21B25503135001C0085 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAA21A25503135001C0085 /* Persistence.swift */; };
 		C4BAA21E25503135001C0085 /* Escape.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4BAA21C25503135001C0085 /* Escape.xcdatamodeld */; };
 		C4BAA22925503136001C0085 /* EscapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAA22825503136001C0085 /* EscapeTests.swift */; };
@@ -305,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C44BE9B62550BFEA00C692CD /* Inspiration.mp3 in Resources */,
-				C4BAA21925503135001C0085 /* Preview Assets.xcassets in Resources */,
 				C4113DB12551F56E00F22A7B /* Launch Screen.storyboard in Resources */,
 				C4BAA21625503135001C0085 /* Assets.xcassets in Resources */,
 			);
