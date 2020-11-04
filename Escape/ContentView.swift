@@ -126,12 +126,17 @@ struct ContentView: View {
 //                                self.isSessionReady.toggle()
                             }
                         }){
-                            Image(systemName: "timer")
-                            .resizable()
-                            .frame(width: 20, height: 20, alignment: .center)
-                            .foregroundColor(.white)
-                            .opacity(0.8)
+                            ZStack{
+                                Circle()
+                                    .fill(Color.clear)
+                                Image(systemName: "timer")
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .opacity(0.8)
+                            }
                         }
+                        .frame(width: 30, height: 30, alignment: .center)
                         .padding(.all, 30)
                         .isHidden(self.isSessionReady)
                         
@@ -141,11 +146,17 @@ struct ContentView: View {
                                 self.isSessionReady.toggle()
                             }
                         }){
-                            Image(systemName: "moon.fill")
-                            .resizable()
-                            .frame(width: 20, height: 20, alignment: .center)
-                            .foregroundColor(.white)
+                            ZStack{
+                                Circle()
+                                    .fill(Color.white)
+                                    .opacity(0.25)
+                                Image(systemName: "moon.fill")
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: .center)
+                                    .foregroundColor(.white)
+                            }
                         }
+                        .frame(width: 60, height: 60, alignment: .center)
                         .padding(.all, 30)
                         .isHidden(self.isSessionReady)
                         
@@ -155,12 +166,17 @@ struct ContentView: View {
                                 self.isAlarmSettingsPresented = true
                             }
                         }){
-                            Image(systemName: "alarm")
-                            .resizable()
-                            .frame(width: 20, height: 20, alignment: .center)
-                            .foregroundColor(.white)
-                            .opacity(0.8)
+                            ZStack{
+                                Circle()
+                                    .fill(Color.clear)
+                                Image(systemName: "alarm")
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .opacity(0.8)
+                            }
                         }
+                        .frame(width: 30, height: 30, alignment: .center)
                         .padding(.all, 30)
                         .sheet(isPresented: self.$isAlarmSettingsPresented) {
                             AlarmSheet()
