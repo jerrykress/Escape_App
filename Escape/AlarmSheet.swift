@@ -10,17 +10,17 @@ import SwiftUI
 struct AlarmSheet: View {
     // Volatile storage for alarm in scene
     @State private var alarm = Date()
-    @State private var status = false
     // Persistent storage for alarm
     @AppStorage("alarmHour") private var alarmHour: Int = 12;
     @AppStorage("alarmMin") private var alarmMin: Int = 0;
+    @AppStorage("alarmToggle") private var alarmToggle: Bool = false
     
     @Environment (\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
             Form {
-                Toggle(isOn: self.$status) {
+                Toggle(isOn: self.$alarmToggle) {
                                 Text("Turn on alarm")
                             }.padding()
                 DatePicker(selection: self.$alarm, displayedComponents: .hourAndMinute) {

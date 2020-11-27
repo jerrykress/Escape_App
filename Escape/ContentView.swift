@@ -14,10 +14,11 @@ struct ContentView: View {
     
     @EnvironmentObject var userData: UserData
     
-    @AppStorage("defaultScene") private var defaultScene: Int = 0;
-    @AppStorage("alarmHour") private var alarmHour: Int = 12;
-    @AppStorage("alarmMin") private var alarmMin: Int = 0;
-    
+    @AppStorage("defaultScene") private var defaultScene: Int = 0
+    // Persist Store :Alarm
+    @AppStorage("alarmHour") private var alarmHour: Int = 12
+    @AppStorage("alarmMin") private var alarmMin: Int = 0
+    @AppStorage("alarmToggle") private var alarmToggle: Bool = false
     
     @State var isSessionViewPresented: Bool = false
     @State var isTimerSettingsPresented: Bool = false
