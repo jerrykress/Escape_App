@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct EscapeApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+    
     let persistenceController = PersistenceController.shared
     let defaults = UserDefaults.standard
 
@@ -17,6 +19,19 @@ struct EscapeApp: App {
             ContentView()
                 .environmentObject(userData)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        }
+        .onChange(of: scenePhase) { phase in
+            switch phase {
+            case .active:
+                print("scene is now active!")
+            case .inactive:
+                print("scene is now inactive!")
+            case .background:
+                print("scene is now in the background!")
+            @unknown default:
+                print("Apple must have added something new!")
+                
+            }
         }
     }
 }

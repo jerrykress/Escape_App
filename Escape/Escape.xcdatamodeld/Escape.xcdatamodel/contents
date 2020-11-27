@@ -3,9 +3,10 @@
     <entity name="UserSetting" representedClassName="UserSetting" syncable="YES" codeGenerationType="class">
         <attribute name="alarmStatus" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="alarmTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastScene" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="UserSetting" positionX="-36" positionY="9" width="128" height="74"/>
+        <element name="UserSetting" positionX="-36" positionY="9" width="128" height="89"/>
     </elements>
 </model>

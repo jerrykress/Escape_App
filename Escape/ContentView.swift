@@ -14,6 +14,8 @@ struct ContentView: View {
     
     @EnvironmentObject var userData: UserData
     
+    @AppStorage("defaultScene") private var defaultScene: Int = 0;
+    
     @State var isSessionViewPresented: Bool = false
     @State var isTimerSettingsPresented: Bool = false
     @State var isAlarmSettingsPresented: Bool = false
@@ -22,11 +24,6 @@ struct ContentView: View {
     
     @State var player : AVAudioPlayer!
     @State var del = AVdelegate()
-
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-//        animation: .default)
-//    private var items: FetchedResults<Item>
 
     var body: some View {
         
@@ -90,7 +87,7 @@ struct ContentView: View {
                             
                             ZStack {
                                 
-                                //Sound Title before session is ready
+                                //Sound Title
                                 Text(self.userData.getSceneByIndex(index: idx).title)
                                     .font(.custom("Avenir Book", size: 55))
                                     .fontWeight(.heavy)
@@ -103,6 +100,7 @@ struct ContentView: View {
                         }
                         .cornerRadius(20)
                     }
+                    
                 }.onAppear(perform: {
                     // disable scroll bounce to hide tabview scroll
                     UIScrollView.appearance().bounces = false
@@ -212,7 +210,7 @@ struct ContentView: View {
                 print("Init scene: \(scene.title)")
             }
             
-            // play main audio track
+            // Set up audio player
             let playerUrl = Bundle.main.path(forResource: self.userData.getCurrentScene().soundURL, ofType:"mp3")
             self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: playerUrl!))
             self.player.delegate = self.del
