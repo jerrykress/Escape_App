@@ -22,53 +22,18 @@ struct SessionView: View {
     @State private var bannerContent: (String, String) = ("Timer","Off")
     
     @State private var showAlarmSheet: Bool = false
-    @State private var alarmTime: Date = Date()
     
     @State private var calendar = Calendar.current
-    @State private var date = Date()
+    @State private var date = Date() // clock data
     
     @State private var sessionStartDate = Date()
     @State private var sessionEndDate = Date()
     @State private var sessionDuration: (Int, Int) = (0,0)
     
-    @State private var timerUpdateInterval: Int = 0
+    @AppStorage("timerLength") private var timerLength: Int = 1800 // default 1800 seconds (30 min)
     
-    var timeFormat: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm:ss a"
-        return formatter
-    }
-    
-    // MARK: Scheduled Timer
-    var updateTimer: Timer {
-         Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
-                              block: {_ in
-                                // update clock
-                                self.date = Date()
-                                // update countdown timer if timer is enabled
-                                if(self.userData.timerEnabled){
-                                    // resume playing when timer is re-enabled
-                                    if(!self.player.isPlaying){
-                                        self.player.play()
-                                    }
-                                    // tic toc
-                                    self.timerUpdateInterval = (self.timerUpdateInterval + 1) % 60
-                                    // decrement timer once every minute
-                                    if(timerUpdateInterval == 0){
-                                        if(self.userData.timer > 0){
-                                            self.userData.timer = self.userData.timer - 1
-                                        }
-                                        // disable timer when it counts down to 0 and stop music
-                                        if(self.userData.timer == 0){
-                                            self.userData.timerEnabled = false
-                                            self.player.stop()
-                                        }
-                                    }
-                                    
-                                }
-
-                              })
-    }
+    // MARK: Published Timer
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     // MARK: Session View
     var body: some View {
@@ -189,6 +154,8 @@ struct SessionView: View {
                                                 self.isSessionCompleted.toggle()
                                                 // Stop music playing
                                                 self.player.stop()
+                                                // cancel timer when session is ended
+                                                self.timer.upstream.connect().cancel()
                                                 // Deactivate audio session
                                                 try! AVAudioSession.sharedInstance().setActive(false)
                                             }
@@ -262,6 +229,7 @@ struct SessionView: View {
                 
             }
             .onAppear(perform: {
+            //MARK: On Appear
                 do {
                     // Enable background audio
                     try AVAudioSession.sharedInstance().setCategory(
@@ -276,16 +244,39 @@ struct SessionView: View {
                 } catch {
                     print("Could not active background audio session")
                 }
+                // start playing immediately if timer is on
+                if(self.userData.timer != 0){
+                    self.player.play()
+                }
                 // keep timer ticking so that clock is correct
-                let _ = self.updateTimer
                 self.sessionStartDate = Date()
                 print("STATUS: SessionView Appeared")
                 
             })
             .onDisappear(perform: {
-                let _ = self.updateTimer
+                // stop player again just in case
+                self.player.stop()
+                // reset timer
+                self.timerLength = self.userData.timer * 60
             })
-            
+            //MARK: Timer Action
+            .onReceive(self.timer){ time in
+                print(self.timerLength, "\n")
+                // update clock
+                self.date = Date()
+                // decrement timer every second
+                if(self.timerLength > 0){
+                    self.timerLength -= 1
+                }
+                // stop music when timer is 0
+                if(self.timerLength == 0 && self.player.isPlaying){
+                    self.player.stop()
+                }
+                // if timer has been re-enabled, resume
+                if(self.timerLength != 0 && !self.player.isPlaying){
+                    self.player.play()
+                }
+            }
         }
     }
     

@@ -12,12 +12,17 @@ struct TimerHandler: View {
     @EnvironmentObject var userData: UserData
     @Binding var showBanner: Bool
     @Binding var bannerContent: (String, String)
-    @State var timerSetting: Int = 0
+    // Local store for timer length in minutes
+    @State var timerSetting: Int = 30
+    // Global store for timer length in seconds
+    @AppStorage("timerLength") private var timerLength: Int = 30
     
     var body: some View {
         Button(action: {
             self.timerSetting = (self.timerSetting + 30) % 120
             self.userData.timer = self.timerSetting
+            // convert local timer length in minutes to seconds and save to global
+            self.timerLength = self.timerSetting * 60
             
             withAnimation {
                 self.bannerContent = ("Timer","\(self.timerSetting) mins")
@@ -38,7 +43,7 @@ struct TimerHandler: View {
                     .foregroundColor(Color.white)
                     .frame(width: 20, height: 20, alignment: .center)
                 
-                Text(self.userData.timer < 1 ? "Off" : "\(self.userData.timer)")
+                Text(self.timerLength == 0 ? "Off" : "\(Int(self.timerLength/60))")
                                 .foregroundColor(Color.white)
                                 .font(.custom("DIN Alternate", size: 13))
                                 .opacity(0.5)
