@@ -18,7 +18,6 @@ class UserData: ObservableObject {
     @Published public var timer: Int
     @Published public var timerEnabled: Bool
     
-    
     /// Create a new user data object
     /// - Parameters:
     ///   - allScenes: A list of SoundScene objects

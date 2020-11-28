@@ -31,6 +31,9 @@ struct SessionView: View {
     @State private var sessionDuration: (Int, Int) = (0,0)
     
     @AppStorage("timerLength") private var timerLength: Int = 1800 // default 1800 seconds (30 min)
+    // Persistent storage for alarm
+    @AppStorage("alarmHour") private var alarmHour: Int = 12;
+    @AppStorage("alarmMin") private var alarmMin: Int = 0;
     
     // MARK: Published Timer
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -264,6 +267,11 @@ struct SessionView: View {
                 print(self.timerLength, "\n")
                 // update clock
                 self.date = Date()
+                // check if its alarm time
+                let components = Calendar.current.dateComponents([.hour, .minute], from: self.date)
+                if(components.hour == self.alarmHour && components.minute == self.alarmMin){
+                    //TODO: implement alarm action
+                }
                 // decrement timer every second
                 if(self.timerLength > 0){
                     self.timerLength -= 1
@@ -276,6 +284,7 @@ struct SessionView: View {
                 if(self.timerLength != 0 && !self.player.isPlaying){
                     self.player.play()
                 }
+                
             }
         }
     }

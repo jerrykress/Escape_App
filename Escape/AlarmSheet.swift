@@ -17,13 +17,15 @@ struct AlarmSheet: View {
     
     @Environment (\.presentationMode) var presentationMode
     
+    @EnvironmentObject var userData: UserData
+    
     var body: some View {
         NavigationView {
             Form {
                 Toggle(isOn: self.$alarmToggle) {
                                 Text("Turn on alarm")
                             }.padding()
-                DatePicker(selection: self.$alarm, displayedComponents: .hourAndMinute) {
+                DatePicker(selection: self.$alarm, displayedComponents: [.hourAndMinute]) {
                                 Text("Select a date")
                             }
                             .datePickerStyle(WheelDatePickerStyle())
@@ -42,7 +44,7 @@ struct AlarmSheet: View {
                     // Save the above to persistent var
                     self.alarmHour = hour
                     self.alarmMin = minute
-                    print("Save the alarm!")
+                    // dismiss alarm sheet
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Save Settings")
