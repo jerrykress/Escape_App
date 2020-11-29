@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		C4113DA325519D1700F22A7B /* AlarmSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4113DA225519D1700F22A7B /* AlarmSheet.swift */; };
 		C4113DB12551F56E00F22A7B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4113DB02551F56E00F22A7B /* Launch Screen.storyboard */; };
+		C42DC6642574502700BE02F4 /* Ocean.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6612574502400BE02F4 /* Ocean.mp3 */; };
+		C42DC6652574502700BE02F4 /* Rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6622574502600BE02F4 /* Rain.mp3 */; };
+		C42DC6662574502700BE02F4 /* Fan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6632574502600BE02F4 /* Fan.mp3 */; };
 		C44BE9B42550BF9900C692CD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE9B32550BF9900C692CD /* AVFoundation.framework */; };
-		C44BE9B62550BFEA00C692CD /* Inspiration.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C44BE9B52550BFEA00C692CD /* Inspiration.mp3 */; };
 		C48B4A1E255035F300F83C29 /* DissolveGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A1A255035F300F83C29 /* DissolveGradient.swift */; };
 		C48B4A1F255035F300F83C29 /* FXPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A1B255035F300F83C29 /* FXPane.swift */; };
 		C48B4A20255035F300F83C29 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A1C255035F300F83C29 /* SessionView.swift */; };
@@ -53,8 +55,10 @@
 /* Begin PBXFileReference section */
 		C4113DA225519D1700F22A7B /* AlarmSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSheet.swift; sourceTree = "<group>"; };
 		C4113DB02551F56E00F22A7B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		C42DC6612574502400BE02F4 /* Ocean.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ocean.mp3; sourceTree = "<group>"; };
+		C42DC6622574502600BE02F4 /* Rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rain.mp3; sourceTree = "<group>"; };
+		C42DC6632574502600BE02F4 /* Fan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fan.mp3; sourceTree = "<group>"; };
 		C44BE9B32550BF9900C692CD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		C44BE9B52550BFEA00C692CD /* Inspiration.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Inspiration.mp3; sourceTree = "<group>"; };
 		C48B4A1A255035F300F83C29 /* DissolveGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DissolveGradient.swift; sourceTree = "<group>"; };
 		C48B4A1B255035F300F83C29 /* FXPane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FXPane.swift; sourceTree = "<group>"; };
 		C48B4A1C255035F300F83C29 /* SessionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
@@ -142,6 +146,9 @@
 		C4BAA21025503133001C0085 /* Escape */ = {
 			isa = PBXGroup;
 			children = (
+				C42DC6632574502600BE02F4 /* Fan.mp3 */,
+				C42DC6612574502400BE02F4 /* Ocean.mp3 */,
+				C42DC6622574502600BE02F4 /* Rain.mp3 */,
 				C4113DA225519D1700F22A7B /* AlarmSheet.swift */,
 				C4BAA21525503135001C0085 /* Assets.xcassets */,
 				C48B4A2A2550378300F83C29 /* ButtonStyles.swift */,
@@ -154,7 +161,6 @@
 				C48B4A2B2550378300F83C29 /* FXButtonHandler.swift */,
 				C48B4A1B255035F300F83C29 /* FXPane.swift */,
 				C4BAA21F25503135001C0085 /* Info.plist */,
-				C44BE9B52550BFEA00C692CD /* Inspiration.mp3 */,
 				C48B4A292550378300F83C29 /* NotificationBanner.swift */,
 				C4BAA21A25503135001C0085 /* Persistence.swift */,
 				C4BAA21725503135001C0085 /* Preview Content */,
@@ -303,7 +309,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C44BE9B62550BFEA00C692CD /* Inspiration.mp3 in Resources */,
+				C42DC6662574502700BE02F4 /* Fan.mp3 in Resources */,
+				C42DC6642574502700BE02F4 /* Ocean.mp3 in Resources */,
+				C42DC6652574502700BE02F4 /* Rain.mp3 in Resources */,
 				C4113DB12551F56E00F22A7B /* Launch Screen.storyboard in Resources */,
 				C4BAA21625503135001C0085 /* Assets.xcassets in Resources */,
 			);

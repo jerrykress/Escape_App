@@ -62,8 +62,18 @@ struct ContentView: View {
                     .padding(.all, 30)
                     
                     Button(action: {
+                        //MARK: Session Start Action
                         withAnimation(.easeIn(duration: 0.5)) {
-                            self.isSessionViewPresented.toggle() // Start Session
+                            // Start Session
+                            self.isSessionViewPresented.toggle()
+                            // Setup player to play the correct file
+                            // Set up audio player
+                            let playerUrl = Bundle.main.path(forResource: self.userData.getCurrentScene().soundURL, ofType:"mp3")
+                            self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: playerUrl!))
+                            self.player.delegate = self.del
+                            self.player.prepareToPlay()
+                            self.player.numberOfLoops = -1
+                            // Show sessio view and start playing
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // Delay
                                 self.isSessionReady = false // Restore Image to Full Size
                                 self.player.play()
@@ -213,13 +223,6 @@ struct ContentView: View {
             for scene in self.userData.getAllScene() {
                 print("Init scene: \(scene.title)")
             }
-            
-            // Set up audio player
-            let playerUrl = Bundle.main.path(forResource: self.userData.getCurrentScene().soundURL, ofType:"mp3")
-            self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: playerUrl!))
-            self.player.delegate = self.del
-            self.player.prepareToPlay()
-            self.player.numberOfLoops = -1
             
         })
         
