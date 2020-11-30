@@ -32,8 +32,13 @@ struct SessionView: View {
     
     @AppStorage("timerLength") private var timerLength: Int = 1800 // default 1800 seconds (30 min)
     // Persistent storage for alarm
+    @AppStorage("alarmToggle") private var alarmToggle: Bool = false
     @AppStorage("alarmHour") private var alarmHour: Int = 12;
     @AppStorage("alarmMin") private var alarmMin: Int = 0;
+    
+    @State private var snoozed: Bool = false
+    @State private var hasAlarmSounded: Bool = false
+    @State private var alarmSounding: Bool = false
     
     // MARK: Published Timer
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -177,18 +182,17 @@ struct SessionView: View {
                         .background(Color.clear)
                 }
                 
+                //MARK: Alarm Sounding Screen
+                if(self.alarmSounding){
+                    AlarmSoundingView(alarmSounding: self.$alarmSounding)
+                }
+                
                 
                 //MARK: Session Completed View
                 if(self.isSessionCompleted) {
                     ZStack {
                         SunriseEmitter()
                         .opacity(0.5)
-                        
-//                        Text("Good Morning")
-//                            .font(.custom("DIN Condensed", size: 35))
-//                            .foregroundColor(Color.white)
-//                            .offset(x: 0, y: -90)
-//                            .opacity(0.5)
                         
                         VStack {
                             Text("You had a tight sleep for")
@@ -267,10 +271,16 @@ struct SessionView: View {
                 print(self.timerLength, "\n")
                 // update clock
                 self.date = Date()
-                // check if its alarm time
+                // check if its time to sound the alarm
                 let components = Calendar.current.dateComponents([.hour, .minute], from: self.date)
                 if(components.hour == self.alarmHour && components.minute == self.alarmMin){
-                    //TODO: implement alarm action
+                    //if alarm is enabled
+                    if(self.alarmToggle && !self.hasAlarmSounded){
+                        withAnimation {
+                            self.alarmSounding.toggle()
+                            self.hasAlarmSounded = true
+                        }
+                    }
                 }
                 // decrement timer every second
                 if(self.timerLength > 0){

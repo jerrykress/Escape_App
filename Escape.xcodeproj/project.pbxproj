@@ -12,6 +12,7 @@
 		C42DC6642574502700BE02F4 /* Ocean.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6612574502400BE02F4 /* Ocean.mp3 */; };
 		C42DC6652574502700BE02F4 /* Rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6622574502600BE02F4 /* Rain.mp3 */; };
 		C42DC6662574502700BE02F4 /* Fan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6632574502600BE02F4 /* Fan.mp3 */; };
+		C42DC67725750FB700BE02F4 /* AlarmSoundingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42DC67625750FB700BE02F4 /* AlarmSoundingView.swift */; };
 		C44BE9B42550BF9900C692CD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE9B32550BF9900C692CD /* AVFoundation.framework */; };
 		C48B4A1E255035F300F83C29 /* DissolveGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A1A255035F300F83C29 /* DissolveGradient.swift */; };
 		C48B4A1F255035F300F83C29 /* FXPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B4A1B255035F300F83C29 /* FXPane.swift */; };
@@ -58,6 +59,7 @@
 		C42DC6612574502400BE02F4 /* Ocean.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ocean.mp3; sourceTree = "<group>"; };
 		C42DC6622574502600BE02F4 /* Rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rain.mp3; sourceTree = "<group>"; };
 		C42DC6632574502600BE02F4 /* Fan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fan.mp3; sourceTree = "<group>"; };
+		C42DC67625750FB700BE02F4 /* AlarmSoundingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSoundingView.swift; sourceTree = "<group>"; };
 		C44BE9B32550BF9900C692CD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C48B4A1A255035F300F83C29 /* DissolveGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DissolveGradient.swift; sourceTree = "<group>"; };
 		C48B4A1B255035F300F83C29 /* FXPane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FXPane.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				C48B4A272550378300F83C29 /* TimerHandler.swift */,
 				C48B4A2C2550378300F83C29 /* UserDataModel.swift */,
 				C48B4A242550378300F83C29 /* Utilities.swift */,
+				C42DC67625750FB700BE02F4 /* AlarmSoundingView.swift */,
 			);
 			path = Escape;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				C4BAA21E25503135001C0085 /* Escape.xcdatamodeld in Sources */,
 				C48B4A2E2550378300F83C29 /* EmitterView.swift in Sources */,
 				C4BAA21B25503135001C0085 /* Persistence.swift in Sources */,
+				C42DC67725750FB700BE02F4 /* AlarmSoundingView.swift in Sources */,
 				C48B4A1F255035F300F83C29 /* FXPane.swift in Sources */,
 				C48B4A302550378300F83C29 /* TimerHandler.swift in Sources */,
 				C48B4A312550378300F83C29 /* SlidetoUnlockView.swift in Sources */,
