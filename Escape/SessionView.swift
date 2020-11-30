@@ -36,9 +36,13 @@ struct SessionView: View {
     @AppStorage("alarmHour") private var alarmHour: Int = 12;
     @AppStorage("alarmMin") private var alarmMin: Int = 0;
     
-    @State private var snoozed: Bool = false
+    @State private var snoozed: Bool = false // signal to calculate snooze
     @State private var hasAlarmSounded: Bool = false
     @State private var alarmSounding: Bool = false
+    
+    @State private var snoozeHour: Int = 12
+    @State private var snoozeMin: Int = 0;
+    @State private var snoozeToggle: Bool = false // is snooze active
     
     // MARK: Published Timer
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -216,6 +220,7 @@ struct SessionView: View {
                 }
                 // keep timer ticking so that clock is correct
                 self.sessionStartDate = Date()
+                self.snoozeToggle = false // reset snooze to false on appear
                 print("STATUS: SessionView Appeared")
                 
             })
@@ -235,17 +240,32 @@ struct SessionView: View {
                 if(components.hour == self.alarmHour && components.minute == self.alarmMin){
                     //if alarm is enabled, show alarm screen
                     if(self.alarmToggle && !self.hasAlarmSounded){
+                        print("Alarm screen")
                         withAnimation {
-                            self.alarmSounding.toggle()
+                            self.alarmSounding = true
                             self.hasAlarmSounded = true
                         }
                     }
                 }
                 // if snooze button was pressed in alarm sounding view
                 if(self.snoozed){
+                    print("Processing snooze\n")
                     #warning("snoozed, do something")
+                    let snoozeAlarm = Date().addingTimeInterval(600)
+                    let snoozeComponents = Calendar.current.dateComponents([.hour, .minute], from: snoozeAlarm)
+                    self.snoozeHour = snoozeComponents.hour ?? 0
+                    self.snoozeMin = snoozeComponents.minute ?? 0
+                    self.snoozeToggle = true
+                    self.snoozed = false
                 }
-                // decrement timer every second
+                // if its time to display alarm screen again due to snooze
+                if(components.hour == self.snoozeHour && components.minute == self.snoozeMin){
+                    if(self.snoozeToggle){
+                        print("Snooze Screen")
+                        self.alarmSounding = true
+                    }
+                }
+                //MARK: AutoStop Timer
                 if(self.timerLength > 0){
                     self.timerLength -= 1
                 }
