@@ -182,56 +182,15 @@ struct SessionView: View {
                         .background(Color.clear)
                 }
                 
-                //MARK: Alarm Sounding Screen
+                //MARK: Alarm Sounding
                 if(self.alarmSounding){
-                    AlarmSoundingView(alarmSounding: self.$alarmSounding)
+                    AlarmSoundingView(alarmSounding: self.$alarmSounding, isSessionCompleted: self.$isSessionCompleted)
                 }
                 
                 
-                //MARK: Session Completed View
+                //MARK: Session Completed
                 if(self.isSessionCompleted) {
-                    ZStack {
-                        SunriseEmitter()
-                        .opacity(0.5)
-                        
-                        VStack {
-                            Text("You had a tight sleep for")
-                                .font(.custom("DIN Condensed", size: 20))
-                                .foregroundColor(Color.white)
-                                .padding()
-                                .opacity(0.5)
-                            
-                            HStack {
-                                Text("\(self.sessionDuration.0)")
-                                    .font(.custom("DIN Alternate", size: 80))
-                                Text("hr")
-                                Text("\(self.sessionDuration.1 - self.sessionDuration.0 * 60)")
-                                    .font(.custom("DIN Alternate", size: 80))
-                                Text("min")
-                            }
-                            .foregroundColor(Color.white)
-                        }
-                        
-                        //Back to Home Button
-                        Button(action: {
-                            print("Return Button Pressed")
-                            withAnimation {
-                                self.isSessionViewPresented.toggle()
-                            }
-                        }) {
-                            Image(systemName: "checkmark.circle.fill")
-                            .resizable()
-                            .foregroundColor(.white)
-                            .opacity(0.6)
-                        }
-                        .frame(width: 50, height: 50, alignment: .center)
-                        .offset(x: 0, y: proxy.size.height/2 - 100)
-                        
-                    }
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                    .background(LinearGradient(gradient: .init(colors: [Color(red: 255/255, green: 175/255, blue: 189/255), Color(red: 255/255, green: 195/255, blue: 160/255)]), startPoint: .top, endPoint: .bottom))
-                    
+                    SessionCompletedView(isSessionViewPresented: self.$isSessionViewPresented, sessionDuration: self.$sessionDuration)
                 }
                 
             }

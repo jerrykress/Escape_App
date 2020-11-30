@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct AlarmSoundingView: View {
     @Binding var alarmSounding: Bool
+    @Binding var isSessionCompleted: Bool
     
     var body: some View {
         GeometryReader{ proxy in
@@ -23,7 +25,10 @@ struct AlarmSoundingView: View {
                     
                 HStack{
                     Button(action:{
-                        self.alarmSounding.toggle()
+                        withAnimation {
+                            self.alarmSounding.toggle()
+                            self.isSessionCompleted.toggle()
+                        }
                     }){
                         Text("Get Up")
                             .foregroundColor(Color.white)
@@ -59,7 +64,7 @@ struct TestAlarmView: View {
     var body: some View{
         ZStack{
             Color.white
-            AlarmSoundingView(alarmSounding: self.$testAlarmSounding)
+            AlarmSoundingView(alarmSounding: self.$testAlarmSounding, isSessionCompleted: .constant(false))
         }
     }
 }
