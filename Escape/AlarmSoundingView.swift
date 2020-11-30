@@ -11,6 +11,7 @@ import AVKit
 struct AlarmSoundingView: View {
     @Binding var alarmSounding: Bool
     @Binding var isSessionCompleted: Bool
+    @Binding var snoozed: Bool
     
     var body: some View {
         GeometryReader{ proxy in
@@ -32,23 +33,32 @@ struct AlarmSoundingView: View {
                     }){
                         Text("Get Up")
                             .foregroundColor(Color.white)
-                            .font(.system(size: 25))
+                            .font(.system(size: 23))
+                            .padding(10)
+                            .background(Color.white.opacity(0.4))
+                            .cornerRadius(25)
                     }
                     .frame(width: 100, height: 50, alignment: .center)
                     
                     Spacer()
                     
                     Button(action:{
-                        self.alarmSounding.toggle()
+                        withAnimation {
+                            self.alarmSounding.toggle()
+                            self.snoozed = true
+                        }
                     }){
                         Text("Snooze")
                             .foregroundColor(Color.white)
-                            .font(.system(size: 25))
+                            .font(.system(size: 23))
+                            .padding(10)
+                            .background(Color.white.opacity(0.4))
+                            .cornerRadius(25)
                     }
                     .frame(width: 100, height: 50, alignment: .center)
                 }
                 .opacity(0.7)
-                .frame(width: proxy.size.width/2, height: proxy.size.height-80, alignment: .bottom)
+                .frame(width: 250, height: proxy.size.height-80, alignment: .bottom)
                     
                     
                 
@@ -58,19 +68,11 @@ struct AlarmSoundingView: View {
     }
 }
 
-struct TestAlarmView: View {
-    @State private var testAlarmSounding = true
-    
-    var body: some View{
-        ZStack{
-            Color.white
-            AlarmSoundingView(alarmSounding: self.$testAlarmSounding, isSessionCompleted: .constant(false))
-        }
-    }
-}
 
 struct AlarmSoundingView_Previews: PreviewProvider {
     static var previews: some View {
-        TestAlarmView()
+        AlarmSoundingView(alarmSounding: .constant(true),
+                          isSessionCompleted: .constant(false),
+                          snoozed: .constant(false))
     }
 }

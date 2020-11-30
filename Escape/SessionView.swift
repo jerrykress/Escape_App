@@ -184,7 +184,7 @@ struct SessionView: View {
                 
                 //MARK: Alarm Sounding
                 if(self.alarmSounding){
-                    AlarmSoundingView(alarmSounding: self.$alarmSounding, isSessionCompleted: self.$isSessionCompleted)
+                    AlarmSoundingView(alarmSounding: self.$alarmSounding, isSessionCompleted: self.$isSessionCompleted, snoozed: self.$snoozed)
                 }
                 
                 
@@ -233,13 +233,17 @@ struct SessionView: View {
                 // check if its time to sound the alarm
                 let components = Calendar.current.dateComponents([.hour, .minute], from: self.date)
                 if(components.hour == self.alarmHour && components.minute == self.alarmMin){
-                    //if alarm is enabled
+                    //if alarm is enabled, show alarm screen
                     if(self.alarmToggle && !self.hasAlarmSounded){
                         withAnimation {
                             self.alarmSounding.toggle()
                             self.hasAlarmSounded = true
                         }
                     }
+                }
+                // if snooze button was pressed in alarm sounding view
+                if(self.snoozed){
+                    #warning("snoozed, do something")
                 }
                 // decrement timer every second
                 if(self.timerLength > 0){
