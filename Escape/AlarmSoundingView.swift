@@ -27,8 +27,8 @@ struct AlarmSoundingView: View {
                 HStack{
                     Button(action:{
                         withAnimation {
-                            self.alarmSounding.toggle()
                             self.isSessionCompleted.toggle()
+                            self.alarmSounding.toggle()
                         }
                     }){
                         Text("Get Up")

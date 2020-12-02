@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C4113DA325519D1700F22A7B /* AlarmSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4113DA225519D1700F22A7B /* AlarmSheet.swift */; };
 		C4113DB12551F56E00F22A7B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4113DB02551F56E00F22A7B /* Launch Screen.storyboard */; };
+		C41321AF2577EAFE00841ADF /* WakeUp-Birds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C41321AE2577EAFE00841ADF /* WakeUp-Birds.mp3 */; };
 		C42DC6642574502700BE02F4 /* Ocean.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6612574502400BE02F4 /* Ocean.mp3 */; };
 		C42DC6652574502700BE02F4 /* Rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6622574502600BE02F4 /* Rain.mp3 */; };
 		C42DC6662574502700BE02F4 /* Fan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C42DC6632574502600BE02F4 /* Fan.mp3 */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		C4113DA225519D1700F22A7B /* AlarmSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSheet.swift; sourceTree = "<group>"; };
 		C4113DB02551F56E00F22A7B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		C41321AE2577EAFE00841ADF /* WakeUp-Birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "WakeUp-Birds.mp3"; sourceTree = "<group>"; };
 		C42DC6612574502400BE02F4 /* Ocean.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ocean.mp3; sourceTree = "<group>"; };
 		C42DC6622574502600BE02F4 /* Rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rain.mp3; sourceTree = "<group>"; };
 		C42DC6632574502600BE02F4 /* Fan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fan.mp3; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				C42DC6632574502600BE02F4 /* Fan.mp3 */,
 				C42DC6612574502400BE02F4 /* Ocean.mp3 */,
 				C42DC6622574502600BE02F4 /* Rain.mp3 */,
+				C41321AE2577EAFE00841ADF /* WakeUp-Birds.mp3 */,
 				C4113DA225519D1700F22A7B /* AlarmSheet.swift */,
 				C4BAA21525503135001C0085 /* Assets.xcassets */,
 				C48B4A2A2550378300F83C29 /* ButtonStyles.swift */,
@@ -317,6 +320,7 @@
 			files = (
 				C42DC6662574502700BE02F4 /* Fan.mp3 in Resources */,
 				C42DC6642574502700BE02F4 /* Ocean.mp3 in Resources */,
+				C41321AF2577EAFE00841ADF /* WakeUp-Birds.mp3 in Resources */,
 				C42DC6652574502700BE02F4 /* Rain.mp3 in Resources */,
 				C4113DB12551F56E00F22A7B /* Launch Screen.storyboard in Resources */,
 				C4BAA21625503135001C0085 /* Assets.xcassets in Resources */,

@@ -37,12 +37,16 @@ struct SessionView: View {
     @AppStorage("alarmMin") private var alarmMin: Int = 0;
     
     @State private var snoozed: Bool = false // signal to calculate snooze
+    @State private var snoozeLength: Double = 120 // length of snooze, in seconds
     @State private var hasAlarmSounded: Bool = false
     @State private var alarmSounding: Bool = false
     
     @State private var snoozeHour: Int = 12
     @State private var snoozeMin: Int = 0;
     @State private var snoozeToggle: Bool = false // is snooze active
+    
+    @State var alarmPlayer: AVAudioPlayer!
+    @State var alarmAVDelegate = AVdelegate()
     
     // MARK: Published Timer
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -189,6 +193,19 @@ struct SessionView: View {
                 //MARK: Alarm Sounding
                 if(self.alarmSounding){
                     AlarmSoundingView(alarmSounding: self.$alarmSounding, isSessionCompleted: self.$isSessionCompleted, snoozed: self.$snoozed)
+                        .onAppear(perform: {
+                            // change player to play alarm sound
+                            let alarmURL = Bundle.main.path(forResource: "WakeUp-Birds", ofType:"mp3")
+                            self.player.stop()
+                            self.alarmPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: alarmURL!))
+                            self.alarmPlayer.delegate = self.alarmAVDelegate
+                            self.alarmPlayer.prepareToPlay()
+                            self.alarmPlayer.numberOfLoops = -1
+                            self.alarmPlayer.play()
+                        })
+                        .onDisappear(perform: {
+                            self.alarmPlayer.stop()
+                        })
                 }
                 
                 
@@ -240,7 +257,7 @@ struct SessionView: View {
                 if(components.hour == self.alarmHour && components.minute == self.alarmMin){
                     //if alarm is enabled, show alarm screen
                     if(self.alarmToggle && !self.hasAlarmSounded){
-                        print("Alarm screen")
+                        print("Time to sound alarm, showing alarm screen.")
                         withAnimation {
                             self.alarmSounding = true
                             self.hasAlarmSounded = true
@@ -251,7 +268,8 @@ struct SessionView: View {
                 if(self.snoozed){
                     print("Processing snooze\n")
                     #warning("snoozed, do something")
-                    let snoozeAlarm = Date().addingTimeInterval(600)
+                    self.player.stop()
+                    let snoozeAlarm = Date().addingTimeInterval(self.snoozeLength)
                     let snoozeComponents = Calendar.current.dateComponents([.hour, .minute], from: snoozeAlarm)
                     self.snoozeHour = snoozeComponents.hour ?? 0
                     self.snoozeMin = snoozeComponents.minute ?? 0
@@ -273,9 +291,12 @@ struct SessionView: View {
                 if(self.timerLength == 0 && self.player.isPlaying){
                     self.player.stop()
                 }
-                // if timer has been re-enabled, resume
-                if(self.timerLength != 0 && !self.player.isPlaying){
-                    self.player.play()
+                // if timer has been re-enabled
+                if(self.timerLength != 0
+                    && !self.player.isPlaying // if its not already playing, resume
+                    && !self.alarmSounding  // however make sure alarm screen is not showing
+                    && !self.isSessionCompleted){ // and don't resume playing when session complete screen is shown
+                        self.player.play()
                 }
                 
             }
