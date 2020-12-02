@@ -267,7 +267,6 @@ struct SessionView: View {
                 // if snooze button was pressed in alarm sounding view
                 if(self.snoozed){
                     print("Processing snooze\n")
-                    #warning("snoozed, do something")
                     self.player.stop()
                     let snoozeAlarm = Date().addingTimeInterval(self.snoozeLength)
                     let snoozeComponents = Calendar.current.dateComponents([.hour, .minute], from: snoozeAlarm)
